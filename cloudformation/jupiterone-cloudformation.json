@@ -1,0 +1,74 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "JupiterOne AWS Integration",
+  "Metadata": {
+    "AWS::CloudFormation::Interface": {
+      "ParameterGroups": [
+        {
+          "Label": {
+            "default": "JupiterOne Authentication Parameters"
+          },
+          "Parameters": ["J1AccountID", "J1ExternalID"]
+        }
+      ],
+      "ParameterLabels": {
+        "J1AccountID": {
+          "default": "What is your JupiterOne account Id?"
+        },
+        "J1ExternalID": {
+          "default": "What is your JupiterOne external Id?"
+        }
+      }
+    }
+  },
+  "Parameters": {
+    "J1AccountID": {
+      "Description": "The JupiterOne account Id",
+      "Type": "String"
+    },
+    "J1ExternalID": {
+      "Description": "The JupiterOne external Id",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "JupiterOneRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "ManagedPolicyArns": ["arn:aws:iam::aws:policy/SecurityAudit"],
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    ["arn:aws:iam::", { "Ref": "J1AccountID" }, ":root"]
+                  ]
+                }
+              },
+              "Condition": {
+                "StringEquals": {
+                  "sts:ExternalId": {
+                    "Ref": "J1ExternalID"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "RoleARN": {
+      "Description": "ARN of the JupiterOne role",
+      "Value": {
+        "Fn::GetAtt": ["JupiterOneRole", "Arn"]
+      }
+    }
+  }
+}
