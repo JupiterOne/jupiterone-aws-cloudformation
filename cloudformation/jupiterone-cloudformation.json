@@ -8,25 +8,25 @@
           "Label": {
             "default": "JupiterOne Authentication Parameters"
           },
-          "Parameters": ["J1AccountID", "J1ExternalID"]
+          "Parameters": ["J1AwsAccountId", "J1ExternalId"]
         }
       ],
       "ParameterLabels": {
-        "J1AccountID": {
-          "default": "What is your JupiterOne account Id?"
+        "J1AwsAccountId": {
+          "default": "What is the JupiterOne AWS account Id?"
         },
-        "J1ExternalID": {
-          "default": "What is your JupiterOne external Id?"
+        "J1ExternalId": {
+          "default": "What is the JupiterOne external Id you were provided?"
         }
       }
     }
   },
   "Parameters": {
-    "J1AccountID": {
-      "Description": "The JupiterOne account Id",
+    "J1AwsAccountId": {
+      "Description": "The JupiterOne AWS account Id",
       "Type": "String"
     },
-    "J1ExternalID": {
+    "J1ExternalId": {
       "Description": "The JupiterOne external Id",
       "Type": "String"
     }
@@ -46,14 +46,14 @@
                 "AWS": {
                   "Fn::Join": [
                     "",
-                    ["arn:aws:iam::", { "Ref": "J1AccountID" }, ":root"]
+                    ["arn:aws:iam::", { "Ref": "J1AwsAccountId" }, ":role/JupiterIntegrationAws*"]
                   ]
                 }
               },
               "Condition": {
                 "StringEquals": {
                   "sts:ExternalId": {
-                    "Ref": "J1ExternalID"
+                    "Ref": "J1ExternalId"
                   }
                 }
               }
