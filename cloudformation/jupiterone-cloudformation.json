@@ -46,7 +46,7 @@
                 "AWS": {
                   "Fn::Join": [
                     "",
-                    ["arn:aws:iam::", { "Ref": "J1AwsAccountId" }, ":role/JupiterIntegrationAws*"]
+                    ["arn:aws:iam::", { "Ref": "J1AwsAccountId" }, ":role/JupiterOneIntegrationAws*"]
                   ]
                 }
               },
