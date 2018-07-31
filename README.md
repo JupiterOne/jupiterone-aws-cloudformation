@@ -29,7 +29,7 @@ From your AWS Management Console, perform the following steps:
 
 1.  Select **Another AWS account** under **Select type of trusted entity**.
 
-1.  Enter the following **Account ID**: `<jupiterone_account_id>`
+1.  Enter the following **Account ID** (JupiterOne production): `612791702201`
 
 1.  Select **Require external ID** and enter the following **External ID**:
     `<jupiterone_external_id>`
@@ -40,7 +40,7 @@ From your AWS Management Console, perform the following steps:
     is an AWS-managed IAM policy that grants access to read security
     configurations of the AWS resources.
 
-1.  With the `SecurityAudit` policy select, click **Next: Review**.
+1.  With the `SecurityAudit` policy selected, click **Next: Review**.
 
 1.  Enter `JupiterOne` as the **Role Name**, and optionally, enter a description
     for the Role.
