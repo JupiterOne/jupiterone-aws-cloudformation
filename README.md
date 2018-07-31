@@ -18,7 +18,7 @@ JupiterOne AWS integration:
 ## Using AWS CLI
 
 ```bash
-aws cloudformation create-stack --stack-name JupiterOneIntegration --template-url https://s3.amazonaws.com/lifeomic-prod-us-jupiter-aws-integration/jupiterone-cloudformation.json
+aws cloudformation create-stack --stack-name JupiterOneIntegration --capabilities CAPABILITY_IAM --template-url https://s3.amazonaws.com/lifeomic-prod-us-jupiter-aws-integration/jupiterone-cloudformation.json
 ```
 
 ## Manual creation via AWS Management Console
