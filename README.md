@@ -13,12 +13,12 @@ following methods:
 Just click this button to launch a CloudFormation stack for provisioning your
 JupiterOne AWS integration:
 
-[![Launch JupiterOne CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=jupiterone-integration&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Flifeomic-prod-us-jupiter-aws-integration%2Fjupiterone-cloudformation.json)
+[![Launch JupiterOne CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=jupiterone-integration&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fjupiterone-prod-us-jupiter-aws-integration%2Fjupiterone-cloudformation.json)
 
 ## Using AWS CLI
 
 ```bash
-aws cloudformation create-stack --stack-name JupiterOneIntegration --template-url https://s3.amazonaws.com/lifeomic-prod-us-jupiter-aws-integration/jupiterone-cloudformation.json
+aws cloudformation create-stack --stack-name JupiterOneIntegration --template-url https://s3.amazonaws.com/jupiterone-prod-us-jupiter-aws-integration/jupiterone-cloudformation.json
 ```
 
 ## Manual creation via AWS Management Console
