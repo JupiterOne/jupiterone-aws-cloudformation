@@ -87,7 +87,7 @@
       "Properties": {
         "ManagedPolicyArns": [
           "arn:aws:iam::aws:policy/SecurityAudit",
-          "!Ref JupiterOneSecurityAuditPolicy"
+          { "Ref": "JupiterOneSecurityAuditPolicy" }
         ],
         "AssumeRolePolicyDocument": {
           "Version": "2012-10-17",
