@@ -36,11 +36,64 @@ From your AWS Management Console, perform the following steps:
 
 1.  Leave **Require MFA** unchecked and click **Next: Permissions**.
 
-1.  In the Policy search box, search for and select `SecurityAudit` policy. This
-    is an AWS-managed IAM policy that grants access to read security
-    configurations of the AWS resources.
+1.  Click **Create Policy**, select the **JSON** tab, and enter the following document content:
+```json
+{
+  "Version":"2012-10-17", 
+  "Statement" : [{
+    "Effect" : "Allow",           
+    "Resource" : "*",
+    "Action" : [
+      "athena:BatchGet*",
+      "athena:Get*",
+      "athena:List*",
+      "batch:Describe*",
+      "batch:List*",
+      "dynamodb:Describe*",
+      "dynamodb:List*",
+      "ecs:List*",
+      "eks:DescribeCluster",
+      "eks:ListClusters",
+      "elasticache:Describe*",
+      "elasticache:List*",
+      "elasticmapreduce:Describe*",
+      "elasticmapreduce:List*",
+      "es:Describe*",
+      "es:List*",
+      "glue:Get*",
+      "inspector:Describe*",
+      "inspector:Get*",
+      "inspector:List*",
+      "kinesis:Describe*",
+      "kinesis:List*",
+      "waf:List*",               
+      "waf:Get*"
+    ]
+  },
+  {
+      "Effect": "Allow",
+      "Action": [
+        "apigateway:GET"
+      ],
+      "Resource": [
+        "arn:aws:apigateway:*::/*"
+      ]
+  }]
+}
+```
 
-1.  With the `SecurityAudit` policy selected, click **Next: Review**.
+1.  Click **Review Policy** and verify the permissions.
+
+1.  Enter `JupiterOneSecurityAudit` as the **Name** and click **Create Policy**.
+
+1.  Return to the **Create Role** tab in your browser. Click the Policy table's
+    **Refresh Icon**.
+
+1.  In the Policy search box, search for `SecurityAudit`. Select both `SecurityAudit`
+    and `JupiterOneSecurityAudit` policies. `SecurityAudit` is an AWS-managed IAM
+    policy.
+
+1.  With both policies selected, click **Next: Review**.
 
 1.  Enter `JupiterOne` as the **Role Name**, and optionally, enter a description
     for the Role.
