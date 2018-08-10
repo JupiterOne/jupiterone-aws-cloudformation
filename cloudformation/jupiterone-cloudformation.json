@@ -36,6 +36,7 @@
     "JupiterOneSecurityAuditPolicy": {
       "Type" : "AWS::IAM::ManagedPolicy",
       "Properties" : {
+        "ManagedPolicyName": "JupiterOneSecurityAudit",
         "Description" : "JupiterOne SecurityAudit policy",
         "Path" : "/",
         "PolicyDocument" : {
