@@ -33,10 +33,65 @@
     }
   },
   "Resources": {
+    "JupiterOneSecurityAuditPolicy": {
+      "Type" : "AWS::IAM::ManagedPolicy",
+      "Properties" : {
+        "Description" : "JupiterOne SecurityAudit policy",
+        "Path" : "/",
+        "PolicyDocument" : {
+          "Version":"2012-10-17", 
+          "Statement" : [{
+            "Effect" : "Allow",           
+            "Resource" : "*",
+            "Action" : [
+              "athena:BatchGet*",
+              "athena:Get*",
+              "athena:List*",
+              "batch:Describe*",
+              "batch:List*",
+              "dynamodb:Describe*",
+              "dynamodb:List*",
+              "ecs:List*",
+              "eks:DescribeCluster",
+              "eks:ListClusters",
+              "elasticache:Describe*",
+              "elasticache:List*",
+              "elasticmapreduce:Describe*",
+              "elasticmapreduce:List*",
+              "es:Describe*",
+              "es:List*",
+              "glue:Get*",
+              "inspector:Describe*",
+              "inspector:Get*",
+              "inspector:List*",
+              "kinesis:Describe*",
+              "kinesis:List*",
+              "macie:Get*",
+              "macie:List*",
+              "macie:Describe*",
+              "waf:List*",               
+              "waf:Get*"
+            ]
+          },
+          {
+              "Effect": "Allow",
+              "Action": [
+                "apigateway:GET"
+              ],
+              "Resource": [
+                "arn:aws:apigateway:*::/*"
+              ]
+          }]
+        }
+      }
+    },
     "JupiterOneRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
-        "ManagedPolicyArns": ["arn:aws:iam::aws:policy/SecurityAudit"],
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/SecurityAudit",
+          "!Ref JupiterOneSecurityAuditPolicy"
+        ],
         "AssumeRolePolicyDocument": {
           "Version": "2012-10-17",
           "Statement": [
