@@ -66,9 +66,6 @@
               "inspector:List*",
               "kinesis:Describe*",
               "kinesis:List*",
-              "macie:Get*",
-              "macie:List*",
-              "macie:Describe*",
               "waf:List*",               
               "waf:Get*"
             ]
