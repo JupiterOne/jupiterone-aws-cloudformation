@@ -18,7 +18,7 @@ JupiterOne AWS integration:
 ## Using AWS CLI
 
 ```bash
-aws cloudformation create-stack --stack-name JupiterOneIntegration --capabilities CAPABILITY_IAM --template-url https://s3.amazonaws.com/jupiterone-prod-us-jupiter-aws-integration/jupiterone-cloudformation.json
+aws cloudformation create-stack --stack-name JupiterOneIntegration --capabilities CAPABILITY_NAMED_IAM --template-url https://s3.amazonaws.com/jupiterone-prod-us-jupiter-aws-integration/jupiterone-cloudformation.json
 ```
 
 ## Manual creation via AWS Management Console
