@@ -29,7 +29,7 @@ From your AWS Management Console, perform the following steps:
 
 1.  Select **Another AWS account** under **Select type of trusted entity**.
 
-1.  Enter the following **Account ID** (JupiterOne production): `612791702201`
+1.  Enter the following **Account ID**: `<jupiterone_account_id>`
 
 1.  Select **Require external ID** and enter the following **External ID**:
     `<jupiterone_external_id>`
