@@ -1,5 +1,5 @@
 {
-  "name": "@lifeomic/jupiterone-aws-integration",
+  "name": "@jupiterone/jupiterone-aws-cloudformation",
   "version": "1.0.0",
   "description": "JupiterOne AWS Integration",
   "main": "index.js",
@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lifeomic/jupiterone-aws-integration.git"
+    "url": "git+https://github.com/jupiterone/jupiterone-aws-cloudformation.git"
   },
-  "author": "LifeOmic <development@lifeomic.com>",
+  "author": "JupiterOne <dev@jupiterone.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lifeomic/jupiterone-aws-integration/issues"
+    "url": "https://github.com/jupiterone/jupiterone-aws-cloudformation/issues"
   },
   "lint-staged": {
     "*.{js,md,json}": [
@@ -22,7 +22,7 @@
       "git add"
     ]
   },
-  "homepage": "https://github.com/lifeomic/jupiterone-aws-integration#readme",
+  "homepage": "https://github.com/jupiterone/jupiterone-aws-cloudformation#readme",
   "devDependencies": {
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
