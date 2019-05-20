@@ -114,6 +114,70 @@ Currently supported services and relevant access requirements:
   - getWebACL
   - listWebACLs
 
+Planned services and anticipated relevant access requirements:
+
+- CloudWatch Alarms
+  - describeAlarms
+  - describeAlarmHistory
+- ECR
+  - describeImages
+  - describeRepositories
+  - getRepositoryPolicy
+  - listImages
+  - listTagsForResource
+- ECS
+  - describeClusters
+  - describeContainerInstances
+  - describeServices
+  - describeTaskDefinition
+  - describeTasks
+  - describeTaskSets
+  - listClusters
+  - listContainerInstances
+  - listServices
+  - listTagsForResource
+  - listTaskDefinitions
+  - listTasks
+- EKS
+  - describeCluster
+  - listClusters
+- ElastiCache
+  - describeCacheClusters
+  - describeCacheEngineVersions
+  - describeCacheParameterGroups
+  - describeCacheParameters
+  - describeCacheSecurityGroups
+  - describeCacheSubnetGroups
+  - describeEngineDefaultParameters
+  - listAllowedNodeTypeModifications
+  - listTagsForResource
+- Route53
+  - getDomainDetail
+  - listDomains
+  - listTagsForDomain
+- S3 bucket policy
+  - getBucketCORS
+  - getBucketObjectLockConfiguration
+  - getBucketPolicy
+  - getBucketPublicAccessBlock
+  - getBucketPolicyStatus
+  - getObjectLegalHold
+  - getObjectRetention
+- VPC Peering
+  - describeVpcPeeringConnections
+- WAF (Regional)
+  - getWebACL
+  - listWebACLs
+- Workspaces
+  - describeClientProperties
+  - describeIpGroups
+  - describeTags
+  - describeWorkspaceBundles
+  - describeWorkspaceDirectories
+  - describeWorkspaceImages
+  - describeWorkspaces
+  - listAvailableManagementCidrRanges
+
 ## IAM Role Permissions
 
 The AWS [`SecurityAudit` Managed Policy](#securityaudit-managed-policy) covers
@@ -414,28 +478,25 @@ These permissions extend those included in the `SecurityAudit` Managed Policy.
       "Action": [
         "athena:BatchGet*",
         "athena:Get*",
-        "athena:List*",
         "batch:Describe*",
         "batch:List*",
         "dynamodb:Describe*",
         "dynamodb:List*",
-        "ecs:List*",
-        "eks:DescribeCluster",
-        "eks:ListClusters",
-        "elasticache:Describe*",
+        "ecr:Describe*",
+        "ecr:List*",
         "elasticache:List*",
-        "elasticmapreduce:Describe*",
         "elasticmapreduce:List*",
-        "es:Describe*",
         "es:List*",
         "glue:Get*",
-        "inspector:Describe*",
-        "inspector:Get*",
-        "inspector:List*",
         "kinesis:Describe*",
         "kinesis:List*",
+        "s3:GetObjectRetention",
+        "s3:GetObjectLegalHold",
         "waf:List*",
-        "waf:Get*"
+        "waf:Get*",
+        "waf-regional:List*",
+        "waf-regional:Get*",
+        "workspaces:List*"
       ]
     },
     {
@@ -481,28 +542,25 @@ From your AWS Management Console, perform the following steps:
       "Action": [
         "athena:BatchGet*",
         "athena:Get*",
-        "athena:List*",
         "batch:Describe*",
         "batch:List*",
         "dynamodb:Describe*",
         "dynamodb:List*",
-        "ecs:List*",
-        "eks:DescribeCluster",
-        "eks:ListClusters",
-        "elasticache:Describe*",
+        "ecr:Describe*",
+        "ecr:List*",
         "elasticache:List*",
-        "elasticmapreduce:Describe*",
         "elasticmapreduce:List*",
-        "es:Describe*",
         "es:List*",
         "glue:Get*",
-        "inspector:Describe*",
-        "inspector:Get*",
-        "inspector:List*",
         "kinesis:Describe*",
         "kinesis:List*",
+        "s3:GetObjectRetention",
+        "s3:GetObjectLegalHold",
         "waf:List*",
-        "waf:Get*"
+        "waf:Get*",
+        "waf-regional:List*",
+        "waf-regional:Get*",
+        "workspaces:List*"
       ]
     },
     {
