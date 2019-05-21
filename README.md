@@ -334,8 +334,16 @@ to update the policy in the future as more APIs are called by JupiterOne.
     },
     {
       "Effect": "Allow",
-      "Action": ["apigateway:GET"],
-      "Resource": ["arn:aws:apigateway:*::/*"]
+      "Action": ["apigateway:HEAD", "apigateway:GET", "apigateway:OPTIONS"],
+      "Resource": [
+        "arn:aws:apigateway:*::/restapis",
+        "arn:aws:apigateway:*::/restapis/*/authorizers",
+        "arn:aws:apigateway:*::/restapis/*/authorizers/*",
+        "arn:aws:apigateway:*::/restapis/*/resources",
+        "arn:aws:apigateway:*::/restapis/*/resources/*",
+        "arn:aws:apigateway:*::/restapis/*/resources/*/methods/*",
+        "arn:aws:apigateway:*::/vpclinks"
+      ]
     }
   ]
 }
