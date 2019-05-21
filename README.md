@@ -1,27 +1,244 @@
-# jupiterone-aws-integration
+# jupiterone-aws-cloudformation
 
-Contains scripts and instructions to configure your [JupiterOne](https://jupiterone.io/)
-AWS integration.
+This project provides instructions to configure the
+[JupiterOne](https://jupiterone.com/) AWS integration. JupiterOne assumes an IAM
+Role in the target account that has been granted permission to read information
+from AWS services supported by JupiterOne. Configuring the IAM Role can be
+accomplished using one of the following methods:
 
-## Setup
+1. [![Launch JupiterOne CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=jupiterone-integration&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fjupiterone-prod-us-jupiter-aws-integration%2Fjupiterone-cloudformation.json)
+1. [Launch Cloudformation with AWS CLI](#cloudformation-with-aws-cli)
+1. [Create a Role using the AWS Management Console](#manual-creation-with-aws-management-console)
 
-You can set up the necessary AWS IAM role for JupiterOne using one of the
-following methods:
+## Supported Services
 
-## Launch a stack now!
+Currently supported services and relevant access requirements:
 
-Just click this button to launch a CloudFormation stack for provisioning your
-JupiterOne AWS integration:
+- ACM
+  - describeKey
+  - listAliases
+  - listKeys
+- API Gateway
+  - getIntegration
+  - getResources
+  - getRestApis
+- Autoscaling
+  - describeAutoScalingGroups
+- Cloudfront
+  - listDistributions
+  - listTagsForResource
+- CloudWatch Events
+  - listRules
+  - listTargetsByRule
+- Config Service
+  - describeComplianceByConfigRule
+  - describeConfigRules
+  - getComplianceByResource
+  - getComplianceDetailsByConfigRule
+- DynamoDB
+  - describeContinuousBackups
+  - describeTable
+  - listBackups
+  - listTables
+  - listTagsOfResource
+- EC2
+  - describeImages
+  - describeInstances
+  - describeInternetGateways
+  - describeKeyPairs
+  - describeNetworkAcls
+  - describeRouteTables
+  - describeSecurityGroups
+  - describeSubnets
+  - describeVpcs
+  - describeVolumes
+- ELB
+  - describeTags
+  - describeLoadBalancers
+- GuardDuty
+  - getDetector
+  - getFindings
+  - listDetectors
+  - listFindings
+- IAM
+  - getAccountPasswordPolicy
+  - getAccountSummary
+  - getGroup
+  - getGroupPolicy
+  - getPolicyVersion
+  - getRolePolicy
+  - getUserPolicy
+  - listAccessKeys
+  - listAccountAliases
+  - listEntitiesForPolicy
+  - listGroupPolicies
+  - listGroups
+  - listMFADevices
+  - listPolicies
+  - listRolePolicies
+  - listRoles
+  - listUserPolicies
+  - listUsers
+- Inspector
+  - describeAssessmentRuns
+  - describeFindings
+  - listAssessmentRuns
+  - listFindings
+- KMS
+  - describeKey
+  - listAliases
+  - listKeys
+- Lambda
+  - listFunctions
+- RDS
+  - describeDBClusters
+  - describeDBInstances
+  - listTagsForResource
+- Redshift
+  - describeClusters
+- S3
+  - getBucketAcl
+  - getBucketEncryption
+  - getBucketLocation
+  - getBucketLogging
+  - getBucketReplication
+  - getBucketTagging
+  - getBucketVersioning
+  - getPublicAccessBlock
+  - listBuckets
+- Transfer
+  - listServers
+  - listTagsForResource
+  - listUsers
+- WAF
+  - getWebACL
+  - listWebACLs
 
-[![Launch JupiterOne CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=jupiterone-integration&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fjupiterone-prod-us-jupiter-aws-integration%2Fjupiterone-cloudformation.json)
+Planned services and anticipated relevant access requirements:
 
-## Using AWS CLI
+- CloudWatch Alarms
+  - describeAlarms
+  - describeAlarmHistory
+- ECR
+  - describeImages
+  - describeRepositories
+  - getRepositoryPolicy
+  - listImages
+  - listTagsForResource
+- ECS
+  - describeClusters
+  - describeContainerInstances
+  - describeServices
+  - describeTaskDefinition
+  - describeTasks
+  - describeTaskSets
+  - listClusters
+  - listContainerInstances
+  - listServices
+  - listTagsForResource
+  - listTaskDefinitions
+  - listTasks
+- EKS
+  - describeCluster
+  - listClusters
+- ElastiCache
+  - describeCacheClusters
+  - describeCacheEngineVersions
+  - describeCacheParameterGroups
+  - describeCacheParameters
+  - describeCacheSecurityGroups
+  - describeCacheSubnetGroups
+  - describeEngineDefaultParameters
+  - listAllowedNodeTypeModifications
+  - listTagsForResource
+- Route53
+  - getDomainDetail
+  - listDomains
+  - listTagsForDomain
+- S3 bucket policy
+  - getBucketCORS
+  - getBucketObjectLockConfiguration
+  - getBucketPolicy
+  - getBucketPublicAccessBlock
+  - getBucketPolicyStatus
+  - getObjectLegalHold
+  - getObjectRetention
+- VPC Peering
+  - describeVpcPeeringConnections
+- WAF (Regional)
+  - getWebACL
+  - listWebACLs
+- Workspaces
+  - describeClientProperties
+  - describeIpGroups
+  - describeTags
+  - describeWorkspaceBundles
+  - describeWorkspaceDirectories
+  - describeWorkspaceImages
+  - describeWorkspaces
+  - listAvailableManagementCidrRanges
+
+## IAM Role Permissions
+
+The [SecurityAudit][1] AWS-managed IAM policy covers many permissions used by
+JupiterOne and simplifies administration as support for more services is added.
+However, there are [additional permissions](#additional-permissions), not
+covered by `SecurityAudit`, necessary to allow JupiterOne to ingest more
+information, enabling the platform to provide even more value.
+
+Each of the configuration methods recommends and assumes the use of the
+`SecurityAudit` managed policy, though you may decide to build out a single
+policy based on the information provided here.
+
+### Additional Permissions
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": "*",
+      "Action": [
+        "athena:BatchGet*",
+        "athena:Get*",
+        "batch:Describe*",
+        "batch:List*",
+        "dynamodb:Describe*",
+        "dynamodb:List*",
+        "ecr:Describe*",
+        "ecr:List*",
+        "elasticache:List*",
+        "elasticmapreduce:List*",
+        "es:List*",
+        "glue:Get*",
+        "kinesis:Describe*",
+        "kinesis:List*",
+        "s3:GetObjectRetention",
+        "s3:GetObjectLegalHold",
+        "waf:List*",
+        "waf:Get*",
+        "waf-regional:List*",
+        "waf-regional:Get*",
+        "workspaces:List*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["apigateway:GET"],
+      "Resource": ["arn:aws:apigateway:*::/*"]
+    }
+  ]
+}
+```
+
+## Cloudformation with AWS CLI
 
 ```bash
 aws cloudformation create-stack --stack-name JupiterOneIntegration --capabilities CAPABILITY_NAMED_IAM --template-url https://s3.amazonaws.com/jupiterone-prod-us-jupiter-aws-integration/jupiterone-cloudformation.json
 ```
 
-## Manual creation via AWS Management Console
+## Manual Creation with AWS Management Console
 
 From your AWS Management Console, perform the following steps:
 
@@ -36,49 +253,46 @@ From your AWS Management Console, perform the following steps:
 
 1.  Leave **Require MFA** unchecked and click **Next: Permissions**.
 
-1.  Click **Create Policy**, select the **JSON** tab, and enter the following document content:
+1.  Click **Create Policy**, select the **JSON** tab, and enter the following
+    document content:
+
 ```json
 {
-  "Version":"2012-10-17", 
-  "Statement" : [{
-    "Effect" : "Allow",           
-    "Resource" : "*",
-    "Action" : [
-      "athena:BatchGet*",
-      "athena:Get*",
-      "athena:List*",
-      "batch:Describe*",
-      "batch:List*",
-      "dynamodb:Describe*",
-      "dynamodb:List*",
-      "ecs:List*",
-      "eks:DescribeCluster",
-      "eks:ListClusters",
-      "elasticache:Describe*",
-      "elasticache:List*",
-      "elasticmapreduce:Describe*",
-      "elasticmapreduce:List*",
-      "es:Describe*",
-      "es:List*",
-      "glue:Get*",
-      "inspector:Describe*",
-      "inspector:Get*",
-      "inspector:List*",
-      "kinesis:Describe*",
-      "kinesis:List*",
-      "waf:List*",               
-      "waf:Get*"
-    ]
-  },
-  {
+  "Version": "2012-10-17",
+  "Statement": [
+    {
       "Effect": "Allow",
+      "Resource": "*",
       "Action": [
-        "apigateway:GET"
-      ],
-      "Resource": [
-        "arn:aws:apigateway:*::/*"
+        "athena:BatchGet*",
+        "athena:Get*",
+        "batch:Describe*",
+        "batch:List*",
+        "dynamodb:Describe*",
+        "dynamodb:List*",
+        "ecr:Describe*",
+        "ecr:List*",
+        "elasticache:List*",
+        "elasticmapreduce:List*",
+        "es:List*",
+        "glue:Get*",
+        "kinesis:Describe*",
+        "kinesis:List*",
+        "s3:GetObjectRetention",
+        "s3:GetObjectLegalHold",
+        "waf:List*",
+        "waf:Get*",
+        "waf-regional:List*",
+        "waf-regional:Get*",
+        "workspaces:List*"
       ]
-  }]
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["apigateway:GET"],
+      "Resource": ["arn:aws:apigateway:*::/*"]
+    }
+  ]
 }
 ```
 
@@ -89,9 +303,9 @@ From your AWS Management Console, perform the following steps:
 1.  Return to the **Create Role** tab in your browser. Click the Policy table's
     **Refresh Icon**.
 
-1.  In the Policy search box, search for `SecurityAudit`. Select both `SecurityAudit`
-    and `JupiterOneSecurityAudit` policies. `SecurityAudit` is an AWS-managed IAM
-    policy.
+1.  In the Policy search box, search for `SecurityAudit`. Select both
+    `SecurityAudit` and `JupiterOneSecurityAudit` policies. [SecurityAudit][1] is
+    an AWS-managed IAM policy.
 
 1.  With both policies selected, click **Next: Review**.
 
@@ -103,3 +317,5 @@ From your AWS Management Console, perform the following steps:
 1.  In the list of Roles, search for and select the newly created `JupiterOne`
     role, and copy the **Role ARN**. It should be in a format that looks like
     `arn:aws:iam::<your_aws_account_id>:role/JupiterOne`.
+
+[1]: https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/SecurityAudit
