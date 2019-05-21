@@ -15,9 +15,9 @@ accomplished using one of the following methods:
 Currently supported services and relevant access requirements:
 
 - ACM
-  - describeKey
-  - listAliases
-  - listKeys
+  - describeCertificate
+  - listCertificates
+  - listTagsForCertificate
 - API Gateway
   - getIntegration
   - getResources
@@ -50,11 +50,11 @@ Currently supported services and relevant access requirements:
   - describeRouteTables
   - describeSecurityGroups
   - describeSubnets
-  - describeVpcs
   - describeVolumes
+  - describeVpcs
 - ELB
-  - describeTags
   - describeLoadBalancers
+  - describeTags
 - GuardDuty
   - getDetector
   - getFindings
@@ -190,6 +190,10 @@ Each of the configuration methods recommends and assumes the use of the
 `SecurityAudit` managed policy, though you may decide to build out a single
 policy based on the information provided here.
 
+In case you don't mind the maintenance work and would prefer to update a
+hand-crafted policy, an exact policy that includes
+[specific permissions](#specific-permissions-policy) is also provided.
+
 ### Additional Permissions
 
 ```json
@@ -221,6 +225,111 @@ policy based on the information provided here.
         "waf-regional:List*",
         "waf-regional:Get*",
         "workspaces:List*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["apigateway:GET"],
+      "Resource": ["arn:aws:apigateway:*::/*"]
+    }
+  ]
+}
+```
+
+### Specific Permissions Policy
+
+This policy may be used to provide only exactly the specific permissions
+currently used by JupiterOne. Using this policy will most certainly require you
+to update the policy in the future as more APIs are called by JupiterOne.
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": "*",
+      "Action": [
+        "acm:DescribeCertificate",
+        "acm:ListTagsForCertificate",
+        "acm:ListCertificates",
+        "autoscaling:DescribeAutoScalingGroups",
+        "cloudfront:ListDistributions",
+        "cloudfront:ListTagsForResource",
+        "cloudwatch:ListRules",
+        "cloudwatch:ListTargetsByRule",
+        "cloudwatch:ListTagsForResource",
+        "config:DescribeComplianceByConfigRule",
+        "config:DescribeConfigRules",
+        "config:GetComplianceByResource",
+        "config:GetComplianceDetailsByConfigRule",
+        "dynamodb:DescribeContinuousBackups",
+        "dynamodb:DescribeTable",
+        "dynamodb:ListBackups",
+        "dynamodb:ListTables",
+        "dynamodb:ListTagsOfResource",
+        "ec2:DescribeImages",
+        "ec2:DescribeInstances",
+        "ec2:DescribeInternetGateways",
+        "ec2:DescribeKeyPairs",
+        "ec2:DescribeNetworkAcls",
+        "ec2:DescribeRouteTables",
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeVolumes",
+        "ec2:DescribeVpcs",
+        "elasticloadbalancing:DescribeLoadBalancers",
+        "elasticloadbalancing:DescribeTags",
+        "events:ListRules",
+        "events:ListTargetsByRule",
+        "guardduty:GetDetector",
+        "guardduty:GetFindings",
+        "guardduty:ListDetectors",
+        "guardduty:ListFindings",
+        "iam:GetAccountPasswordPolicy",
+        "iam:GetAccountSummary",
+        "iam:GetGroup",
+        "iam:GetGroupPolicy",
+        "iam:GetPolicyVersion",
+        "iam:GetRolePolicy",
+        "iam:GetUserPolicy",
+        "iam:ListAccessKeys",
+        "iam:ListAccountAliases",
+        "iam:ListEntitiesForPolicy",
+        "iam:ListGroupPolicies",
+        "iam:ListGroups",
+        "iam:ListMFADevices",
+        "iam:ListPolicies",
+        "iam:ListRolePolicies",
+        "iam:ListRoles",
+        "iam:ListUserPolicies",
+        "iam:ListUsers",
+        "inspector:DescribeAssessmentRuns",
+        "inspector:DescribeFindings",
+        "inspector:ListAssessmentRuns",
+        "inspector:ListFindings",
+        "kms:DescribeKey",
+        "kms:ListAliases",
+        "kms:ListKeys",
+        "lambda:ListFunctions",
+        "redshift:DescribeClusters",
+        "rds:DescribeDBClusters",
+        "rds:DescribeDBInstances",
+        "rds:ListTagsForResource",
+        "s3:GetBucketAcl",
+        "s3:GetBucketEncryption",
+        "s3:GetBucketLocation",
+        "s3:GetBucketLogging",
+        "s3:GetBucketReplication",
+        "s3:GetBucketTagging",
+        "s3:GetBucketVersioning",
+        "s3:GetPublicAccessBlock",
+        "s3:ListBuckets",
+        "transfer:ListServers",
+        "transfer:ListTagsForResource",
+        "transfer:ListUsers",
+        "waf:GetWebACL",
+        "waf:ListWebACLs"
       ]
     },
     {
@@ -304,8 +413,8 @@ From your AWS Management Console, perform the following steps:
     **Refresh Icon**.
 
 1.  In the Policy search box, search for `SecurityAudit`. Select both
-    `SecurityAudit` and `JupiterOneSecurityAudit` policies. [SecurityAudit][1] is
-    an AWS-managed IAM policy.
+    `SecurityAudit` and `JupiterOneSecurityAudit` policies. [SecurityAudit][1]
+    is an AWS-managed IAM policy.
 
 1.  With both policies selected, click **Next: Review**.
 
@@ -318,4 +427,5 @@ From your AWS Management Console, perform the following steps:
     role, and copy the **Role ARN**. It should be in a format that looks like
     `arn:aws:iam::<your_aws_account_id>:role/JupiterOne`.
 
-[1]: https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/SecurityAudit
+[1]:
+  https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/SecurityAudit
