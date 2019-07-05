@@ -42,11 +42,13 @@ Currently supported services and relevant access requirements:
   - listTables
   - listTagsOfResource
 - EC2
+  - describeAddresses
   - describeImages
   - describeInstances
   - describeInternetGateways
   - describeKeyPairs
   - describeNetworkAcls
+  - describeNetworkInterfaces
   - describeRouteTables
   - describeSecurityGroups
   - describeSubnets
