@@ -98,6 +98,11 @@ Currently supported services and relevant access requirements:
   - listTagsForResource
 - Redshift
   - describeClusters
+- Route53
+  - getDomainDetail
+  - listDomains
+  - listResourceRecordSets
+  - listTagsForDomain
 - S3
   - getBucketAcl
   - getBucketEncryption
@@ -153,10 +158,6 @@ Planned services and anticipated relevant access requirements:
   - describeEngineDefaultParameters
   - listAllowedNodeTypeModifications
   - listTagsForResource
-- Route53
-  - getDomainDetail
-  - listDomains
-  - listTagsForDomain
 - S3 bucket policy
   - getBucketCORS
   - getBucketObjectLockConfiguration
@@ -270,11 +271,13 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "dynamodb:ListBackups",
         "dynamodb:ListTables",
         "dynamodb:ListTagsOfResource",
+        "ec2:DescribeAddresses",
         "ec2:DescribeImages",
         "ec2:DescribeInstances",
         "ec2:DescribeInternetGateways",
         "ec2:DescribeKeyPairs",
         "ec2:DescribeNetworkAcls",
+        "ec2:DescribeNetworkInterfaces",
         "ec2:DescribeRouteTables",
         "ec2:DescribeSecurityGroups",
         "ec2:DescribeSubnets",
@@ -318,6 +321,10 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "rds:DescribeDBClusters",
         "rds:DescribeDBInstances",
         "rds:ListTagsForResource",
+        "route53domains:GetDomainDetail",
+        "route53domains:ListDomains",
+        "route53domains:ListTagsForDomain",
+        "route53:ListResourceRecordSets",
         "s3:GetBucketAcl",
         "s3:GetBucketEncryption",
         "s3:GetBucketLocation",
