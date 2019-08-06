@@ -45,8 +45,6 @@
               "Effect": "Allow",
               "Resource": "*",
               "Action": [
-                "athena:BatchGet*",
-                "athena:Get*",
                 "batch:Describe*",
                 "batch:List*",
                 "dynamodb:Describe*",
@@ -56,7 +54,6 @@
                 "elasticache:List*",
                 "elasticmapreduce:List*",
                 "es:List*",
-                "glue:Get*",
                 "kinesis:Describe*",
                 "kinesis:List*",
                 "s3:GetObjectRetention",

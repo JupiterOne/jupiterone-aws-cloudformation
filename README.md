@@ -207,8 +207,6 @@ hand-crafted policy, an exact policy that includes
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
-        "athena:BatchGet*",
-        "athena:Get*",
         "batch:Describe*",
         "batch:List*",
         "dynamodb:Describe*",
@@ -218,7 +216,6 @@ hand-crafted policy, an exact policy that includes
         "elasticache:List*",
         "elasticmapreduce:List*",
         "es:List*",
-        "glue:Get*",
         "kinesis:Describe*",
         "kinesis:List*",
         "s3:GetObjectRetention",
@@ -390,8 +387,6 @@ From your AWS Management Console, perform the following steps:
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
-        "athena:BatchGet*",
-        "athena:Get*",
         "batch:Describe*",
         "batch:List*",
         "dynamodb:Describe*",
@@ -401,7 +396,6 @@ From your AWS Management Console, perform the following steps:
         "elasticache:List*",
         "elasticmapreduce:List*",
         "es:List*",
-        "glue:Get*",
         "kinesis:Describe*",
         "kinesis:List*",
         "s3:GetObjectRetention",
