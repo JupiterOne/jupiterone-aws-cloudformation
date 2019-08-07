@@ -75,6 +75,7 @@ Currently supported services and relevant access requirements:
   - listEntitiesForPolicy
   - listGroupPolicies
   - listGroups
+  - listInstanceProfiles
   - listMFADevices
   - listPolicies
   - listRolePolicies
@@ -300,6 +301,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "iam:ListEntitiesForPolicy",
         "iam:ListGroupPolicies",
         "iam:ListGroups",
+        "iam:ListInstanceProfiles",
         "iam:ListMFADevices",
         "iam:ListPolicies",
         "iam:ListRolePolicies",
