@@ -51,6 +51,7 @@ Currently supported services and relevant access requirements:
   - describeNetworkInterfaces
   - describeRouteTables
   - describeSecurityGroups
+  - describeSnapshots
   - describeSubnets
   - describeVolumes
   - describeVpcs
@@ -93,9 +94,12 @@ Currently supported services and relevant access requirements:
   - listKeys
 - Lambda
   - listFunctions
+  - listTags
 - RDS
   - describeDBClusters
+  - describeDBClusterSnapshots
   - describeDBInstances
+  - describeDBSnapshots
   - listTagsForResource
 - Redshift
   - describeClusters
