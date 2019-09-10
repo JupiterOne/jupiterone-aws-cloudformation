@@ -24,7 +24,9 @@ Currently supported services and relevant access requirements:
   - getRestApis
 - Autoscaling
   - describeAutoScalingGroups
-- Cloudfront
+- CloudFormation
+  - describeStacks
+- CloudFront
   - listDistributions
   - listTagsForResource
 - CloudWatch Events
@@ -55,6 +57,9 @@ Currently supported services and relevant access requirements:
   - describeSubnets
   - describeVolumes
   - describeVpcs
+- EKS
+  - describeCluster
+  - listClusters
 - ELB
   - describeLoadBalancers
   - describeTags
@@ -104,9 +109,12 @@ Currently supported services and relevant access requirements:
 - Redshift
   - describeClusters
 - Route53
+  - listHostedZones
+  - listResourceRecordSets
+  - listTagsForResource
+- Route53Domains
   - getDomainDetail
   - listDomains
-  - listResourceRecordSets
   - listTagsForDomain
 - S3
   - getBucketAcl
@@ -118,6 +126,11 @@ Currently supported services and relevant access requirements:
   - getBucketVersioning
   - getPublicAccessBlock
   - listBuckets
+  - listBucketInventoryConfigurations
+- S3 bucket policy
+  - getBucketPolicy
+  - getBucketPublicAccessBlock
+  - getBucketPolicyStatus
 - Transfer
   - listServers
   - listTagsForResource
@@ -150,9 +163,6 @@ Planned services and anticipated relevant access requirements:
   - listTagsForResource
   - listTaskDefinitions
   - listTasks
-- EKS
-  - describeCluster
-  - listClusters
 - ElastiCache
   - describeCacheClusters
   - describeCacheEngineVersions
@@ -259,6 +269,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "acm:ListTagsForCertificate",
         "acm:ListCertificates",
         "autoscaling:DescribeAutoScalingGroups",
+        "cloudformation:DescribeStacks",
         "cloudfront:ListDistributions",
         "cloudfront:ListTagsForResource",
         "cloudwatch:ListRules",
@@ -286,6 +297,8 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "ec2:DescribeSubnets",
         "ec2:DescribeVolumes",
         "ec2:DescribeVpcs",
+        "eks:DescribeCluster",
+        "eks:ListClusters",
         "elasticloadbalancing:DescribeLoadBalancers",
         "elasticloadbalancing:DescribeTags",
         "events:ListRules",
@@ -331,7 +344,9 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "route53domains:GetDomainDetail",
         "route53domains:ListDomains",
         "route53domains:ListTagsForDomain",
+        "route53:ListHostedZones",
         "route53:ListResourceRecordSets",
+        "route53:ListTagsForResource",
         "s3:GetBucketAcl",
         "s3:GetBucketEncryption",
         "s3:GetBucketLocation",
@@ -341,6 +356,10 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "s3:GetBucketVersioning",
         "s3:GetPublicAccessBlock",
         "s3:ListBuckets",
+        "s3:ListBucketInventoryConfigurations",
+        "s3:GetBucketPolicy",
+        "s3:GetBucketPublicAccessBlock",
+        "s3:GetBucketPolicyStatus",
         "transfer:ListServers",
         "transfer:ListTagsForResource",
         "transfer:ListUsers",
