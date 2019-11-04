@@ -75,6 +75,7 @@ Currently supported services and relevant access requirements:
   - getGroupPolicy
   - getPolicyVersion
   - getRolePolicy
+  - getSAMLProvider
   - getUserPolicy
   - listAccessKeys
   - listAccountAliases
@@ -86,6 +87,7 @@ Currently supported services and relevant access requirements:
   - listPolicies
   - listRolePolicies
   - listRoles
+  - listSAMLProviders
   - listUserPolicies
   - listUsers
 - Inspector
@@ -313,6 +315,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "iam:GetGroupPolicy",
         "iam:GetPolicyVersion",
         "iam:GetRolePolicy",
+        "iam:GetSAMLProvider",
         "iam:GetUserPolicy",
         "iam:ListAccessKeys",
         "iam:ListAccountAliases",
@@ -324,6 +327,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "iam:ListPolicies",
         "iam:ListRolePolicies",
         "iam:ListRoles",
+        "iam:ListSAMLProviders",
         "iam:ListUserPolicies",
         "iam:ListUsers",
         "inspector:DescribeAssessmentRuns",
