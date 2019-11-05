@@ -57,6 +57,13 @@ Currently supported services and relevant access requirements:
   - describeSubnets
   - describeVolumes
   - describeVpcs
+- ECR
+  - describeImages
+  - describeImageScanFindings
+  - describeRepositories
+  - getRepositoryPolicy
+  - listImages
+  - listTagsForResource
 - EKS
   - describeCluster
   - listClusters
@@ -146,12 +153,6 @@ Planned services and anticipated relevant access requirements:
 - CloudWatch Alarms
   - describeAlarms
   - describeAlarmHistory
-- ECR
-  - describeImages
-  - describeRepositories
-  - getRepositoryPolicy
-  - listImages
-  - listTagsForResource
 - ECS
   - describeClusters
   - describeContainerInstances
@@ -299,6 +300,11 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "ec2:DescribeSubnets",
         "ec2:DescribeVolumes",
         "ec2:DescribeVpcs",
+        "ecr:GetRepositoryPolicy",
+        "ecr:DescribeImages",
+        "ecr:DescribeImageScanFindings",
+        "ecr:DescribeRepositories",
+        "ecr:ListTagsForResource",
         "eks:DescribeCluster",
         "eks:ListClusters",
         "elasticloadbalancing:DescribeLoadBalancers",
