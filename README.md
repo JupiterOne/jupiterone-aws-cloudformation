@@ -61,6 +61,7 @@ Currently supported services and relevant access requirements:
   - describeImages
   - describeImageScanFindings
   - describeRepositories
+  - getLifecyclePolicy
   - getRepositoryPolicy
   - listImages
   - listTagsForResource
@@ -137,9 +138,13 @@ Currently supported services and relevant access requirements:
   - listBuckets
   - listBucketInventoryConfigurations
 - S3 bucket policy
+  - getBucketCORS
+  - getBucketLifecycleConfiguration
+  - getBucketObjectLockConfiguration
   - getBucketPolicy
   - getBucketPublicAccessBlock
   - getBucketPolicyStatus
+  - getObjectLockConfiguration
 - Transfer
   - listServers
   - listTagsForResource
@@ -176,14 +181,6 @@ Planned services and anticipated relevant access requirements:
   - describeEngineDefaultParameters
   - listAllowedNodeTypeModifications
   - listTagsForResource
-- S3 bucket policy
-  - getBucketCORS
-  - getBucketObjectLockConfiguration
-  - getBucketPolicy
-  - getBucketPublicAccessBlock
-  - getBucketPolicyStatus
-  - getObjectLegalHold
-  - getObjectRetention
 - VPC Peering
   - describeVpcPeeringConnections
 - WAF (Regional)
@@ -300,6 +297,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "ec2:DescribeSubnets",
         "ec2:DescribeVolumes",
         "ec2:DescribeVpcs",
+        "ecr:GetLifecyclePolicy",
         "ecr:GetRepositoryPolicy",
         "ecr:DescribeImages",
         "ecr:DescribeImageScanFindings",
@@ -359,12 +357,14 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "route53:ListTagsForResource",
         "s3:GetBucketAcl",
         "s3:GetBucketEncryption",
+        "s3:GetBucketLifecycleConfiguration",
         "s3:GetBucketLocation",
         "s3:GetBucketLogging",
         "s3:GetBucketReplication",
         "s3:GetBucketTagging",
         "s3:GetBucketVersioning",
         "s3:GetPublicAccessBlock",
+        "s3:GetObjectLockConfiguration",
         "s3:ListBuckets",
         "s3:ListBucketInventoryConfigurations",
         "s3:GetBucketPolicy",
