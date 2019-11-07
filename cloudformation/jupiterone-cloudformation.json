@@ -58,6 +58,7 @@
                 "kinesis:List*",
                 "s3:GetObjectRetention",
                 "s3:GetObjectLegalHold",
+                "s3:GetObjectLockConfiguration",
                 "waf:List*",
                 "waf:Get*",
                 "waf-regional:List*",
