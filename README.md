@@ -29,6 +29,8 @@ Currently supported services and relevant access requirements:
 - CloudFront
   - listDistributions
   - listTagsForResource
+- CloudTrail
+  - describeTrails
 - CloudWatch Events
   - listRules
   - listTargetsByRule
@@ -45,6 +47,7 @@ Currently supported services and relevant access requirements:
   - listTagsOfResource
 - EC2
   - describeAddresses
+  - describeFlowLogs
   - describeImages
   - describeInstances
   - describeInternetGateways
@@ -272,6 +275,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "cloudformation:DescribeStacks",
         "cloudfront:ListDistributions",
         "cloudfront:ListTagsForResource",
+        "cloudtrail:DescribeTrails",
         "cloudwatch:ListRules",
         "cloudwatch:ListTargetsByRule",
         "cloudwatch:ListTagsForResource",
@@ -286,6 +290,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "dynamodb:ListTagsOfResource",
         "ec2:DescribeAddresses",
         "ec2:DescribeImages",
+        "ec2:DescribeFlowLogs",
         "ec2:DescribeInstances",
         "ec2:DescribeInternetGateways",
         "ec2:DescribeKeyPairs",
