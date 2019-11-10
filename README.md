@@ -68,6 +68,19 @@ Currently supported services and relevant access requirements:
   - getRepositoryPolicy
   - listImages
   - listTagsForResource
+- ECS
+  - describeClusters
+  - describeContainerInstances
+  - describeServices
+  - describeTaskDefinition
+  - describeTasks
+  - describeTaskSets
+  - listClusters
+  - listContainerInstances
+  - listServices
+  - listTagsForResource
+  - listTaskDefinitions
+  - listTasks
 - EKS
   - describeCluster
   - listClusters
@@ -161,19 +174,6 @@ Planned services and anticipated relevant access requirements:
 - CloudWatch Alarms
   - describeAlarms
   - describeAlarmHistory
-- ECS
-  - describeClusters
-  - describeContainerInstances
-  - describeServices
-  - describeTaskDefinition
-  - describeTasks
-  - describeTaskSets
-  - listClusters
-  - listContainerInstances
-  - listServices
-  - listTagsForResource
-  - listTaskDefinitions
-  - listTasks
 - ElastiCache
   - describeCacheClusters
   - describeCacheEngineVersions
@@ -308,6 +308,18 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "ecr:DescribeImageScanFindings",
         "ecr:DescribeRepositories",
         "ecr:ListTagsForResource",
+        "ecs:DescribeClusters",
+        "ecs:DescribeContainerInstances",
+        "ecs:DescribeServices",
+        "ecs:DescribeTaskDefinition",
+        "ecs:DescribeTasks",
+        "ecs:DescribeTaskSets",
+        "ecs:ListClusters",
+        "ecs:ListContainerInstances",
+        "ecs:ListServices",
+        "ecs:ListTagsForResource",
+        "ecs:ListTaskDefinitions",
+        "ecs:ListTasks",
         "eks:DescribeCluster",
         "eks:ListClusters",
         "elasticloadbalancing:DescribeLoadBalancers",
