@@ -24,6 +24,12 @@ Currently supported services and relevant access requirements:
   - getRestApis
 - Autoscaling
   - describeAutoScalingGroups
+- Batch
+  - describeComputeEnvironments
+  - describeJobDefinitions
+  - describeJobQueues
+  - describeJobs
+  - listJobs
 - CloudFormation
   - describeStacks
 - CloudFront
@@ -272,6 +278,11 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "acm:ListTagsForCertificate",
         "acm:ListCertificates",
         "autoscaling:DescribeAutoScalingGroups",
+        "batch:DescribeComputeEnvironments",
+        "batch:DescribeJobDefinitions",
+        "batch:DescribeJobQueues",
+        "batch:DescribeJobs",
+        "batch:ListJobs",
         "cloudformation:DescribeStacks",
         "cloudfront:ListDistributions",
         "cloudfront:ListTagsForResource",
