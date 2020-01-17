@@ -99,8 +99,11 @@ Currently supported services and relevant access requirements:
   - listDetectors
   - listFindings
 - IAM
+  - generateCredentialReport
+  - getAccessKeyLastUsed
   - getAccountPasswordPolicy
   - getAccountSummary
+  - getCredentialReport
   - getGroup
   - getGroupPolicy
   - getPolicyVersion
@@ -341,8 +344,11 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "guardduty:GetFindings",
         "guardduty:ListDetectors",
         "guardduty:ListFindings",
+        "iam:GenerateCredentialReport",
+        "iam:GetAccessKeyLastUsed",
         "iam:GetAccountPasswordPolicy",
         "iam:GetAccountSummary",
+        "iam:GetCredentialReport",
         "iam:GetGroup",
         "iam:GetGroupPolicy",
         "iam:GetPolicyVersion",
