@@ -135,6 +135,8 @@ Currently supported services and relevant access requirements:
 - Lambda
   - listFunctions
   - listTags
+- Organizations
+  - listAccounts
 - RDS
   - describeDBClusters
   - describeDBClusterSnapshots
@@ -377,6 +379,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "kms:ListKeys",
         "lambda:ListFunctions",
         "lambda:ListTags",
+        "organizations:ListAccounts",
         "redshift:DescribeClusters",
         "rds:DescribeDBClusters",
         "rds:DescribeDBClusterSnapshots",
