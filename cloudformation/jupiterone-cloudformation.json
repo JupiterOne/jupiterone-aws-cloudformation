@@ -45,6 +45,7 @@
               "Effect": "Allow",
               "Resource": "*",
               "Action": [
+                "access-analyzer:List*",
                 "batch:Describe*",
                 "batch:List*",
                 "dynamodb:Describe*",
