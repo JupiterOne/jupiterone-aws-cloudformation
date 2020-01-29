@@ -14,6 +14,9 @@ accomplished using one of the following methods:
 
 Currently supported services and relevant access requirements:
 
+- AccessAnalyzer
+  - listAnalyzers
+  - listFindings
 - ACM
   - describeCertificate
   - listCertificates
@@ -236,6 +239,7 @@ hand-crafted policy, an exact policy that includes
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "access-analyzer:List*",
         "batch:Describe*",
         "batch:List*",
         "dynamodb:Describe*",
@@ -279,6 +283,8 @@ to update the policy in the future as more APIs are called by JupiterOne.
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "access-analyzer:ListAnalyzers",
+        "access-analyzer:ListFindings",
         "acm:DescribeCertificate",
         "acm:ListTagsForCertificate",
         "acm:ListCertificates",
