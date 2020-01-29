@@ -145,6 +145,10 @@ Currently supported services and relevant access requirements:
   - describeDBClusterSnapshots
   - describeDBInstances
   - describeDBSnapshots
+  - describeDBClusterParameterGroups
+  - describeDBClusterParameters
+  - describeDBParameterGroups
+  - describeDBParameters
   - listTagsForResource
 - Redshift
   - describeClusters
@@ -391,6 +395,10 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "rds:DescribeDBClusterSnapshots",
         "rds:DescribeDBInstances",
         "rds:DescribeDBSnapshots",
+        "rds:DescribeDBClusterParameterGroups",
+        "rds:DescribeDBClusterParameters",
+        "rds:DescribeDBParameterGroups",
+        "rds:DescribeDBParameters",
         "rds:ListTagsForResource",
         "route53domains:GetDomainDetail",
         "route53domains:ListDomains",
