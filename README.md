@@ -179,6 +179,10 @@ Currently supported services and relevant access requirements:
   - getBucketPublicAccessBlock
   - getBucketPolicyStatus
   - getObjectLockConfiguration
+- SQS
+  - getQueueAttributes
+  - listQueues
+  - listQueueTags
 - Transfer
   - listServers
   - listTagsForResource
@@ -421,6 +425,9 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "s3:GetBucketPolicy",
         "s3:GetBucketPublicAccessBlock",
         "s3:GetBucketPolicyStatus",
+        "sqs:GetQueueAttributes",
+        "sqs:ListQueues",
+        "sqs:ListQueueTags",
         "transfer:ListServers",
         "transfer:ListTagsForResource",
         "transfer:ListUsers",
