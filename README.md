@@ -190,6 +190,10 @@ Currently supported services and relevant access requirements:
 - WAF
   - getWebACL
   - listWebACLs
+- Workspaces
+  - describeTags
+  - describeWorkspaceBundles
+  - describeWorkspaces
 
 Planned services and anticipated relevant access requirements:
 
@@ -214,11 +218,8 @@ Planned services and anticipated relevant access requirements:
 - Workspaces
   - describeClientProperties
   - describeIpGroups
-  - describeTags
-  - describeWorkspaceBundles
   - describeWorkspaceDirectories
   - describeWorkspaceImages
-  - describeWorkspaces
   - listAvailableManagementCidrRanges
 
 ## IAM Role Permissions
@@ -432,7 +433,10 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "transfer:ListTagsForResource",
         "transfer:ListUsers",
         "waf:GetWebACL",
-        "waf:ListWebACLs"
+        "waf:ListWebACLs",
+        "workspaces:describeClientProperties",
+        "workspaces:describeIpGroups",
+        "workspaces:describeWorkspaceDirectories"
       ]
     },
     {
