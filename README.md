@@ -123,9 +123,11 @@ Currently supported services and relevant access requirements:
   - listPolicies
   - listRolePolicies
   - listRoles
+  - listRoleTags
   - listSAMLProviders
   - listUserPolicies
   - listUsers
+  - listUserTags
 - Inspector
   - describeAssessmentRuns
   - describeFindings
@@ -140,6 +142,7 @@ Currently supported services and relevant access requirements:
   - listTags
 - Organizations
   - listAccounts
+  - listTagsForResource
 - RDS
   - describeDBClusters
   - describeDBClusterSnapshots
@@ -382,9 +385,11 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "iam:ListPolicies",
         "iam:ListRolePolicies",
         "iam:ListRoles",
+        "iam:ListRoleTags",
         "iam:ListSAMLProviders",
         "iam:ListUserPolicies",
         "iam:ListUsers",
+        "iam:ListUserTags",
         "inspector:DescribeAssessmentRuns",
         "inspector:DescribeFindings",
         "inspector:ListAssessmentRuns",
@@ -395,6 +400,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "lambda:ListFunctions",
         "lambda:ListTags",
         "organizations:ListAccounts",
+        "organizations:ListTagsForResource",
         "redshift:DescribeClusters",
         "rds:DescribeDBClusters",
         "rds:DescribeDBClusterSnapshots",
@@ -434,9 +440,9 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "transfer:ListUsers",
         "waf:GetWebACL",
         "waf:ListWebACLs",
-        "workspaces:describeClientProperties",
-        "workspaces:describeIpGroups",
-        "workspaces:describeWorkspaceDirectories"
+        "workspaces:describeTags",
+        "workspaces:describeWorkspaceBundles",
+        "workspaces:describeWorkspaces"
       ]
     },
     {
