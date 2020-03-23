@@ -96,6 +96,12 @@ Currently supported services and relevant access requirements:
 - ELB
   - describeLoadBalancers
   - describeTags
+- ElastiCache
+  - describeCacheClusters
+  - describeCacheParameterGroups
+  - describeCacheParameters
+  - describeCacheSubnetGroups
+  - listTagsForResource
 - GuardDuty
   - getDetector
   - getFindings
@@ -203,16 +209,6 @@ Planned services and anticipated relevant access requirements:
 - CloudWatch Alarms
   - describeAlarms
   - describeAlarmHistory
-- ElastiCache
-  - describeCacheClusters
-  - describeCacheEngineVersions
-  - describeCacheParameterGroups
-  - describeCacheParameters
-  - describeCacheSecurityGroups
-  - describeCacheSubnetGroups
-  - describeEngineDefaultParameters
-  - listAllowedNodeTypeModifications
-  - listTagsForResource
 - VPC Peering
   - describeVpcPeeringConnections
 - WAF (Regional)
@@ -356,6 +352,11 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "ecs:ListTasks",
         "eks:DescribeCluster",
         "eks:ListClusters",
+        "elasticloadbalancing:DescribeCacheClusters",
+        "elasticloadbalancing:DescribeCacheParameterGroups",
+        "elasticloadbalancing:DescribeCacheParameters",
+        "elasticloadbalancing:DescribeCacheSubnetGroups",
+        "elasticloadbalancing:ListTagsForResource",
         "elasticloadbalancing:DescribeLoadBalancers",
         "elasticloadbalancing:DescribeTags",
         "events:ListRules",
