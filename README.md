@@ -356,7 +356,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "elasticloadbalancing:DescribeCacheParameterGroups",
         "elasticloadbalancing:DescribeCacheParameters",
         "elasticloadbalancing:DescribeCacheSubnetGroups",
-        "elasticloadbalancing:listTagsForResource",
+        "elasticloadbalancing:ListTagsForResource",
         "elasticloadbalancing:DescribeLoadBalancers",
         "elasticloadbalancing:DescribeTags",
         "events:ListRules",
