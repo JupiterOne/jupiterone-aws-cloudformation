@@ -102,6 +102,10 @@ Currently supported services and relevant access requirements:
   - describeCacheParameters
   - describeCacheSubnetGroups
   - listTagsForResource
+- ES
+  - describeElasticsearchDomains
+  - listDomainNames
+  - listTags
 - GuardDuty
   - getDetector
   - getFindings
@@ -359,6 +363,9 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "elasticloadbalancing:ListTagsForResource",
         "elasticloadbalancing:DescribeLoadBalancers",
         "elasticloadbalancing:DescribeTags",
+        "es:DescribeElasticsearchDomains",
+        "es:ListDomainNames",
+        "es:ListTags",
         "events:ListRules",
         "events:ListTargetsByRule",
         "guardduty:GetDetector",
