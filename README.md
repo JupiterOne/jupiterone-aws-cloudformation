@@ -192,6 +192,12 @@ Currently supported services and relevant access requirements:
   - getBucketPublicAccessBlock
   - getBucketPolicyStatus
   - getObjectLockConfiguration
+- SNS
+  - getTopicAttributes
+  - getSubscriptionAttributes
+  - listTopics
+  - listSubscriptions
+  - listTagsForResource
 - SQS
   - getQueueAttributes
   - listQueues
@@ -265,6 +271,12 @@ hand-crafted policy, an exact policy that includes
         "kinesis:List*",
         "s3:GetObjectRetention",
         "s3:GetObjectLegalHold",
+        "s3:Get*Configuration",
+        "sns:GetTopicAttributes",
+        "sns:GetSubscriptionAttributes",
+        "sns:ListTopics",
+        "sns:ListSubscriptions",
+        "sns:ListTagsForResource",
         "waf:List*",
         "waf:Get*",
         "waf-regional:List*",
@@ -440,6 +452,11 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "s3:GetBucketPolicy",
         "s3:GetBucketPublicAccessBlock",
         "s3:GetBucketPolicyStatus",
+        "sns:GetTopicAttributes",
+        "sns:GetSubscriptionAttributes",
+        "sns:ListTopics",
+        "sns:ListSubscriptions",
+        "sns:ListTagsForResource",
         "sqs:GetQueueAttributes",
         "sqs:ListQueues",
         "sqs:ListQueueTags",
@@ -515,6 +532,12 @@ From your AWS Management Console, perform the following steps:
         "kinesis:List*",
         "s3:GetObjectRetention",
         "s3:GetObjectLegalHold",
+        "s3:Get*Configuration",
+        "sns:GetTopicAttributes",
+        "sns:GetSubscriptionAttributes",
+        "sns:ListTopics",
+        "sns:ListSubscriptions",
+        "sns:ListTagsForResource",
         "waf:List*",
         "waf:Get*",
         "waf-regional:List*",
