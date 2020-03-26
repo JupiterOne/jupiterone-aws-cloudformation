@@ -191,7 +191,7 @@ Currently supported services and relevant access requirements:
   - getBucketPolicy
   - getBucketPublicAccessBlock
   - getBucketPolicyStatus
-  - getObjectLockConfiguration
+  - getBucketObjectLockConfiguration
 - SNS
   - getTopicAttributes
   - getSubscriptionAttributes
@@ -445,8 +445,8 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "s3:GetBucketReplication",
         "s3:GetBucketTagging",
         "s3:GetBucketVersioning",
+        "s3:GetBucketObjectLockConfiguration",
         "s3:GetPublicAccessBlock",
-        "s3:GetObjectLockConfiguration",
         "s3:ListBuckets",
         "s3:ListBucketInventoryConfigurations",
         "s3:GetBucketPolicy",
