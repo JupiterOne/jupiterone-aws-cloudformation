@@ -61,10 +61,12 @@ Currently supported services and relevant access requirements:
   - describeInstances
   - describeInternetGateways
   - describeKeyPairs
+  - describeNatGateways
   - describeNetworkAcls
   - describeNetworkInterfaces
   - describeRouteTables
   - describeSecurityGroups
+  - describeSnapshotAttribute
   - describeSnapshots
   - describeSubnets
   - describeVolumes
@@ -340,10 +342,12 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "ec2:DescribeInstances",
         "ec2:DescribeInternetGateways",
         "ec2:DescribeKeyPairs",
+        "ec2:DescribeNatGateways",
         "ec2:DescribeNetworkAcls",
         "ec2:DescribeNetworkInterfaces",
         "ec2:DescribeRouteTables",
         "ec2:DescribeSecurityGroups",
+        "ec2:DescribeSnapshotAttribute",
         "ec2:DescribeSnapshots",
         "ec2:DescribeSubnets",
         "ec2:DescribeVolumes",
