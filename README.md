@@ -71,6 +71,8 @@ Currently supported services and relevant access requirements:
   - describeSubnets
   - describeVolumes
   - describeVpcs
+  - describeVpnConnections
+  - describeVpnGateways
 - ECR
   - describeImages
   - describeImageScanFindings
@@ -352,6 +354,8 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "ec2:DescribeSubnets",
         "ec2:DescribeVolumes",
         "ec2:DescribeVpcs",
+        "ec2:DescribeVpnConnections",
+        "ec2:DescribeVpnGateways",
         "ecr:GetLifecyclePolicy",
         "ecr:GetRepositoryPolicy",
         "ecr:DescribeImages",
