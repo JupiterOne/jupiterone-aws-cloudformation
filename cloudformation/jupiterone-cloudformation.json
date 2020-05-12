@@ -53,6 +53,7 @@
                 "ecr:Describe*",
                 "ecr:List*",
                 "elasticache:List*",
+                "elasticfilesystem:Describe*",
                 "elasticmapreduce:List*",
                 "es:List*",
                 "kinesis:Describe*",

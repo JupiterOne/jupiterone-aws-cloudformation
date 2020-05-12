@@ -94,6 +94,11 @@ Currently supported services and relevant access requirements:
   - listTagsForResource
   - listTaskDefinitions
   - listTasks
+- EFS
+  - describeFileSystemPolicy
+  - describeFileSystems
+  - describeMountTargetSecurityGroups
+  - describeMountTargets
 - EKS
   - describeCluster
   - listClusters
@@ -269,6 +274,7 @@ hand-crafted policy, an exact policy that includes
         "ecr:Describe*",
         "ecr:List*",
         "elasticache:List*",
+        "elasticfilesystem:Describe*",
         "elasticmapreduce:List*",
         "es:List*",
         "kinesis:Describe*",
@@ -381,6 +387,10 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "elasticache:DescribeCacheParameters",
         "elasticache:DescribeCacheSubnetGroups",
         "elasticache:ListTagsForResource",
+        "elasticfilesystem:DescribeFileSystemPolicy",
+        "elasticfilesystem:DescribeFileSystems",
+        "elasticfilesystem:DescribeMountTargetSecurityGroups",
+        "elasticfilesystem:DescribeMountTargets",
         "elasticloadbalancing:DescribeCacheClusters",
         "elasticloadbalancing:DescribeCacheParameterGroups",
         "elasticloadbalancing:DescribeCacheParameters",
