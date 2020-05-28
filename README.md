@@ -40,9 +40,16 @@ Currently supported services and relevant access requirements:
   - listTagsForResource
 - CloudTrail
   - describeTrails
+- CloudWatch
+  - describeAlarms
+  - getMetricData
+  - listTagsForResource
 - CloudWatch Events
   - listRules
   - listTargetsByRule
+- CloudWatch Logs
+  - describeLogGroups",
+  - listTagsLogGroup",
 - Config Service
   - describeComplianceByConfigRule
   - describeConfigRules
@@ -223,7 +230,12 @@ Currently supported services and relevant access requirements:
   - describeWorkspaceBundles
   - describeWorkspaces
 
-Planned services and anticipated relevant access requirements:
+> Notes:
+>
+> - `cloudwatch:GetMetricData` permission is only used to obtain
+>   `BucketSizeBytes` and `NumberOfObjects` metrics data for S3 buckets.
+
+Additional Planned services and anticipated relevant access requirements:
 
 - CloudWatch Alarms
   - describeAlarms
@@ -269,6 +281,7 @@ hand-crafted policy, an exact policy that includes
         "access-analyzer:List*",
         "batch:Describe*",
         "batch:List*",
+        "cloudwatch:GetMetricData",
         "dynamodb:Describe*",
         "dynamodb:List*",
         "ecr:Describe*",
@@ -332,6 +345,8 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "cloudfront:ListDistributions",
         "cloudfront:ListTagsForResource",
         "cloudtrail:DescribeTrails",
+        "cloudwatch:DescribeAlarms",
+        "cloudwatch:GetMetricData",
         "cloudwatch:ListRules",
         "cloudwatch:ListTargetsByRule",
         "cloudwatch:ListTagsForResource",
@@ -442,6 +457,8 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "kms:ListKeys",
         "lambda:ListFunctions",
         "lambda:ListTags",
+        "logs:DescribeLogGroups",
+        "logs:ListTagsLogGroup",
         "organizations:ListAccounts",
         "organizations:ListTagsForResource",
         "redshift:DescribeClusters",
@@ -544,6 +561,7 @@ From your AWS Management Console, perform the following steps:
       "Action": [
         "batch:Describe*",
         "batch:List*",
+        "cloudwatch:GetMetricData",
         "dynamodb:Describe*",
         "dynamodb:List*",
         "ecr:Describe*",

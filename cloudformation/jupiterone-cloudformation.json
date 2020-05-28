@@ -48,6 +48,7 @@
                 "access-analyzer:List*",
                 "batch:Describe*",
                 "batch:List*",
+                "cloudwatch:GetMetricData",
                 "dynamodb:Describe*",
                 "dynamodb:List*",
                 "ecr:Describe*",
