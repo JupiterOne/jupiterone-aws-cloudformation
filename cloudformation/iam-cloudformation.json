@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "CloudFormation Template for JupiterOne AWS Integration",
+  "Description": "CloudFormation Template for JupiterOne AWS Integration IAM",
   "Metadata": {
     "AWS::CloudFormation::Interface": {
       "ParameterGroups": [

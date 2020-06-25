@@ -6,13 +6,23 @@ Role in the target account that has been granted permission to read information
 from AWS services supported by JupiterOne. Configuring the IAM Role can be
 accomplished using one of the following methods:
 
-1. [![Launch JupiterOne CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=jupiterone-integration&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fjupiterone-prod-us-jupiter-aws-integration%2Fjupiterone-cloudformation.json)
-1. [Launch Cloudformation with AWS CLI](#cloudformation-with-aws-cli)
-1. [Create a Role using the AWS Management Console](#manual-creation-with-aws-management-console)
+1.  [![Launch JupiterOne IAM CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=jupiterone-integration&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fjupiterone-prod-us-jupiter-aws-integration%2Fiam-cloudformation.json)
+1.  [Launch JupiterOne IAM CloudFormation Stack using the AWS CLI](#iam-cloudformation-with-aws-cli)
+1.  [Create a Role using the AWS Management Console](#manual-iam-role-creation-with-aws-management-console)
 
-## Supported Services
+JupiterOne is also capable of processing CloudTrail events. Sending them to
+JupiterOne's AWS account requires an EventBridge event rule, which can be
+configured using one of the following methods:
 
-Currently supported services and relevant access requirements:
+1.  [![Launch JupiterOne EventBridge CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/new?stackName=jupiterone-integration-events&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fjupiterone-prod-us-jupiter-aws-integration%2Fevents-cloudformation.json)
+1.  [Launch JupiterOne EventBridge CloudFormation Stack using the AWS CLI](#events-cloudformation-with-aws-cli)
+1.  [Create an EventBridge Rule using the AWS Management Console](#manual-eventbridge-rule-creation-with-aws-management-console)
+
+## IAM
+
+### Supported Services
+
+JupiterOne currently supports the following services and relevant access requirements:
 
 - AccessAnalyzer
   - listAnalyzers
@@ -252,7 +262,7 @@ Additional Planned services and anticipated relevant access requirements:
   - describeWorkspaceImages
   - listAvailableManagementCidrRanges
 
-## IAM Role Permissions
+### IAM Role Permissions
 
 The [SecurityAudit][1] AWS-managed IAM policy covers many permissions used by
 JupiterOne and simplifies administration as support for more services is added.
@@ -268,7 +278,7 @@ In case you don't mind the maintenance work and would prefer to update a
 hand-crafted policy, an exact policy that includes
 [specific permissions](#specific-permissions-policy) is also provided.
 
-### Additional Permissions
+#### Additional Permissions
 
 ```json
 {
@@ -316,7 +326,7 @@ hand-crafted policy, an exact policy that includes
 }
 ```
 
-### Specific Permissions Policy
+#### Specific Permissions Policy
 
 This policy may be used to provide only exactly the specific permissions
 currently used by JupiterOne. Using this policy will most certainly require you
@@ -527,17 +537,17 @@ to update the policy in the future as more APIs are called by JupiterOne.
 }
 ```
 
-## Cloudformation with AWS CLI
+### IAM CloudFormation with AWS CLI
 
 ```bash
-aws cloudformation create-stack --stack-name JupiterOneIntegration --capabilities CAPABILITY_NAMED_IAM --template-url https://s3.amazonaws.com/jupiterone-prod-us-jupiter-aws-integration/jupiterone-cloudformation.json
+aws cloudformation create-stack --stack-name JupiterOneIntegration --capabilities CAPABILITY_NAMED_IAM --template-url https://s3.amazonaws.com/jupiterone-prod-us-jupiter-aws-integration/iam-cloudformation.json
 ```
 
-## Manual Creation with AWS Management Console
+### Manual IAM Role Creation with AWS Management Console
 
 From your AWS Management Console, perform the following steps:
 
-1.  Go to **IAM**, select **Roles** and then **Create Role**.
+1.  Go to **IAM** > **Roles** and click **Create Role**.
 
 1.  Select **Another AWS account** under **Select type of trusted entity**.
 
@@ -551,49 +561,49 @@ From your AWS Management Console, perform the following steps:
 1.  Click **Create Policy**, select the **JSON** tab, and enter the following
     document content:
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
+    ```json
     {
-      "Effect": "Allow",
-      "Resource": "*",
-      "Action": [
-        "batch:Describe*",
-        "batch:List*",
-        "cloudwatch:GetMetricData",
-        "dynamodb:Describe*",
-        "dynamodb:List*",
-        "ecr:Describe*",
-        "ecr:List*",
-        "elasticache:List*",
-        "elasticmapreduce:List*",
-        "es:List*",
-        "kinesis:Describe*",
-        "kinesis:List*",
-        "s3:GetObjectRetention",
-        "s3:GetObjectLegalHold",
-        "s3:Get*Configuration",
-        "sns:GetTopicAttributes",
-        "sns:GetSubscriptionAttributes",
-        "sns:ListTopics",
-        "sns:ListSubscriptions",
-        "sns:ListTagsForResource",
-        "waf:List*",
-        "waf:Get*",
-        "waf-regional:List*",
-        "waf-regional:Get*",
-        "workspaces:List*"
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Resource": "*",
+          "Action": [
+            "batch:Describe*",
+            "batch:List*",
+            "cloudwatch:GetMetricData",
+            "dynamodb:Describe*",
+            "dynamodb:List*",
+            "ecr:Describe*",
+            "ecr:List*",
+            "elasticache:List*",
+            "elasticmapreduce:List*",
+            "es:List*",
+            "kinesis:Describe*",
+            "kinesis:List*",
+            "s3:GetObjectRetention",
+            "s3:GetObjectLegalHold",
+            "s3:Get*Configuration",
+            "sns:GetTopicAttributes",
+            "sns:GetSubscriptionAttributes",
+            "sns:ListTopics",
+            "sns:ListSubscriptions",
+            "sns:ListTagsForResource",
+            "waf:List*",
+            "waf:Get*",
+            "waf-regional:List*",
+            "waf-regional:Get*",
+            "workspaces:List*"
+          ]
+        },
+        {
+          "Effect": "Allow",
+          "Action": ["apigateway:GET"],
+          "Resource": ["arn:aws:apigateway:*::/*"]
+        }
       ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": ["apigateway:GET"],
-      "Resource": ["arn:aws:apigateway:*::/*"]
     }
-  ]
-}
-```
+    ```
 
 1.  Click **Review Policy** and verify the permissions.
 
@@ -617,5 +627,53 @@ From your AWS Management Console, perform the following steps:
     role, and copy the **Role ARN**. It should be in a format that looks like
     `arn:aws:iam::<your_aws_account_id>:role/JupiterOne`.
 
-[1]:
-  https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/SecurityAudit
+## Events
+
+### Supported Events
+
+JupiterOne currently supports the following event sources and events:
+
+- S3
+  - CreateBucket
+  - DeleteBucket
+
+### Events CloudFormation with AWS CLI
+
+```bash
+aws cloudformation create-stack --stack-name JupiterOneIntegrationEvents --template-url https://s3.amazonaws.com/jupiterone-prod-us-jupiter-aws-integration/events-cloudformation.json
+```
+
+### Manual EventBridge Rule Creation with AWS Management Console
+
+From your AWS Management Console, perform the following steps:
+
+1.  Go to **Amazon EventBridge** > **Rules** and, with the default event bus
+    selected, click **Create rule**.
+
+1.  Enter the following values:
+
+    - Name: `jupiterone-cloudtrail-events`
+    - Description: `Send CloudTrail Events to JupiterOne`
+
+1.  In the **Define pattern** section, select **Event pattern** and then
+    **Custom pattern**. Enter the following as the event pattern:
+
+    ```json
+    {
+      "detail-type": ["AWS API Call via CloudTrail"],
+      "source": ["aws.s3"],
+      "detail": {
+        "eventSource": ["s3.amazonaws.com"],
+        "eventName": ["DeleteBucket", "CreateBucket"]
+      }
+    }
+    ```
+
+1.  In the **Select targets** section, select **Event bus in another AWS
+    account**. For the **Event Bus** field, enter
+    `arn:aws:events:us-east-1:612791702201:event-bus/jupiter-integration-aws`.
+    For the role, select **Use existing role** but do not select a role.
+
+1.  Click **Create**.
+
+[1]: https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/SecurityAudit
