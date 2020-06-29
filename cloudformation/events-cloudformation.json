@@ -1,0 +1,70 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description":
+    "CloudFormation Template for JupiterOne AWS Integration Events",
+  "Metadata": {
+    "AWS::CloudFormation::Interface": {
+      "ParameterGroups": [
+        {
+          "Label": {
+            "default": "JupiterOne Authentication Parameters"
+          },
+          "Parameters": ["J1AwsAccountId"]
+        }
+      ],
+      "ParameterLabels": {
+        "J1AwsAccountId": {
+          "default": "What is the JupiterOne AWS account ID?"
+        }
+      }
+    }
+  },
+  "Parameters": {
+    "J1AwsAccountId": {
+      "Description": "The JupiterOne AWS account ID",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "JupiterOneCloudTrailEventsRule": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Name": "jupiterone-cloudtrail-events",
+        "Description": "Send CloudTrail Events to JupiterOne",
+        "EventPattern": {
+          "source": ["aws.s3"],
+          "detail-type": ["AWS API Call via CloudTrail"],
+          "detail": {
+            "eventSource": ["s3.amazonaws.com"],
+            "eventName": ["DeleteBucket", "CreateBucket"]
+          }
+        },
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::Join": [
+                ":",
+                [
+                  "arn:aws:events",
+                  { "Ref": "AWS::Region" },
+                  { "Ref": "J1AwsAccountId" },
+                  "event-bus/jupiter-integration-aws"
+                ]
+              ]
+            },
+            "Id": "jupiterone_aws_integration_event_bus"
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "RuleARN": {
+      "Description":
+        "ARN of the EventBridge rule configured to send CloudTrail events to JupiterOne",
+      "Value": {
+        "Fn::GetAtt": ["JupiterOneCloudTrailEventsRule", "Arn"]
+      }
+    }
+  }
+}
