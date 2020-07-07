@@ -52,6 +52,8 @@
                 "dynamodb:Describe*",
                 "dynamodb:List*",
                 "ecr:Describe*",
+                "ecr:GetLifecyclePolicy",
+                "ecr:GetRepositoryPolicy",
                 "ecr:List*",
                 "elasticache:List*",
                 "elasticfilesystem:Describe*",
