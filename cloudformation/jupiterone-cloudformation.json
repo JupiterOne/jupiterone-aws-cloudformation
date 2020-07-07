@@ -1,0 +1,130 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation Template for JupiterOne AWS Integration",
+  "Metadata": {
+    "AWS::CloudFormation::Interface": {
+      "ParameterGroups": [
+        {
+          "Label": {
+            "default": "JupiterOne Authentication Parameters"
+          },
+          "Parameters": ["J1AwsAccountId", "J1ExternalId"]
+        }
+      ],
+      "ParameterLabels": {
+        "J1AwsAccountId": {
+          "default": "What is the JupiterOne AWS account Id?"
+        },
+        "J1ExternalId": {
+          "default": "What is the JupiterOne external Id you were provided?"
+        }
+      }
+    }
+  },
+  "Parameters": {
+    "J1AwsAccountId": {
+      "Description": "The JupiterOne AWS account Id",
+      "Type": "String"
+    },
+    "J1ExternalId": {
+      "Description": "The JupiterOne external Id",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "JupiterOneSecurityAuditPolicy": {
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "ManagedPolicyName": "JupiterOneSecurityAudit",
+        "Description": "JupiterOne SecurityAudit policy",
+        "Path": "/",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Resource": "*",
+              "Action": [
+                "access-analyzer:List*",
+                "batch:Describe*",
+                "batch:List*",
+                "cloudwatch:GetMetricData",
+                "dynamodb:Describe*",
+                "dynamodb:List*",
+                "ecr:Describe*",
+                "ecr:GetLifecyclePolicy",
+                "ecr:GetRepositoryPolicy",
+                "ecr:List*",
+                "elasticache:List*",
+                "elasticfilesystem:Describe*",
+                "elasticmapreduce:List*",
+                "es:List*",
+                "kinesis:Describe*",
+                "kinesis:List*",
+                "s3:GetObjectRetention",
+                "s3:GetObjectLegalHold",
+                "s3:Get*Configuration",
+                "sns:GetTopicAttributes",
+                "sns:GetSubscriptionAttributes",
+                "sns:ListTopics",
+                "sns:ListSubscriptions",
+                "sns:ListTagsForResource",
+                "waf:List*",
+                "waf:Get*",
+                "waf-regional:List*",
+                "waf-regional:Get*",
+                "workspaces:List*"
+              ]
+            },
+            {
+              "Effect": "Allow",
+              "Action": ["apigateway:GET"],
+              "Resource": ["arn:aws:apigateway:*::/*"]
+            }
+          ]
+        }
+      }
+    },
+    "JupiterOneRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/SecurityAudit",
+          { "Ref": "JupiterOneSecurityAuditPolicy" }
+        ],
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    ["arn:aws:iam::", { "Ref": "J1AwsAccountId" }, ":root"]
+                  ]
+                }
+              },
+              "Condition": {
+                "StringEquals": {
+                  "sts:ExternalId": {
+                    "Ref": "J1ExternalId"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "RoleARN": {
+      "Description": "ARN of the JupiterOne role",
+      "Value": {
+        "Fn::GetAtt": ["JupiterOneRole", "Arn"]
+      }
+    }
+  }
+}
