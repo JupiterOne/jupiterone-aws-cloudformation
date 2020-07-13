@@ -635,11 +635,85 @@ From your AWS Management Console, perform the following steps:
 
 ### Supported Events
 
-JupiterOne currently supports the following event sources and events:
+JupiterOne currently supports the following events:
 
 - S3
   - CreateBucket
+  - PutBucketEncryption
+  - PutBucketPolicy
+
+The following events are next on our roadmap:
+
+- S3
   - DeleteBucket
+  - DeleteBucketEncryption
+  - DeleteBucketLifecycle
+  - DeleteBucketPolicy
+  - DeleteBucketReplication
+  - DeleteBucketTagging
+  - PutBucketAcl
+  - PutBucketLifecycle
+  - PutBucketLogging
+  - PutBucketReplication
+  - PutBucketTagging
+  - PutBucketVersioning
+- IAM
+  - AddRoleToInstanceProfile
+  - AddUserToGroup
+  - AttachGroupPolicy
+  - AttachRolePolicy
+  - AttachUserPolicy
+  - ChangePassword
+  - CreateAccessKey
+  - CreateGroup
+  - CreateInstanceProfile
+  - CreateLoginProfile
+  - CreatePolicy
+  - CreatePolicyVersion
+  - CreateRole
+  - CreateSAMLProvider
+  - CreateServiceLinkedRole
+  - CreateUser
+  - CreateVirtualMFADevice
+  - DeactivateMFADevice
+  - DeleteAccessKey
+  - DeleteAccountPasswordPolicy
+  - DeleteGroup
+  - DeleteGroupPolicy
+  - DeleteInstanceProfile
+  - DeleteLoginProfile
+  - DeletePolicy
+  - DeletePolicyVersion
+  - DeleteRole
+  - DeleteRolePolicy
+  - DeleteSAMLProvider
+  - DeleteServiceLinkedRole
+  - DeleteUser
+  - DeleteUserPolicy
+  - DeleteVirtualMFADevice
+  - DetachGroupPolicy
+  - DetachRolePolicy
+  - DetachUserPolicy
+  - EnableMFADevice
+  - PutGroupPolicy
+  - PutRolePolicy
+  - PutUserPolicy
+  - RemoveRoleFromInstanceProfile
+  - RemoveUserFromGroup
+  - SetDefaultPolicyVersion
+  - TagRole
+  - TagUser
+  - UntagRole
+  - UntagUser
+  - UpdateAccessKey
+  - UpdateAccountPasswordPolicy
+  - UpdateAssumeRolePolicy
+  - UpdateGroup
+  - UpdateLoginProfile
+  - UpdateRole
+  - UpdateRoleDescription
+  - UpdateSAMLProvider
+  - UpdateUser
 
 ### Events CloudFormation with AWS CLI
 
@@ -660,15 +734,22 @@ From your AWS Management Console, perform the following steps:
     - Description: `Send CloudTrail Events to JupiterOne`
 
 1.  In the **Define pattern** section, select **Event pattern** and then
-    **Custom pattern**. Enter the following as the event pattern:
+    **Custom pattern**. Copy the
+    `Resources.JupiterOneCloudTrailEventsRule.Properties.EventPattern` object
+    from `cloudformation/events-cloudformation.json` into the text field. It
+    should look something like this:
 
     ```json
     {
+      "source": ["aws.s3", "aws.iam", "...more sources..."],
       "detail-type": ["AWS API Call via CloudTrail"],
-      "source": ["aws.s3"],
       "detail": {
-        "eventSource": ["s3.amazonaws.com"],
-        "eventName": ["DeleteBucket", "CreateBucket"]
+        "eventSource": [
+          "s3.amazonaws.com",
+          "iam.amazonaws.com",
+          "...more sources..."
+        ],
+        "eventName": ["...event names here..."]
       }
     }
     ```
