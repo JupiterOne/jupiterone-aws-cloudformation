@@ -639,8 +639,17 @@ JupiterOne currently supports the following events:
 
 - S3
   - CreateBucket
+  - PutBucketAcl
   - PutBucketEncryption
+  - PutBucketInventoryConfiguration
+  - PutBucketLifecycle
+  - PutBucketLogging
   - PutBucketPolicy
+  - PutBucketReplication
+  - PutBucketTagging
+  - PutBucketVersioning
+  - PutObjectLockConfiguration
+  - PutPublicAccessBlock
 
 The following events are next on our roadmap:
 
@@ -651,12 +660,6 @@ The following events are next on our roadmap:
   - DeleteBucketPolicy
   - DeleteBucketReplication
   - DeleteBucketTagging
-  - PutBucketAcl
-  - PutBucketLifecycle
-  - PutBucketLogging
-  - PutBucketReplication
-  - PutBucketTagging
-  - PutBucketVersioning
 - IAM
   - AddRoleToInstanceProfile
   - AddUserToGroup
