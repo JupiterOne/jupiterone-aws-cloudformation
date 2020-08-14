@@ -650,6 +650,12 @@ JupiterOne currently supports the following events:
   - PutBucketVersioning
   - PutObjectLockConfiguration
   - PutPublicAccessBlock
+- IAM
+  - CreateAccessKey
+  - CreateGroup
+  - CreatePolicy
+  - CreateRole
+  - CreateUser
 
 The following events are next on our roadmap:
 
@@ -667,16 +673,11 @@ The following events are next on our roadmap:
   - AttachRolePolicy
   - AttachUserPolicy
   - ChangePassword
-  - CreateAccessKey
-  - CreateGroup
   - CreateInstanceProfile
   - CreateLoginProfile
-  - CreatePolicy
   - CreatePolicyVersion
-  - CreateRole
   - CreateSAMLProvider
   - CreateServiceLinkedRole
-  - CreateUser
   - CreateVirtualMFADevice
   - DeactivateMFADevice
   - DeleteAccessKey
