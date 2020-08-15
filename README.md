@@ -292,6 +292,7 @@ hand-crafted policy, an exact policy that includes
         "batch:Describe*",
         "batch:List*",
         "cloudwatch:GetMetricData",
+        "cloudwatch:List*",
         "dynamodb:Describe*",
         "dynamodb:List*",
         "ecr:Describe*",
