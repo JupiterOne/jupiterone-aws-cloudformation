@@ -146,6 +146,7 @@ JupiterOne currently supports the following services and relevant access require
   - getGroup
   - getGroupPolicy
   - getPolicyVersion
+  - getRole
   - getRolePolicy
   - getSAMLProvider
   - getUserPolicy
@@ -171,6 +172,8 @@ JupiterOne currently supports the following services and relevant access require
   - listFindings
 - KMS
   - describeKey
+  - getKeyPolicy
+  - getKeyRotationStatus
   - listAliases
   - listKeys
 - Lambda
@@ -443,6 +446,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "iam:GetGroup",
         "iam:GetGroupPolicy",
         "iam:GetPolicyVersion",
+        "iam:GetRole",
         "iam:GetRolePolicy",
         "iam:GetSAMLProvider",
         "iam:GetUserPolicy",
@@ -466,6 +470,8 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "inspector:ListAssessmentRuns",
         "inspector:ListFindings",
         "kms:DescribeKey",
+        "kms:GetKeyPolicy",
+        "kms:GetKeyRotationStatus",
         "kms:ListAliases",
         "kms:ListKeys",
         "lambda:ListFunctions",
