@@ -122,6 +122,8 @@ JupiterOne currently supports the following services and relevant access require
 - ELB
   - describeLoadBalancers
   - describeTags
+  - describeTargetGroups
+  - describeTargetHealth
 - ElastiCache
   - describeCacheClusters
   - describeCacheParameterGroups
@@ -422,13 +424,10 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "elasticfilesystem:DescribeFileSystems",
         "elasticfilesystem:DescribeMountTargetSecurityGroups",
         "elasticfilesystem:DescribeMountTargets",
-        "elasticloadbalancing:DescribeCacheClusters",
-        "elasticloadbalancing:DescribeCacheParameterGroups",
-        "elasticloadbalancing:DescribeCacheParameters",
-        "elasticloadbalancing:DescribeCacheSubnetGroups",
-        "elasticloadbalancing:ListTagsForResource",
         "elasticloadbalancing:DescribeLoadBalancers",
         "elasticloadbalancing:DescribeTags",
+        "elasticloadbalancing:DescribeTargetGroups",
+        "elasticloadbalancing:DescribeTargetHealth",
         "es:DescribeElasticsearchDomains",
         "es:ListDomainNames",
         "es:ListTags",
