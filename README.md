@@ -63,7 +63,7 @@ JupiterOne currently supports the following services and relevant access require
 - Config Service
   - describeComplianceByConfigRule
   - describeConfigRules
-  - getComplianceByResource
+  - describeComplianceByResource
   - getComplianceDetailsByConfigRule
 - DynamoDB
   - describeContinuousBackups
@@ -129,6 +129,8 @@ JupiterOne currently supports the following services and relevant access require
   - describeCacheParameterGroups
   - describeCacheParameters
   - describeCacheSubnetGroups
+  - describeReplicationGroups
+  - describeSnapshots
   - listTagsForResource
 - ES
   - describeElasticsearchDomains
@@ -206,18 +208,20 @@ JupiterOne currently supports the following services and relevant access require
   - listTagsForDomain
 - S3
   - getBucketAcl
-  - getBucketEncryption
   - getBucketLocation
   - getBucketLogging
-  - getBucketReplication
+  - getBucketPolicy
+  - getBucketPolicyStatus
   - getBucketTagging
   - getBucketVersioning
-  - getPublicAccessBlock
-  - listBuckets
-  - listBucketInventoryConfigurations
+  - getEncryptionConfiguration
+  - getInventoryConfiguration
+  - getBucketPublicAccessBlock
+  - getReplicationConfiguration
+  - listBucket
 - S3 bucket policy
   - getBucketCORS
-  - getBucketLifecycleConfiguration
+  - getLifecycleConfiguration
   - getBucketObjectLockConfiguration
   - getBucketPolicy
   - getBucketPublicAccessBlock
@@ -365,12 +369,10 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "cloudtrail:DescribeTrails",
         "cloudwatch:DescribeAlarms",
         "cloudwatch:GetMetricData",
-        "cloudwatch:ListRules",
-        "cloudwatch:ListTargetsByRule",
         "cloudwatch:ListTagsForResource",
         "config:DescribeComplianceByConfigRule",
         "config:DescribeConfigRules",
-        "config:GetComplianceByResource",
+        "config:DescribeComplianceByResource",
         "config:GetComplianceDetailsByConfigRule",
         "dynamodb:DescribeContinuousBackups",
         "dynamodb:DescribeTable",
@@ -419,6 +421,8 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "elasticache:DescribeCacheParameterGroups",
         "elasticache:DescribeCacheParameters",
         "elasticache:DescribeCacheSubnetGroups",
+        "elasticache:DescribeReplicationGroups",
+        "elasticache:DescribeSnapshots",
         "elasticache:ListTagsForResource",
         "elasticfilesystem:DescribeFileSystemPolicy",
         "elasticfilesystem:DescribeFileSystems",
@@ -496,20 +500,24 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "route53:ListResourceRecordSets",
         "route53:ListTagsForResource",
         "s3:GetBucketAcl",
-        "s3:GetBucketEncryption",
-        "s3:GetBucketLifecycleConfiguration",
         "s3:GetBucketLocation",
         "s3:GetBucketLogging",
-        "s3:GetBucketReplication",
+        "s3:GetBucketPolicy",
+        "s3:GetBucketPolicyStatus",
         "s3:GetBucketTagging",
         "s3:GetBucketVersioning",
+        "s3:GetEncryptionConfiguration",
+        "s3:GetInventoryConfiguration",
+        "s3:GetBucketPublicAccessBlock",
+        "s3:GetReplicationConfiguration",
+        "s3:ListAllMyBuckets",
+        "s3:GetBucketCORS",
+        "s3:GetLifecycleConfiguration",
         "s3:GetBucketObjectLockConfiguration",
-        "s3:GetPublicAccessBlock",
-        "s3:ListBuckets",
-        "s3:ListBucketInventoryConfigurations",
         "s3:GetBucketPolicy",
         "s3:GetBucketPublicAccessBlock",
         "s3:GetBucketPolicyStatus",
+        "s3:GetBucketObjectLockConfiguration",
         "sns:GetTopicAttributes",
         "sns:GetSubscriptionAttributes",
         "sns:ListTopics",
