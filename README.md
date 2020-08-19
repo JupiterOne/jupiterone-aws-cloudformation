@@ -510,7 +510,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "s3:GetInventoryConfiguration",
         "s3:GetBucketPublicAccessBlock",
         "s3:GetReplicationConfiguration",
-        "s3:ListBucket",
+        "s3:ListAllMyBuckets",
         "s3:GetBucketCORS",
         "s3:GetLifecycleConfiguration",
         "s3:GetBucketObjectLockConfiguration",
