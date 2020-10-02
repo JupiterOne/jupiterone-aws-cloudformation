@@ -367,6 +367,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "cloudfront:ListDistributions",
         "cloudfront:ListTagsForResource",
         "cloudtrail:DescribeTrails",
+        "cloudtrail:GetEventSelectors",
         "cloudwatch:DescribeAlarms",
         "cloudwatch:GetMetricData",
         "cloudwatch:ListTagsForResource",
