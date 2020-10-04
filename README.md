@@ -22,254 +22,51 @@ configured using one of the following methods:
 
 ### Supported Services
 
-JupiterOne currently supports the following services and relevant access requirements:
+JupiterOne currently supports the following services:
 
 - AccessAnalyzer
-  - listAnalyzers
-  - listFindings
 - ACM
-  - describeCertificate
-  - listCertificates
-  - listTagsForCertificate
 - API Gateway
-  - getIntegration
-  - getResources
-  - getRestApis
 - Autoscaling
-  - describeAutoScalingGroups
 - Batch
-  - describeComputeEnvironments
-  - describeJobDefinitions
-  - describeJobQueues
-  - describeJobs
-  - listJobs
 - CloudFormation
-  - describeStacks
 - CloudFront
-  - listDistributions
-  - listTagsForResource
 - CloudTrail
-  - describeTrails
 - CloudWatch
-  - describeAlarms
-  - getMetricData
-  - listTagsForResource
-- CloudWatch Events
-  - listRules
-  - listTargetsByRule
-- CloudWatch Logs
-  - describeLogGroups",
-  - listTagsLogGroup",
-- Config Service
-  - describeComplianceByConfigRule
-  - describeConfigRules
-  - describeComplianceByResource
-  - getComplianceDetailsByConfigRule
+  - CloudWatch Alarms
+  - CloudWatch Events
+  - CloudWatch Logs
+- Config
 - DynamoDB
-  - describeContinuousBackups
-  - describeTable
-  - listBackups
-  - listTables
-  - listTagsOfResource
 - EC2
-  - describeAddresses
-  - describeFlowLogs
-  - describeImages
-  - describeInstances
-  - describeInternetGateways
-  - describeKeyPairs
-  - describeNatGateways
-  - describeNetworkAcls
-  - describeNetworkInterfaces
-  - describeRouteTables
-  - describeSecurityGroups
-  - describeSnapshotAttribute
-  - describeSnapshots
-  - describeSubnets
-  - describeVolumes
-  - describeVpcs
-  - describeVpnConnections
-  - describeVpnGateways
 - ECR
-  - describeImages
-  - describeImageScanFindings
-  - describeRepositories
-  - getLifecyclePolicy
-  - getRepositoryPolicy
-  - listImages
-  - listTagsForResource
 - ECS
-  - describeClusters
-  - describeContainerInstances
-  - describeServices
-  - describeTaskDefinition
-  - describeTasks
-  - describeTaskSets
-  - listClusters
-  - listContainerInstances
-  - listServices
-  - listTagsForResource
-  - listTaskDefinitions
-  - listTasks
 - EFS
-  - describeFileSystemPolicy
-  - describeFileSystems
-  - describeMountTargetSecurityGroups
-  - describeMountTargets
 - EKS
-  - describeCluster
-  - listClusters
 - ELB
-  - describeLoadBalancers
-  - describeTags
-  - describeTargetGroups
-  - describeTargetHealth
 - ElastiCache
-  - describeCacheClusters
-  - describeCacheParameterGroups
-  - describeCacheParameters
-  - describeCacheSubnetGroups
-  - describeReplicationGroups
-  - describeSnapshots
-  - listTagsForResource
 - ES
-  - describeElasticsearchDomains
-  - listDomainNames
-  - listTags
 - GuardDuty
-  - getDetector
-  - getFindings
-  - listDetectors
-  - listFindings
-- IAM
-  - generateCredentialReport
-  - getAccessKeyLastUsed
-  - getAccountPasswordPolicy
-  - getAccountSummary
-  - getCredentialReport
-  - getGroup
-  - getGroupPolicy
-  - getPolicyVersion
-  - getRole
-  - getRolePolicy
-  - getSAMLProvider
-  - getUserPolicy
-  - listAccessKeys
-  - listAccountAliases
-  - listEntitiesForPolicy
-  - listGroupPolicies
-  - listGroups
-  - listInstanceProfiles
-  - listMFADevices
-  - listPolicies
-  - listRolePolicies
-  - listRoles
-  - listRoleTags
-  - listSAMLProviders
-  - listUserPolicies
-  - listUsers
-  - listUserTags
+- IAM (including IAM Policy analysis)
 - Inspector
-  - describeAssessmentRuns
-  - describeFindings
-  - listAssessmentRuns
-  - listFindings
 - KMS
-  - describeKey
-  - getKeyPolicy
-  - getKeyRotationStatus
-  - listAliases
-  - listKeys
 - Lambda
-  - listFunctions
-  - listTags
+- Macie
 - Organizations
-  - listAccounts
-  - listTagsForResource
 - RDS
-  - describeDBClusters
-  - describeDBClusterSnapshots
-  - describeDBInstances
-  - describeDBSnapshots
-  - describeDBClusterParameterGroups
-  - describeDBClusterParameters
-  - describeDBParameterGroups
-  - describeDBParameters
-  - listTagsForResource
 - Redshift
-  - describeClusters
 - Route53
-  - listHostedZones
-  - listResourceRecordSets
-  - listTagsForResource
 - Route53Domains
-  - getDomainDetail
-  - listDomains
-  - listTagsForDomain
-- S3
-  - getBucketAcl
-  - getBucketLocation
-  - getBucketLogging
-  - getBucketPolicy
-  - getBucketPolicyStatus
-  - getBucketTagging
-  - getBucketVersioning
-  - getEncryptionConfiguration
-  - getInventoryConfiguration
-  - getBucketPublicAccessBlock
-  - getReplicationConfiguration
-  - listBucket
-- S3 bucket policy
-  - getBucketCORS
-  - getLifecycleConfiguration
-  - getBucketObjectLockConfiguration
-  - getBucketPolicy
-  - getBucketPublicAccessBlock
-  - getBucketPolicyStatus
-  - getBucketObjectLockConfiguration
+- S3 (including Bucket Policy analysis)
 - SNS
-  - getTopicAttributes
-  - getSubscriptionAttributes
-  - listTopics
-  - listSubscriptions
-  - listTagsForResource
 - SQS
-  - getQueueAttributes
-  - listQueues
-  - listQueueTags
 - Transfer
-  - listServers
-  - listTagsForResource
-  - listUsers
+- VPC (including VPC Peering)
 - WAF
-  - getWebACL
-  - listWebACLs
 - Workspaces
-  - describeTags
-  - describeWorkspaceBundles
-  - describeWorkspaces
 
-> Notes:
->
-> - `cloudwatch:GetMetricData` permission is only used to obtain
->   `BucketSizeBytes` and `NumberOfObjects` metrics data for S3 buckets.
-
-Additional Planned services and anticipated relevant access requirements:
-
-- CloudWatch Alarms
-  - describeAlarms
-  - describeAlarmHistory
-- VPC Peering
-  - describeVpcPeeringConnections
-- WAF (Regional)
-  - getWebACL
-  - listWebACLs
-- Workspaces
-  - describeClientProperties
-  - describeIpGroups
-  - describeWorkspaceDirectories
-  - describeWorkspaceImages
-  - listAvailableManagementCidrRanges
+For detailed and specific permissions, see **"Specific Permissions Policy"**
+section below.
 
 ### IAM Role Permissions
 
@@ -482,6 +279,8 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "lambda:ListTags",
         "logs:DescribeLogGroups",
         "logs:ListTagsLogGroup",
+        "macie2:GetFindings",
+        "macie2:ListFindings",
         "organizations:ListAccounts",
         "organizations:ListTagsForResource",
         "redshift:DescribeClusters",
@@ -553,6 +352,11 @@ to update the policy in the future as more APIs are called by JupiterOne.
   ]
 }
 ```
+
+> Notes:
+>
+> - `cloudwatch:GetMetricData` permission is only used to obtain
+>   `BucketSizeBytes` and `NumberOfObjects` metrics data for S3 buckets.
 
 ### IAM CloudFormation with AWS CLI
 

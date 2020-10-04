@@ -62,6 +62,8 @@
                 "es:List*",
                 "kinesis:Describe*",
                 "kinesis:List*",
+                "macie2:Get*",
+                "macie2:List*",
                 "s3:GetObjectRetention",
                 "s3:GetObjectLegalHold",
                 "s3:Get*Configuration",
