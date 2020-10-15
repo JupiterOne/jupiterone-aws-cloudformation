@@ -111,6 +111,8 @@ hand-crafted policy, an exact policy that includes
         "es:List*",
         "kinesis:Describe*",
         "kinesis:List*",
+        "macie2:GetFindings",
+        "macie2:ListFindings",
         "s3:GetObjectRetention",
         "s3:GetObjectLegalHold",
         "s3:Get*Configuration",
