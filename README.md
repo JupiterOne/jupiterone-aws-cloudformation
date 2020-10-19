@@ -31,6 +31,7 @@ JupiterOne currently supports the following services:
 - Batch
 - CloudFormation
 - CloudFront
+- CloudHSM
 - CloudTrail
 - CloudWatch
   - CloudWatch Alarms
@@ -97,6 +98,9 @@ hand-crafted policy, an exact policy that includes
         "access-analyzer:List*",
         "batch:Describe*",
         "batch:List*",
+        "cloudhsm:DescribeBackups",
+        "cloudhsm:DescribeClusters",
+        "cloudhsm:ListTags",  
         "cloudwatch:GetMetricData",
         "cloudwatch:List*",
         "dynamodb:Describe*",
@@ -165,6 +169,9 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "cloudformation:DescribeStacks",
         "cloudfront:ListDistributions",
         "cloudfront:ListTagsForResource",
+        "cloudhsm:DescribeBackups",
+        "cloudhsm:DescribeClusters",
+        "cloudhsm:ListTags",  
         "cloudtrail:DescribeTrails",
         "cloudtrail:GetEventSelectors",
         "cloudwatch:DescribeAlarms",
