@@ -100,7 +100,7 @@ hand-crafted policy, an exact policy that includes
         "batch:List*",
         "cloudhsm:DescribeBackups",
         "cloudhsm:DescribeClusters",
-        "cloudhsm:ListTags",  
+        "cloudhsm:ListTags",
         "cloudwatch:GetMetricData",
         "cloudwatch:List*",
         "dynamodb:Describe*",
@@ -171,7 +171,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "cloudfront:ListTagsForResource",
         "cloudhsm:DescribeBackups",
         "cloudhsm:DescribeClusters",
-        "cloudhsm:ListTags",  
+        "cloudhsm:ListTags",
         "cloudtrail:DescribeTrails",
         "cloudtrail:GetEventSelectors",
         "cloudwatch:DescribeAlarms",
@@ -472,6 +472,7 @@ JupiterOne currently supports the following events:
   - CreateBucket
   - PutBucketAcl
   - PutBucketEncryption
+  - DeleteBucketEncryption
   - PutBucketInventoryConfiguration
   - PutBucketLifecycle
   - PutBucketLogging
@@ -492,7 +493,6 @@ The following events are next on our roadmap:
 
 - S3
   - DeleteBucket
-  - DeleteBucketEncryption
   - DeleteBucketLifecycle
   - DeleteBucketPolicy
   - DeleteBucketReplication

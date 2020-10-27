@@ -46,6 +46,7 @@
               "DeleteBucketTagging",
               "PutBucketAcl",
               "PutBucketEncryption",
+              "DeleteBucketEncryption",
               "PutBucketInventoryConfiguration",
               "PutBucketLifecycle",
               "PutBucketLogging",
