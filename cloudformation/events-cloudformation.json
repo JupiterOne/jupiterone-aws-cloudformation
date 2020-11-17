@@ -32,10 +32,14 @@
         "Name": "jupiterone-cloudtrail-events",
         "Description": "Send CloudTrail Events to JupiterOne",
         "EventPattern": {
-          "source": ["aws.s3", "aws.iam"],
+          "source": ["aws.s3", "aws.iam", "aws.ec2"],
           "detail-type": ["AWS API Call via CloudTrail"],
           "detail": {
-            "eventSource": ["s3.amazonaws.com", "iam.amazonaws.com"],
+            "eventSource": [
+              "s3.amazonaws.com",
+              "iam.amazonaws.com",
+              "ec2.amazonaws.com"
+            ],
             "eventName": [
               "CreateBucket",
               "DeleteBucket",
@@ -46,7 +50,6 @@
               "DeleteBucketTagging",
               "PutBucketAcl",
               "PutBucketEncryption",
-              "DeleteBucketEncryption",
               "PutBucketInventoryConfiguration",
               "PutBucketLifecycle",
               "PutBucketLogging",
@@ -111,7 +114,10 @@
               "UpdateRole",
               "UpdateRoleDescription",
               "UpdateSAMLProvider",
-              "UpdateUser"
+              "UpdateUser",
+              "RunInstances",
+              "StopInstances",
+              "TerminateInstances"
             ]
           }
         },
