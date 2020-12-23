@@ -116,6 +116,7 @@
               "UpdateSAMLProvider",
               "UpdateUser",
               "RunInstances",
+              "StartInstances",
               "StopInstances",
               "TerminateInstances"
             ]
