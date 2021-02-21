@@ -65,6 +65,7 @@
                 "es:List*",
                 "kinesis:Describe*",
                 "kinesis:List*",
+                "lambda:GetFunction",
                 "macie2:Get*",
                 "macie2:List*",
                 "s3:GetObjectRetention",
