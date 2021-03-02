@@ -499,6 +499,11 @@ JupiterOne currently supports the following events:
   - CreatePolicy
   - CreateRole
   - CreateUser
+- EC2
+  - RunInstances
+  - StartInstances
+  - StopInstances
+  - TerminateInstances
 
 The following events are next on our roadmap:
 
@@ -587,12 +592,13 @@ From your AWS Management Console, perform the following steps:
 
     ```json
     {
-      "source": ["aws.s3", "aws.iam", "...more sources..."],
+      "source": ["aws.s3", "aws.iam", "aws.ec2", "...more sources..."],
       "detail-type": ["AWS API Call via CloudTrail"],
       "detail": {
         "eventSource": [
           "s3.amazonaws.com",
           "iam.amazonaws.com",
+          "ec2.amazonaws.com",
           "...more sources..."
         ],
         "eventName": ["...event names here..."]
