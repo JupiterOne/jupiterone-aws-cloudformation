@@ -71,6 +71,7 @@
                 "s3:GetObjectRetention",
                 "s3:GetObjectLegalHold",
                 "s3:Get*Configuration",
+                "shield:GetSubscriptionState",
                 "sns:GetTopicAttributes",
                 "sns:GetSubscriptionAttributes",
                 "sns:ListTopics",
