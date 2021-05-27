@@ -59,6 +59,7 @@ JupiterOne currently supports the following services:
 - Route53
 - Route53Domains
 - S3 (including Bucket Policy analysis)
+- Shield
 - SNS
 - SQS
 - Transfer
@@ -264,6 +265,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "iam:GetRole",
         "iam:GetRolePolicy",
         "iam:GetSAMLProvider",
+        "iam:GetUser",
         "iam:GetUserPolicy",
         "iam:ListAccessKeys",
         "iam:ListAccountAliases",
