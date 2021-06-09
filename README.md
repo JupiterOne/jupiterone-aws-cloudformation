@@ -339,6 +339,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "s3:ListAllMyBuckets",
         "shield:DescribeSubscription",
         "shield:GetSubscriptionState",
+        "shield:ListResourcesInProtectionGroup",
         "shield:ListProtectionGroups",
         "shield:ListProtections",
         "shield:ListTagsForResource",
@@ -355,6 +356,9 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "transfer:ListUsers",
         "waf:GetWebACL",
         "waf:ListWebACLs",
+        "wafv2:GetWebACL",
+        "wafv2:ListWebACLs",
+        "wafv2:ListResourcesForWebACL",
         "workspaces:describeTags",
         "workspaces:describeWorkspaceBundles",
         "workspaces:describeWorkspaces"
