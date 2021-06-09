@@ -71,6 +71,8 @@
                 "s3:GetObjectRetention",
                 "s3:GetObjectLegalHold",
                 "s3:Get*Configuration",
+                "shield:Describe*",
+                "shield:List*",
                 "shield:GetSubscriptionState",
                 "sns:GetTopicAttributes",
                 "sns:GetSubscriptionAttributes",
@@ -81,6 +83,8 @@
                 "waf:Get*",
                 "waf-regional:List*",
                 "waf-regional:Get*",
+                "wafv2:Get*",
+                "wafv2:List*",
                 "workspaces:List*"
               ]
             },
