@@ -493,31 +493,39 @@ From your AWS Management Console, perform the following steps:
 
 JupiterOne currently supports the following events:
 
-- S3
-  - CreateBucket
-  - PutBucketAcl
-  - PutBucketEncryption
-  - DeleteBucketEncryption
-  - PutBucketInventoryConfiguration
-  - PutBucketLifecycle
-  - PutBucketLogging
-  - PutBucketPolicy
-  - PutBucketReplication
-  - PutBucketTagging
-  - PutBucketVersioning
-  - PutObjectLockConfiguration
-  - PutPublicAccessBlock
-- IAM
-  - CreateAccessKey
-  - CreateGroup
-  - CreatePolicy
-  - CreateRole
-  - CreateUser
-- EC2
-  - RunInstances
-  - StartInstances
-  - StopInstances
-  - TerminateInstances
+### S3
+| Event Name                      | Modified Entities `_type` | Modified Relationships `_type` |
+| ------------------------------- | ------------------------- | ------------------------------ |
+| CreateBucket                    | `aws_s3_bucket`           | |
+| PutBucketAcl                    | `aws_s3_bucket`           | `aws_s3_bucket_grant` |
+| PutBucketEncryption             | `aws_s3_bucket`           | |
+| DeleteBucketEncryption          | `aws_s3_bucket`           | |
+| PutBucketInventoryConfiguration | `aws_s3_bucket`           | `aws_s3_bucket_publishes_inventory_report` |
+| PutBucketLifecycle              | `aws_s3_bucket`           | |
+| PutBucketLogging                | `aws_s3_bucket`           | |
+| PutBucketPolicy                 | `aws_s3_bucket_policy`    | `aws_s3_bucket_has_policy` |
+| PutBucketReplication            | `aws_s3_bucket`           | |    
+| PutBucketTagging                | `aws_s3_bucket`           | |
+| PutBucketVersioning             | `aws_s3_bucket`           | |
+| PutObjectLockConfiguration      | `aws_s3_bucket`           | |        
+| PutPublicAccessBlock            | `aws_s3_bucket`           | |    
+
+### IAM
+| Event Name                      | Modified Entities `_type` | Modified Relationships `_type` |
+| ------------------------------- | ------------------------- | ------------------------------ |
+| CreateAccessKey                 | `aws_iam_access_key`      | |
+| CreateGroup                     | `aws_iam_group`           | |
+| CreatePolicy                    | `aws_iam_policy`          | |
+| CreateRole                      | `aws_iam_role`            | |
+| CreateUser                      | `aws_iam_user`            | |
+
+### EC2
+| Event Name                      | Modified Entities `_type` | Modified Relationships `_type` |
+| ------------------------------- | ------------------------- | ------------------------------ |
+| RunInstances                    | `aws_instance`            | |
+| StartInstances                  | `aws_instance`            | |
+| StopInstances                   | `aws_instance`            | |
+| TerminateInstances              | `aws_instance`            | |
 
 The following events are next on our roadmap:
 
