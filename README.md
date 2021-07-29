@@ -351,6 +351,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "sqs:GetQueueAttributes",
         "sqs:ListQueues",
         "sqs:ListQueueTags",
+        "tag:GetResources",
         "transfer:ListServers",
         "transfer:ListTagsForResource",
         "transfer:ListUsers",
