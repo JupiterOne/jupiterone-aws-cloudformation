@@ -83,8 +83,6 @@
                 "waf:Get*",
                 "waf-regional:List*",
                 "waf-regional:Get*",
-                "wafv2:Get*",
-                "wafv2:List*",
                 "workspaces:List*"
               ]
             },
