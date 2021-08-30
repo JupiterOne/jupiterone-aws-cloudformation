@@ -241,6 +241,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "elasticfilesystem:DescribeFileSystems",
         "elasticfilesystem:DescribeMountTargetSecurityGroups",
         "elasticfilesystem:DescribeMountTargets",
+        "elasticloadbalancing:DescribeLoadBalancerAttributes",
         "elasticloadbalancing:DescribeLoadBalancers",
         "elasticloadbalancing:DescribeTags",
         "elasticloadbalancing:DescribeTargetGroups",
