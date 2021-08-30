@@ -298,6 +298,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "logs:ListTagsLogGroup",
         "macie2:GetFindings",
         "macie2:ListFindings",
+        "organizations:DescribeOrganization",
         "organizations:ListAccounts",
         "organizations:ListTagsForResource",
         "redshift:DescribeClusters",
