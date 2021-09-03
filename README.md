@@ -209,6 +209,8 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "ec2:DescribeVpcEndpoints",
         "ec2:DescribeVpnConnections",
         "ec2:DescribeVpnGateways",
+        "ec2:GetEbsDefaultKmsKeyId",
+        "ec2:GetEbsEncryptionByDefault",
         "ecr:GetLifecyclePolicy",
         "ecr:GetRepositoryPolicy",
         "ecr:DescribeImages",
