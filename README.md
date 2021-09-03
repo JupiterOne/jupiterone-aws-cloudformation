@@ -106,6 +106,8 @@ hand-crafted policy, an exact policy that includes
         "cloudwatch:List*",
         "dynamodb:Describe*",
         "dynamodb:List*",
+        "ec2:GetEbsDefaultKmsKeyId",
+        "ec2:GetEbsEncryptionByDefault",
         "ecr:Describe*",
         "ecr:GetLifecyclePolicy",
         "ecr:GetRepositoryPolicy",
