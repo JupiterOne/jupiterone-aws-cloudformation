@@ -164,6 +164,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "acm:ListTagsForCertificate",
         "acm:ListCertificates",
         "autoscaling:DescribeAutoScalingGroups",
+        "autoscaling:DescribePolicies",
         "batch:DescribeComputeEnvironments",
         "batch:DescribeJobDefinitions",
         "batch:DescribeJobQueues",
