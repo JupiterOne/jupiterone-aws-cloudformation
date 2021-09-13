@@ -373,15 +373,17 @@ to update the policy in the future as more APIs are called by JupiterOne.
     },
     {
       "Effect": "Allow",
-      "Action": ["apigateway:HEAD", "apigateway:GET", "apigateway:OPTIONS"],
+      "Action": "apigateway:GET",
       "Resource": [
+        "arn:aws:apigateway:*::/apis",
+        "arn:aws:apigateway:*::/apis/*/integrations",
+        "arn:aws:apigateway:*::/apis/*/authorizers",
+        "arn:aws:apigateway:*::/apis/*/routes",
         "arn:aws:apigateway:*::/restapis",
         "arn:aws:apigateway:*::/restapis/*/authorizers",
         "arn:aws:apigateway:*::/restapis/*/authorizers/*",
         "arn:aws:apigateway:*::/restapis/*/resources",
-        "arn:aws:apigateway:*::/restapis/*/resources/*",
-        "arn:aws:apigateway:*::/restapis/*/resources/*/methods/*",
-        "arn:aws:apigateway:*::/vpclinks"
+        "arn:aws:apigateway:*::/restapis/*/resources/*"
       ]
     }
   ]
@@ -501,38 +503,41 @@ From your AWS Management Console, perform the following steps:
 JupiterOne currently supports the following events:
 
 ### S3
-| Event Name                      | Modified Entities `_type` | Modified Relationships `_type` |
-| ------------------------------- | ------------------------- | ------------------------------ |
-| CreateBucket                    | `aws_s3_bucket`           | |
-| PutBucketAcl                    | `aws_s3_bucket`           | `aws_s3_bucket_grant` |
-| PutBucketEncryption             | `aws_s3_bucket`           | |
-| DeleteBucketEncryption          | `aws_s3_bucket`           | |
+
+| Event Name                      | Modified Entities `_type` | Modified Relationships `_type`             |
+| ------------------------------- | ------------------------- | ------------------------------------------ |
+| CreateBucket                    | `aws_s3_bucket`           |                                            |
+| PutBucketAcl                    | `aws_s3_bucket`           | `aws_s3_bucket_grant`                      |
+| PutBucketEncryption             | `aws_s3_bucket`           |                                            |
+| DeleteBucketEncryption          | `aws_s3_bucket`           |                                            |
 | PutBucketInventoryConfiguration | `aws_s3_bucket`           | `aws_s3_bucket_publishes_inventory_report` |
-| PutBucketLifecycle              | `aws_s3_bucket`           | |
-| PutBucketLogging                | `aws_s3_bucket`           | |
-| PutBucketPolicy                 | `aws_s3_bucket_policy`    | `aws_s3_bucket_has_policy` |
-| PutBucketReplication            | `aws_s3_bucket`           | |    
-| PutBucketTagging                | `aws_s3_bucket`           | |
-| PutBucketVersioning             | `aws_s3_bucket`           | |
-| PutObjectLockConfiguration      | `aws_s3_bucket`           | |        
-| PutPublicAccessBlock            | `aws_s3_bucket`           | |    
+| PutBucketLifecycle              | `aws_s3_bucket`           |                                            |
+| PutBucketLogging                | `aws_s3_bucket`           |                                            |
+| PutBucketPolicy                 | `aws_s3_bucket_policy`    | `aws_s3_bucket_has_policy`                 |
+| PutBucketReplication            | `aws_s3_bucket`           |                                            |
+| PutBucketTagging                | `aws_s3_bucket`           |                                            |
+| PutBucketVersioning             | `aws_s3_bucket`           |                                            |
+| PutObjectLockConfiguration      | `aws_s3_bucket`           |                                            |
+| PutPublicAccessBlock            | `aws_s3_bucket`           |                                            |
 
 ### IAM
-| Event Name                      | Modified Entities `_type` | Modified Relationships `_type` |
-| ------------------------------- | ------------------------- | ------------------------------ |
-| CreateAccessKey                 | `aws_iam_access_key`      | |
-| CreateGroup                     | `aws_iam_group`           | |
-| CreatePolicy                    | `aws_iam_policy`          | |
-| CreateRole                      | `aws_iam_role`            | |
-| CreateUser                      | `aws_iam_user`            | |
+
+| Event Name      | Modified Entities `_type` | Modified Relationships `_type` |
+| --------------- | ------------------------- | ------------------------------ |
+| CreateAccessKey | `aws_iam_access_key`      |                                |
+| CreateGroup     | `aws_iam_group`           |                                |
+| CreatePolicy    | `aws_iam_policy`          |                                |
+| CreateRole      | `aws_iam_role`            |                                |
+| CreateUser      | `aws_iam_user`            |                                |
 
 ### EC2
-| Event Name                      | Modified Entities `_type` | Modified Relationships `_type` |
-| ------------------------------- | ------------------------- | ------------------------------ |
-| RunInstances                    | `aws_instance`            | |
-| StartInstances                  | `aws_instance`            | |
-| StopInstances                   | `aws_instance`            | |
-| TerminateInstances              | `aws_instance`            | |
+
+| Event Name         | Modified Entities `_type` | Modified Relationships `_type` |
+| ------------------ | ------------------------- | ------------------------------ |
+| RunInstances       | `aws_instance`            |                                |
+| StartInstances     | `aws_instance`            |                                |
+| StopInstances      | `aws_instance`            |                                |
+| TerminateInstances | `aws_instance`            |                                |
 
 The following events are next on our roadmap:
 
