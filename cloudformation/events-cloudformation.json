@@ -9,18 +9,18 @@
           "Label": {
             "default": "JupiterOne Authentication Parameters"
           },
-          "Parameters": ["J1AwsAccountId"]
+          "Parameters": ["JupiterOneAwsAccountId"]
         }
       ],
       "ParameterLabels": {
-        "J1AwsAccountId": {
+        "JupiterOneAwsAccountId": {
           "default": "What is the JupiterOne AWS account ID?"
         }
       }
     }
   },
   "Parameters": {
-    "J1AwsAccountId": {
+    "JupiterOneAwsAccountId": {
       "Description": "The JupiterOne AWS account ID",
       "Type": "String",
       "Default": "612791702201"
@@ -131,7 +131,7 @@
                 [
                   "arn:aws:events",
                   { "Ref": "AWS::Region" },
-                  { "Ref": "J1AwsAccountId" },
+                  { "Ref": "JupiterOneAwsAccountId" },
                   "event-bus/jupiter-integration-aws"
                 ]
               ]
