@@ -24,7 +24,8 @@
   "Parameters": {
     "J1AwsAccountId": {
       "Description": "The JupiterOne AWS account Id",
-      "Type": "String"
+      "Type": "String",
+      "Default": "612791702201"
     },
     "J1ExternalId": {
       "Description": "The JupiterOne external Id",
