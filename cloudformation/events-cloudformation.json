@@ -27,10 +27,43 @@
     }
   },
   "Resources": {
+    "JupiterOneCloudTrailEventBusRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [{
+            "Effect": "Allow",
+            "Principal":{
+              "Service": ["events.amazonaws.com"]
+            },
+            "Action": ["sts:AssumeRole"]
+          }]
+        },
+        "RoleName": "jupiterone-cloudtrail-events",
+        "Description": "Role allowing EventBridge to forward events to JupiterOne",
+        "Policies": [{
+          "PolicyName": "jupiterone-cloudtrail-events",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [{
+              "Effect": "Allow",
+              "Action": [
+                "events:PutEvents"
+              ],
+              "Resource": [
+                "arn:aws:events:us-east-1:612791702201:event-bus/jupiter-integration-aws"
+              ]
+            }]
+          }
+        }]
+      }
+    },
     "JupiterOneCloudTrailEventsRule": {
       "Type": "AWS::Events::Rule",
       "Properties": {
         "Name": "jupiterone-cloudtrail-events",
+        "RoleArn": { "Fn::GetAtt": ["JupiterOneCloudTrailEventBusRole", "Arn"] },
         "Description": "Send CloudTrail Events to JupiterOne",
         "EventPattern": {
           "source": ["aws.s3", "aws.iam", "aws.ec2"],
@@ -42,84 +75,7 @@
               "ec2.amazonaws.com"
             ],
             "eventName": [
-              "CreateBucket",
-              "DeleteBucket",
-              "DeleteBucketEncryption",
-              "DeleteBucketLifecycle",
-              "DeleteBucketPolicy",
-              "DeleteBucketReplication",
-              "DeleteBucketTagging",
-              "PutBucketAcl",
-              "PutBucketEncryption",
-              "PutBucketInventoryConfiguration",
-              "PutBucketLifecycle",
-              "PutBucketLogging",
-              "PutBucketPolicy",
-              "PutBucketReplication",
-              "PutBucketTagging",
-              "PutBucketVersioning",
-              "PutObjectLockConfiguration",
-              "PutPublicAccessBlock",
-              "AddRoleToInstanceProfile",
-              "AddUserToGroup",
-              "AttachGroupPolicy",
-              "AttachRolePolicy",
-              "AttachUserPolicy",
-              "ChangePassword",
-              "CreateAccessKey",
-              "CreateGroup",
-              "CreateInstanceProfile",
-              "CreateLoginProfile",
-              "CreatePolicy",
-              "CreatePolicyVersion",
-              "CreateRole",
-              "CreateSAMLProvider",
-              "CreateServiceLinkedRole",
-              "CreateUser",
-              "CreateVirtualMFADevice",
-              "DeactivateMFADevice",
-              "DeleteAccessKey",
-              "DeleteAccountPasswordPolicy",
-              "DeleteGroup",
-              "DeleteGroupPolicy",
-              "DeleteInstanceProfile",
-              "DeleteLoginProfile",
-              "DeletePolicy",
-              "DeletePolicyVersion",
-              "DeleteRole",
-              "DeleteRolePolicy",
-              "DeleteSAMLProvider",
-              "DeleteServiceLinkedRole",
-              "DeleteUser",
-              "DeleteUserPolicy",
-              "DeleteVirtualMFADevice",
-              "DetachGroupPolicy",
-              "DetachRolePolicy",
-              "DetachUserPolicy",
-              "EnableMFADevice",
-              "PutGroupPolicy",
-              "PutRolePolicy",
-              "PutUserPolicy",
-              "RemoveRoleFromInstanceProfile",
-              "RemoveUserFromGroup",
-              "SetDefaultPolicyVersion",
-              "TagRole",
-              "TagUser",
-              "UntagRole",
-              "UntagUser",
-              "UpdateAccessKey",
-              "UpdateAccountPasswordPolicy",
-              "UpdateAssumeRolePolicy",
-              "UpdateGroup",
-              "UpdateLoginProfile",
-              "UpdateRole",
-              "UpdateRoleDescription",
-              "UpdateSAMLProvider",
-              "UpdateUser",
-              "RunInstances",
-              "StartInstances",
-              "StopInstances",
-              "TerminateInstances"
+              "CreateBucket"
             ]
           }
         },
