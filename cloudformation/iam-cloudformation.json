@@ -82,6 +82,7 @@
                 "sns:ListTopics",
                 "sns:ListSubscriptions",
                 "sns:ListTagsForResource",
+                "ssm:Describe*",
                 "waf:List*",
                 "waf:Get*",
                 "waf-regional:List*",
