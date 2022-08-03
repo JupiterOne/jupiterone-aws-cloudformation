@@ -66,6 +66,8 @@
                 "elasticfilesystem:Describe*",
                 "elasticmapreduce:List*",
                 "es:List*",
+                "inspector2:ListCoverage",
+                "inspector2:ListFindings",
                 "kinesis:Describe*",
                 "kinesis:List*",
                 "lambda:GetFunction",

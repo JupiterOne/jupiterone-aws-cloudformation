@@ -50,6 +50,7 @@ JupiterOne currently supports the following services:
 - GuardDuty
 - IAM (including IAM Policy analysis)
 - Inspector
+- Inspector2
 - KMS
 - Lambda
 - Macie
@@ -116,6 +117,8 @@ hand-crafted policy, an exact policy that includes
         "elasticfilesystem:Describe*",
         "elasticmapreduce:List*",
         "es:List*",
+        "inspector2:ListCoverage",
+        "inspector2:ListFindings",
         "kinesis:Describe*",
         "kinesis:List*",
         "lambda:GetFunction",
@@ -292,6 +295,8 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "inspector:DescribeFindings",
         "inspector:ListAssessmentRuns",
         "inspector:ListFindings",
+        "inspector2:ListCoverage",
+        "inspector2:ListFindings",
         "kms:DescribeKey",
         "kms:GetKeyPolicy",
         "kms:GetKeyRotationStatus",
