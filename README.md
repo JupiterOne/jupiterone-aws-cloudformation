@@ -37,6 +37,8 @@ JupiterOne currently supports the following services:
   - CloudWatch Alarms
   - CloudWatch Events
   - CloudWatch Logs
+- CodeCommit
+- CodePipeline
 - Config
 - DynamoDB
 - EC2
@@ -105,6 +107,10 @@ hand-crafted policy, an exact policy that includes
         "cloudhsm:ListTags",
         "cloudwatch:GetMetricData",
         "cloudwatch:List*",
+        "codecommit:ListRepositories",
+        "codecommit:GetRepository",
+        "codecommit:ListTagsForResource",
+        "codepipeline:List*",
         "dynamodb:Describe*",
         "dynamodb:List*",
         "ec2:GetEbsDefaultKmsKeyId",
@@ -186,6 +192,10 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "cloudwatch:DescribeAlarms",
         "cloudwatch:GetMetricData",
         "cloudwatch:ListTagsForResource",
+        "codecommit:ListRepositories",
+        "codecommit:GetRepository",
+        "codecommit:ListTagsForResource",
+        "codepipeline:ListPipelines",
         "config:DescribeComplianceByConfigRule",
         "config:DescribeConfigRules",
         "config:DescribeComplianceByResource",
