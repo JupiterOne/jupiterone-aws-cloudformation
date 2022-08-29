@@ -556,7 +556,7 @@ JupiterOne currently supports the following events:
 | StopInstances      | `aws_instance`            |                                |
 | TerminateInstances | `aws_instance`            |                                |
 
-### EC2
+### AutoScaling
 
 | Event Name             | Modified Entities `_type` | Modified Relationships `_type` |
 | ---------------------- | ------------------------- | ------------------------------ |
