@@ -556,6 +556,14 @@ JupiterOne currently supports the following events:
 | StopInstances      | `aws_instance`            |                                |
 | TerminateInstances | `aws_instance`            |                                |
 
+### AutoScaling
+
+| Event Name             | Modified Entities `_type` | Modified Relationships `_type` |
+| ---------------------- | ------------------------- | ------------------------------ |
+| CreateAutoScalingGroup | `aws_autoscaling_group`   |                                |
+| UpdateAutoScalingGroup | `aws_autoscaling_group`   |                                |
+| DeleteAutoScalingGroup | `aws_autoscaling_group`   |                                |
+
 The following events are next on our roadmap:
 
 - S3
