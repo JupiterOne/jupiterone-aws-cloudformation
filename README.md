@@ -558,11 +558,11 @@ JupiterOne currently supports the following events:
 
 ### AutoScaling
 
-| Event Name             | Modified Entities `_type` | Modified Relationships `_type` |
-| ---------------------- | ------------------------- | ------------------------------ |
-| CreateAutoScalingGroup | `aws_autoscaling_group`   |                                |
-| UpdateAutoScalingGroup | `aws_autoscaling_group`   |                                |
-| DeleteAutoScalingGroup | `aws_autoscaling_group`   |                                |
+| Event Name             | Modified Entities `_type` | Modified Relationships `_type`                                                                                                                                                                               |
+| ---------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| CreateAutoScalingGroup | `aws_autoscaling_group`   | `aws_autoscaling_has_aws_autoscaling_group` `aws_autoscaling_group_uses_launch_template` `aws_autoscaling_group_has_instance` `aws_autoscaling_group_uses_launch_config` `aws_autoscaling_group_uses_policy` |
+| UpdateAutoScalingGroup | `aws_autoscaling_group`   |                                                                                                                                                                                                              |
+| DeleteAutoScalingGroup | `aws_autoscaling_group`   |                                                                                                                                                                                                              |
 
 The following events are next on our roadmap:
 
