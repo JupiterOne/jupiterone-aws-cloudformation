@@ -59,6 +59,7 @@ JupiterOne currently supports the following services:
 - Organizations
 - RDS
 - Redshift
+  - Redshift Serverless
 - Route53
 - Route53Domains
 - S3 (including Bucket Policy analysis)
@@ -324,6 +325,9 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "organizations:ListAccounts",
         "organizations:ListTagsForResource",
         "redshift:DescribeClusters",
+        "redshift-serverless:ListUsageLimits",
+        "redshift-serverless:ListNamespaces",
+        "redshift-serverless:ListWorkgroups",
         "rds:DescribeDBClusters",
         "rds:DescribeDBClusterSnapshots",
         "rds:DescribeDBInstances",
