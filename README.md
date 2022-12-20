@@ -162,6 +162,8 @@ This policy may be used to provide only exactly the specific permissions
 currently used by JupiterOne. Using this policy will most certainly require you
 to update the policy in the future as more APIs are called by JupiterOne.
 
+NOTE: By default, AWS enforces a policy size limit of 6,144 non-whitespace characters. The policy below includes more than 6,144 non-whitespace characters. We recommend you split this document across two different AWS policies in order to stay under the 6,144 non-whitespace character limit. Alternatively, you could request a quota increase from AWS.
+
 ```json
 {
   "Version": "2012-10-17",
@@ -217,6 +219,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
         "ec2:DescribeNatGateways",
         "ec2:DescribeNetworkAcls",
         "ec2:DescribeNetworkInterfaces",
+        "ec2:DescribeRegions",
         "ec2:DescribeRouteTables",
         "ec2:DescribeSecurityGroups",
         "ec2:DescribeSnapshotAttribute",
