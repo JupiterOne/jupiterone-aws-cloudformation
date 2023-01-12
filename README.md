@@ -49,6 +49,8 @@ JupiterOne currently supports the following services:
 - ELB
 - ElastiCache
 - ES
+- Firewall Manager
+- Glue
 - GuardDuty
 - IAM (including IAM Policy analysis)
 - Inspector
@@ -272,6 +274,18 @@ NOTE: By default, AWS enforces a policy size limit of 6,144 non-whitespace chara
         "es:DescribeElasticsearchDomains",
         "es:ListDomainNames",
         "es:ListTags",
+        "fms:ListPolicies",
+        "fms:ListTagsForResource",
+        "fms:ListResourceSets",
+        "fms:ListResourceSetResources",
+        "fms:ListAppsLists",
+        "fms:ListProtocolsLists",
+        "glue:ListJobs",
+        "glue:GetJob",
+        "glue:GetTags",
+        "glue:GetDatabases",
+        "glue:GetDatabases",
+        "glue:GetSecurityConfigurations",
         "events:ListRules",
         "events:ListTargetsByRule",
         "events:ListTagsForResource",
