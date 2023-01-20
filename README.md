@@ -66,6 +66,7 @@ JupiterOne currently supports the following services:
 - Shield
 - SNS
 - SQS
+- SSM
 - Transfer
 - VPC (including VPC Peering)
 - WAF
@@ -140,6 +141,7 @@ hand-crafted policy, an exact policy that includes
         "sns:ListTopics",
         "sns:ListSubscriptions",
         "sns:ListTagsForResource",
+        "ssm:GetDocument",
         "waf:List*",
         "waf:Get*",
         "waf-regional:List*",
@@ -395,6 +397,7 @@ NOTE: By default, AWS enforces a policy size limit of 6,144 non-whitespace chara
         "ssm:DescribeInstancePatchStates", 
         "ssm:DescribeInstanceInformation", 
         "ssm:ListInventoryEntries",
+        "ssm:GetDocument",
         "tag:GetResources",
         "transfer:ListServers",
         "transfer:ListTagsForResource",
