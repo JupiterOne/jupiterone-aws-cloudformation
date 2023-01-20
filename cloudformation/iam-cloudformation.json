@@ -95,6 +95,7 @@
                 "sns:ListSubscriptions",
                 "sns:ListTagsForResource",
                 "ssm:Describe*",
+                "ssm:GetDocument",
                 "waf:List*",
                 "waf:Get*",
                 "waf-regional:List*",
