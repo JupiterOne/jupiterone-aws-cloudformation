@@ -28,8 +28,8 @@
     }
   },
   "Resources": {
-    "JupiterOneCloudTrailIamRule": {
-      "Type": "AWS::IAM::Rule",
+    "JupiterOneCloudTrailIamRole": {
+      "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
           "Version": "2012-10-17",
