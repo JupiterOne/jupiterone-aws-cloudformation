@@ -45,34 +45,39 @@
         },
         "RoleName": "jupiterone-cloudtrail-events",
         "Description": "Send CloudTrail Events to JupiterOne",
-        "Policies": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "events:PutEvents"
-              ],
-              "Resource": [
+        "Policies": [
+          {
+            "PolicyName": "jupiterone-cloudtrail-events-policy",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
                 {
-                  "Fn::Join": [
-                    ":",
-                    [
-                      "arn:aws:events",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      {
-                        "Ref": "JupiterOneAwsAccountId"
-                      },
-                      "event-bus/jupiter-integration-aws"
-                    ]
+                  "Effect": "Allow",
+                  "Action": [
+                    "events:PutEvents"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Join": [
+                        ":",
+                        [
+                          "arn:aws:events",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          {
+                            "Ref": "JupiterOneAwsAccountId"
+                          },
+                          "event-bus/jupiter-integration-aws"
+                        ]
+                      ]
+                    }
                   ]
                 }
               ]
             }
-          ]
-        }
+          }
+        ]
       }
     },
     "JupiterOneCloudTrailEventsRule": {
