@@ -1,7 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description":
-    "CloudFormation Template for JupiterOne AWS Integration Events",
+  "Description": "CloudFormation Template for JupiterOne AWS Integration Events",
   "Metadata": {
     "AWS::CloudFormation::Interface": {
       "ParameterGroups": [
@@ -9,7 +8,9 @@
           "Label": {
             "default": "JupiterOne Authentication Parameters"
           },
-          "Parameters": ["JupiterOneAwsAccountId"]
+          "Parameters": [
+            "JupiterOneAwsAccountId"
+          ]
         }
       ],
       "ParameterLabels": {
@@ -27,14 +28,68 @@
     }
   },
   "Resources": {
+    "JupiterOneCloudTrailIamRule": {
+      "Type": "AWS::IAM::Rule",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "events.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "RoleName": "jupiterone-cloudtrail-events",
+        "Description": "Send CloudTrail Events to JupiterOne",
+        "Policies": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "events:PutEvents"
+              ],
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    ":",
+                    [
+                      "arn:aws:events",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      {
+                        "Ref": "JupiterOneAwsAccountId"
+                      },
+                      "event-bus/jupiter-integration-aws"
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
     "JupiterOneCloudTrailEventsRule": {
       "Type": "AWS::Events::Rule",
       "Properties": {
         "Name": "jupiterone-cloudtrail-events",
         "Description": "Send CloudTrail Events to JupiterOne",
         "EventPattern": {
-          "source": ["aws.s3", "aws.iam", "aws.ec2", "aws.autoscaling"],
-          "detail-type": ["AWS API Call via CloudTrail"],
+          "source": [
+            "aws.s3",
+            "aws.iam",
+            "aws.ec2",
+            "aws.autoscaling"
+          ],
+          "detail-type": [
+            "AWS API Call via CloudTrail"
+          ],
           "detail": {
             "eventSource": [
               "s3.amazonaws.com",
@@ -134,13 +189,23 @@
                 ":",
                 [
                   "arn:aws:events",
-                  { "Ref": "AWS::Region" },
-                  { "Ref": "JupiterOneAwsAccountId" },
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  {
+                    "Ref": "JupiterOneAwsAccountId"
+                  },
                   "event-bus/jupiter-integration-aws"
                 ]
               ]
             },
-            "Id": "jupiterone_aws_integration_event_bus"
+            "Id": "jupiterone_aws_integration_event_bus",
+            "RoleArn": {
+              "Fn::GetAtt": [
+                "JupiterOneCloudTrailIamRule",
+                "iamRole.Arn"
+              ]
+            }
           }
         ]
       }
@@ -148,10 +213,12 @@
   },
   "Outputs": {
     "RuleARN": {
-      "Description":
-        "ARN of the EventBridge rule configured to send CloudTrail events to JupiterOne",
+      "Description": "ARN of the EventBridge rule configured to send CloudTrail events to JupiterOne",
       "Value": {
-        "Fn::GetAtt": ["JupiterOneCloudTrailEventsRule", "Arn"]
+        "Fn::GetAtt": [
+          "JupiterOneCloudTrailEventsRule",
+          "Arn"
+        ]
       }
     }
   }
