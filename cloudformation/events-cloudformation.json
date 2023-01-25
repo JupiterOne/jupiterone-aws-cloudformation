@@ -203,7 +203,7 @@
             "RoleArn": {
               "Fn::GetAtt": [
                 "JupiterOneCloudTrailIamRole",
-                "iamRole.Arn"
+                "Arn"
               ]
             }
           }
