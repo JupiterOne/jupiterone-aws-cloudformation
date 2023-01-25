@@ -49,6 +49,7 @@ JupiterOne currently supports the following services:
 - ELB
 - ElastiCache
 - ES
+- Direct Connect
 - GuardDuty
 - IAM (including IAM Policy analysis)
 - Inspector
@@ -125,6 +126,7 @@ hand-crafted policy, an exact policy that includes
         "elasticfilesystem:Describe*",
         "elasticmapreduce:List*",
         "es:List*",
+        "directconnect:Describe*",
         "inspector2:ListCoverage",
         "inspector2:ListFindings",
         "kinesis:Describe*",
@@ -274,6 +276,11 @@ NOTE: By default, AWS enforces a policy size limit of 6,144 non-whitespace chara
         "es:DescribeElasticsearchDomains",
         "es:ListDomainNames",
         "es:ListTags",
+        "directconnect:DescribeConnections",
+        "directconnect:DescribeVirtualInterfaces",
+        "directconnect:DescribeLags",
+        "directconnect:DescribeDirectConnectGateways",
+        "directconnect:DescribeVirtualGateways",
         "events:ListRules",
         "events:ListTargetsByRule",
         "events:ListTagsForResource",

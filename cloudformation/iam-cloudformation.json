@@ -70,6 +70,7 @@
                 "elasticfilesystem:Describe*",
                 "elasticmapreduce:List*",
                 "es:List*",
+                "directconnect:directconnect:Describe*",
                 "inspector2:ListCoverage",
                 "inspector2:ListFindings",
                 "kinesis:Describe*",
