@@ -88,6 +88,8 @@
                 "kinesis:Describe*",
                 "kinesis:List*",
                 "lambda:GetFunction",
+                "lex:DescribeResourcePolicy",
+                "lex:ListBotAliases",
                 "macie2:Get*",
                 "macie2:List*",
                 "network-firewall:DescribeFirewall",
