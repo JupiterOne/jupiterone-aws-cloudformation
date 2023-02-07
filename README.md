@@ -6,14 +6,14 @@ Role in the target account that has been granted permission to read information
 from AWS services supported by JupiterOne. Configuring the IAM Role can be
 accomplished using one of the following methods:
 
-1.  [![Launch JupiterOne IAM CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=JupiterOneIntegration&templateURL=https%3A%2F%2Fs3.us-east-2.amazonaws.com/jupiterone-prod-us-aws-cloudformation-templates%2Fcloudformation.json)
+1.  [![Launch JupiterOne IAM CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=JupiterOneIntegration&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fjupiterone-prod-us-aws-cloudformation-templates%2Fcloudformation.json)
 2.  [Launch JupiterOne IAM CloudFormation Stack using the AWS CLI](#iam-cloudformation-with-aws-cli)
 3.  [Create a Role using the AWS Management Console](#manual-iam-role-creation-with-aws-management-console)
 JupiterOne is also capable of processing CloudTrail events. Sending them to
 JupiterOne's AWS account requires an EventBridge event rule, which can be
 configured using one of the following methods:
 
-1.  [![Launch JupiterOne EventBridge CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=jupiterone-integration-events&templateURL=https%3A%2F%2Fs3.us-east-2.amazonaws.com/jupiterone-prod-us-aws-cloudformation-templates%2Fevents-cloudformation.json)
+1.  [![Launch JupiterOne EventBridge CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=jupiterone-integration-events&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fjupiterone-prod-us-aws-cloudformation-templates%2Fevents-cloudformation.json)
 2.  [Launch JupiterOne EventBridge CloudFormation Stack using the AWS CLI](#events-cloudformation-with-aws-cli)
 3.  [Create an EventBridge Rule using the AWS Management Console](#manual-eventbridge-rule-creation-with-aws-management-console)
 
