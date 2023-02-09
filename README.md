@@ -109,7 +109,7 @@ to update the policy in the future as more APIs are called by JupiterOne.
 NOTE: By default, AWS enforces a policy size limit of 6,144 non-whitespace characters. The policy below has been split into multiple statements to 
 stay under the 6,144 non-whitespace character limit. If you have requested a quote increase from AWS, you may be able to consolidate these policies.
 
-[Link to Specific Permissions Policy](cloudformation/iam-cloudformation-detailed/managed-policy-statements.md)
+[Link to Specific Permissions Policy](cloudformation/iam-cloudformation-detailed/managed-policy.md)
 
 [![Launch JupiterOne IAM CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=JupiterOneIntegration&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fjupiterone-prod-us-aws-cloudformation-templates%2Fcloudformation-detailed.json)
 
