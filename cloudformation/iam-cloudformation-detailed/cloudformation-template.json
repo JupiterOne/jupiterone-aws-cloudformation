@@ -8,10 +8,7 @@
           "Label": {
             "default": "JupiterOne Authentication Parameters"
           },
-          "Parameters": [
-            "JupiterOneAwsAccountId",
-            "JupiterOneExternalId"
-          ]
+          "Parameters": ["JupiterOneAwsAccountId", "JupiterOneExternalId"]
         }
       ],
       "ParameterLabels": {
@@ -66,7 +63,6 @@
               "Resource": "*",
               "Action": [
                 "access-analyzer:ListAnalyzers",
-                "access-analyzer:ListAnalyzers",
                 "access-analyzer:ListFindings",
                 "acm:DescribeCertificate",
                 "acm:ListCertificates",
@@ -81,6 +77,7 @@
                 "batch:DescribeJobQueues",
                 "batch:ListJobs",
                 "cloudformation:DescribeStacks",
+                "cloudformation:ListStacks",
                 "cloudfront:ListDistributions",
                 "cloudfront:ListTagsForResource",
                 "cloudhsm:DescribeBackups",
@@ -417,10 +414,7 @@
     "RoleARN": {
       "Description": "ARN of the JupiterOne role",
       "Value": {
-        "Fn::GetAtt": [
-          "JupiterOneRole",
-          "Arn"
-        ]
+        "Fn::GetAtt": ["JupiterOneRole", "Arn"]
       }
     }
   }

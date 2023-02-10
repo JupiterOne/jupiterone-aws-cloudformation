@@ -106,7 +106,7 @@ This policy may be used to provide only exactly the specific permissions
 currently used by JupiterOne. Using this policy will most certainly require you
 to update the policy in the future as more APIs are called by JupiterOne.
 
-NOTE: By default, AWS enforces a policy size limit of 6,144 non-whitespace characters. The policy below has been split into multiple statements to 
+NOTE: By default, AWS enforces a policy size limit of 6,144 non-whitespace characters. The policy below has been split into multiple statements to
 stay under the 6,144 non-whitespace character limit. If you have requested a quote increase from AWS, you may be able to consolidate these policies.
 
 [Link to Specific Permissions Policy](cloudformation/iam-cloudformation-detailed/managed-policy.md)
@@ -124,7 +124,7 @@ aws cloudformation create-stack --stack-name JupiterOneIntegration --capabilitie
 From your AWS Management Console, perform the following steps:
 
 1.  Go to **IAM** > **Roles** and click **Create Role**.
-   
+
 2.  Select **Another AWS account** under **Select type of trusted entity**.
 
 3.  Enter the following **Account ID**: `<jupiterone_account_id>`
@@ -208,6 +208,7 @@ JupiterOne currently supports the following events:
 | CreateAutoScalingGroup | `aws_autoscaling_group`   | `aws_autoscaling_has_aws_autoscaling_group` `aws_autoscaling_group_uses_launch_template` `aws_autoscaling_group_has_instance` `aws_autoscaling_group_uses_launch_config` `aws_autoscaling_group_uses_policy` |
 | UpdateAutoScalingGroup | `aws_autoscaling_group`   |                                                                                                                                                                                                              |
 | DeleteAutoScalingGroup | `aws_autoscaling_group`   |                                                                                                                                                                                                              |
+
 ### Events CloudFormation with AWS CLI
 
 ```bash
@@ -251,11 +252,11 @@ From your AWS Management Console, perform the following steps:
     }
     ```
 
-2.  In the **Select targets** section, select **Event bus in another AWS
+1.  In the **Select targets** section, select **Event bus in another AWS
     account**. For the **Event Bus** field, enter
     `arn:aws:events:us-east-1:612791702201:event-bus/jupiter-integration-aws`.
     For the role, select **Use existing role** but do not select a role.
 
-3.  Click **Create**.
+1.  Click **Create**.
 
 [1]: https://console.aws.amazon.com/iam/home#policies/arn:aws:iam::aws:policy/SecurityAudit

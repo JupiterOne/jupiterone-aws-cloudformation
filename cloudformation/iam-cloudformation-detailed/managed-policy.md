@@ -27,7 +27,6 @@
       "Resource": "*",
       "Action": [
         "access-analyzer:ListAnalyzers",
-        "access-analyzer:ListAnalyzers",
         "access-analyzer:ListFindings",
         "acm:DescribeCertificate",
         "acm:ListCertificates",
@@ -42,6 +41,7 @@
         "batch:DescribeJobQueues",
         "batch:ListJobs",
         "cloudformation:DescribeStacks",
+        "cloudformation:ListStacks",
         "cloudfront:ListDistributions",
         "cloudfront:ListTagsForResource",
         "cloudhsm:DescribeBackups",

@@ -1,6 +1,7 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "CloudFormation Template for JupiterOne AWS Integration Events",
+  "Description":
+    "CloudFormation Template for JupiterOne AWS Integration Events",
   "Metadata": {
     "AWS::CloudFormation::Interface": {
       "ParameterGroups": [
@@ -8,9 +9,7 @@
           "Label": {
             "default": "JupiterOne Authentication Parameters"
           },
-          "Parameters": [
-            "JupiterOneAwsAccountId"
-          ]
+          "Parameters": ["JupiterOneAwsAccountId"]
         }
       ],
       "ParameterLabels": {
@@ -53,9 +52,7 @@
               "Statement": [
                 {
                   "Effect": "Allow",
-                  "Action": [
-                    "events:PutEvents"
-                  ],
+                  "Action": ["events:PutEvents"],
                   "Resource": [
                     {
                       "Fn::Join": [
@@ -86,15 +83,8 @@
         "Name": "jupiterone-cloudtrail-events",
         "Description": "Send CloudTrail Events to JupiterOne",
         "EventPattern": {
-          "source": [
-            "aws.s3",
-            "aws.iam",
-            "aws.ec2",
-            "aws.autoscaling"
-          ],
-          "detail-type": [
-            "AWS API Call via CloudTrail"
-          ],
+          "source": ["aws.s3", "aws.iam", "aws.ec2", "aws.autoscaling"],
+          "detail-type": ["AWS API Call via CloudTrail"],
           "detail": {
             "eventSource": [
               "s3.amazonaws.com",
@@ -206,10 +196,7 @@
             },
             "Id": "jupiterone_aws_integration_event_bus",
             "RoleArn": {
-              "Fn::GetAtt": [
-                "JupiterOneCloudTrailIamRole",
-                "Arn"
-              ]
+              "Fn::GetAtt": ["JupiterOneCloudTrailIamRole", "Arn"]
             }
           }
         ]
@@ -218,12 +205,10 @@
   },
   "Outputs": {
     "RuleARN": {
-      "Description": "ARN of the EventBridge rule configured to send CloudTrail events to JupiterOne",
+      "Description":
+        "ARN of the EventBridge rule configured to send CloudTrail events to JupiterOne",
       "Value": {
-        "Fn::GetAtt": [
-          "JupiterOneCloudTrailEventsRule",
-          "Arn"
-        ]
+        "Fn::GetAtt": ["JupiterOneCloudTrailEventsRule", "Arn"]
       }
     }
   }
