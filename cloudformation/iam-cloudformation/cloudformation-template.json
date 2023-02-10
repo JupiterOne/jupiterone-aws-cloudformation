@@ -8,10 +8,7 @@
           "Label": {
             "default": "JupiterOne Authentication Parameters"
           },
-          "Parameters": [
-            "JupiterOneAwsAccountId",
-            "JupiterOneExternalId"
-          ]
+          "Parameters": ["JupiterOneAwsAccountId", "JupiterOneExternalId"]
         }
       ],
       "ParameterLabels": {
@@ -79,12 +76,8 @@
             },
             {
               "Effect": "Allow",
-              "Action": [
-                "apigateway:GET"
-              ],
-              "Resource": [
-                "arn:aws:apigateway:*::/*"
-              ]
+              "Action": ["apigateway:GET"],
+              "Resource": ["arn:aws:apigateway:*::/*"]
             }
           ]
         }
@@ -136,10 +129,7 @@
     "RoleARN": {
       "Description": "ARN of the JupiterOne role",
       "Value": {
-        "Fn::GetAtt": [
-          "JupiterOneRole",
-          "Arn"
-        ]
+        "Fn::GetAtt": ["JupiterOneRole", "Arn"]
       }
     }
   }
