@@ -66,6 +66,7 @@ JupiterOne currently supports the following services:
 - Route53
 - Route53Domains
 - S3 (including Bucket Policy analysis)
+- Secrets Manager
 - Shield
 - SNS
 - SQS
