@@ -214,6 +214,7 @@
         "lex:DescribeResourcePolicy",
         "lex:ListBotAliases",
         "lex:ListBots",
+        "logs:DescribeDestinations",
         "logs:DescribeLogGroups",
         "logs:ListTagsLogGroup",
         "macie2:GetFindings",
@@ -224,8 +225,7 @@
         "network-firewall:ListFirewallPolicies",
         "network-firewall:ListFirewalls",
         "network-firewall:ListRuleGroups",
-        "organizations:DescribeOrganization",
-        "organizations:DescribeOrganizationalUnit"
+        "organizations:DescribeOrganization"
       ]
     }
   ]
@@ -242,6 +242,7 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "organizations:DescribeOrganizationalUnit",
         "organizations:ListAccounts",
         "organizations:ListChildren",
         "organizations:ListRoots",
