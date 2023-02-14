@@ -52,6 +52,11 @@
         "cloudwatch:DescribeAlarms",
         "cloudwatch:GetMetricData",
         "cloudwatch:ListTagsForResource",
+        "codebuild:BatchGetProjects",
+        "codebuild:BatchGetReportGroups",
+        "codebuild:GetResourcePolicy",
+        "codebuild:ListProjects",
+        "codebuild:ListReportGroups",
         "codecommit:GetRepository",
         "codecommit:ListRepositories",
         "codecommit:ListTagsForResource",
@@ -220,12 +225,7 @@
         "network-firewall:ListFirewalls",
         "network-firewall:ListRuleGroups",
         "organizations:DescribeOrganization",
-        "organizations:DescribeOrganizationalUnit",
-        "organizations:ListAccounts",
-        "organizations:ListChildren",
-        "organizations:ListRoots",
-        "organizations:ListTagsForResource",
-        "rds:DescribeDBClusterParameterGroups"
+        "organizations:DescribeOrganizationalUnit"
       ]
     }
   ]
@@ -242,6 +242,11 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "organizations:ListAccounts",
+        "organizations:ListChildren",
+        "organizations:ListRoots",
+        "organizations:ListTagsForResource",
+        "rds:DescribeDBClusterParameterGroups",
         "rds:DescribeDBClusterParameters",
         "rds:DescribeDBClusters",
         "rds:DescribeDBClusterSnapshots",
