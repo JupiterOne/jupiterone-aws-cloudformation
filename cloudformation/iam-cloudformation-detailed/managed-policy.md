@@ -319,6 +319,7 @@
         "ssm:ListDocuments",
         "ssm:ListInventoryEntries",
         "tag:GetResources",
+        "transfer:DescribeServer",
         "transfer:ListServers",
         "transfer:ListTagsForResource",
         "transfer:ListUsers",
