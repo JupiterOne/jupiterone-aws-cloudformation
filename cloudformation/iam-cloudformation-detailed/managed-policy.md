@@ -82,6 +82,7 @@
         "ec2:DescribeInternetGateways",
         "ec2:DescribeKeyPairs",
         "ec2:DescribeLaunchTemplates",
+        "ec2:DescribeManagedPrefixLists",
         "ec2:DescribeNatGateways",
         "ec2:DescribeNetworkAcls",
         "ec2:DescribeNetworkInterfaces",
@@ -99,6 +100,7 @@
         "ec2:DescribeVpnGateways",
         "ec2:GetEbsDefaultKmsKeyId",
         "ec2:GetEbsEncryptionByDefault",
+        "ec2:GetManagedPrefixListEntries",
         "ecr:DescribeImages",
         "ecr:DescribeImageScanFindings",
         "ecr:DescribeRepositories",
@@ -120,6 +122,7 @@
         "eks:ListClusters",
         "eks:ListNodegroups",
         "elasticache:DescribeCacheClusters",
+        "elasticache:DescribeCacheSubnetGroups",
         "elasticache:DescribeReplicationGroups",
         "elasticache:DescribeSnapshots",
         "elasticache:ListTagsForResource",
@@ -222,10 +225,7 @@
         "network-firewall:DescribeFirewall",
         "network-firewall:DescribeFirewallPolicy",
         "network-firewall:DescribeRuleGroup",
-        "network-firewall:ListFirewallPolicies",
-        "network-firewall:ListFirewalls",
-        "network-firewall:ListRuleGroups",
-        "organizations:DescribeOrganization"
+        "network-firewall:ListFirewallPolicies"
       ]
     }
   ]
@@ -242,6 +242,9 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "network-firewall:ListFirewalls",
+        "network-firewall:ListRuleGroups",
+        "organizations:DescribeOrganization",
         "organizations:DescribeOrganizationalUnit",
         "organizations:ListAccounts",
         "organizations:ListChildren",
@@ -319,6 +322,7 @@
         "ssm:ListDocuments",
         "ssm:ListInventoryEntries",
         "tag:GetResources",
+        "transfer:DescribeServer",
         "transfer:ListServers",
         "transfer:ListTagsForResource",
         "transfer:ListUsers",
