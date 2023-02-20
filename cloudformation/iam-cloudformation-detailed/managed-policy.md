@@ -120,6 +120,7 @@
         "eks:ListClusters",
         "eks:ListNodegroups",
         "elasticache:DescribeCacheClusters",
+        "elasticache:DescribeCacheSubnetGroups",
         "elasticache:DescribeReplicationGroups",
         "elasticache:DescribeSnapshots",
         "elasticache:ListTagsForResource",
@@ -224,8 +225,7 @@
         "network-firewall:DescribeRuleGroup",
         "network-firewall:ListFirewallPolicies",
         "network-firewall:ListFirewalls",
-        "network-firewall:ListRuleGroups",
-        "organizations:DescribeOrganization"
+        "network-firewall:ListRuleGroups"
       ]
     }
   ]
@@ -242,6 +242,7 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "organizations:DescribeOrganization",
         "organizations:DescribeOrganizationalUnit",
         "organizations:ListAccounts",
         "organizations:ListChildren",
@@ -319,6 +320,7 @@
         "ssm:ListDocuments",
         "ssm:ListInventoryEntries",
         "tag:GetResources",
+        "transfer:DescribeServer",
         "transfer:ListServers",
         "transfer:ListTagsForResource",
         "transfer:ListUsers",
