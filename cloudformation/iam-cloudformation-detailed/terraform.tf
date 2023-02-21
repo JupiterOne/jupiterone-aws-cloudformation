@@ -1,8 +1,34 @@
-# Specific IAM Managed Policies
+resource "aws_iam_role" "jupiterone" {
+  name = "JupiterOne"
 
-## Managed Policy Statement 1
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::612791702201:root"
+      },
+      "Action": "sts:AssumeRole",
+      "Condition": {
+        "StringEquals": {
+          "sts:ExternalId": "<External Id>"
+        }
+      }
+    }
+  ]
+}
+EOF
+}
 
-```json
+output "aws_iam_role_jupiterone_role_arn" {
+  value = "${aws_iam_role.jupiterone.arn}"
+}
+
+resource "aws_iam_policy" "jupiterone_security_audit_policy" {
+  name = "JupiterOneSecurityAudit"
+  policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -230,11 +256,16 @@
     }
   ]
 }
-```
+EOF
+}
 
-## Managed Policy Statement 2
-
-```json
+resource "aws_iam_role_policy_attachment" "jupiterone_security_audit_policy_attachment" {
+  role       = "${ aws_iam_role.jupiterone.name }"
+  policy_arn = "${ aws_iam_policy.jupiterone_security_audit_policy.arn }"
+}
+resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
+  name = "JupiterOneSecurityAudit2"
+  policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -337,4 +368,14 @@
     }
   ]
 }
-```
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "jupiterone_security_audit_policy_attachment_2" {
+  role       = "${ aws_iam_role.jupiterone.name }"
+  policy_arn = "${ aws_iam_policy.jupiterone_security_audit_policy_2.arn }"
+}
+resource "aws_iam_role_policy_attachment" "aws_security_audit_policy_attachment" {
+  role       = "${ aws_iam_role.jupiterone.name }"
+  policy_arn = "arn:aws:iam::aws:policy/SecurityAudit"
+}
