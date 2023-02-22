@@ -194,12 +194,12 @@ JupiterOne currently supports the following events:
 
 ### EC2
 
-| Event Name         | Modified Entities `_type` | Modified Relationships `_type` |
-| ------------------ | ------------------------- | ------------------------------ |
-| RunInstances       | `aws_instance`            |                                |
-| StartInstances     | `aws_instance`            |                                |
-| StopInstances      | `aws_instance`            |                                |
-| TerminateInstances | `aws_instance`            |                                |
+| Event Name         | Modified Entities `_type` | Modified Relationships `_type`                                                                                                                                                                             |
+| ------------------ | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RunInstances       | `aws_instance`            | `aws_ec2_has_aws_instance` `aws_instance_uses_ami` `aws_instance_uses_key_pair` `aws_instance_uses_eni` `aws_resource_has_security_group` `aws_security_group_protects_resource` `aws_subnet_has_instance` |
+| StartInstances     | `aws_instance`            |                                                                                                                                                                                                            |
+| StopInstances      | `aws_instance`            |                                                                                                                                                                                                            |
+| TerminateInstances | `aws_instance`            |                                                                                                                                                                                                            |
 
 ### AutoScaling
 
