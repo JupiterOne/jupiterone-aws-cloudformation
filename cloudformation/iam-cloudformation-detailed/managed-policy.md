@@ -82,6 +82,7 @@
         "ec2:DescribeInternetGateways",
         "ec2:DescribeKeyPairs",
         "ec2:DescribeLaunchTemplates",
+        "ec2:DescribeLaunchTemplateVersions",
         "ec2:DescribeManagedPrefixLists",
         "ec2:DescribeNatGateways",
         "ec2:DescribeNetworkAcls",
@@ -224,8 +225,7 @@
         "macie2:ListFindings",
         "network-firewall:DescribeFirewall",
         "network-firewall:DescribeFirewallPolicy",
-        "network-firewall:DescribeRuleGroup",
-        "network-firewall:ListFirewallPolicies"
+        "network-firewall:DescribeRuleGroup"
       ]
     }
   ]
@@ -242,6 +242,7 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "network-firewall:ListFirewallPolicies",
         "network-firewall:ListFirewalls",
         "network-firewall:ListRuleGroups",
         "organizations:DescribeOrganization",

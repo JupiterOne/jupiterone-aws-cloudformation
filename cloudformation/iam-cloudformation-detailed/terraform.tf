@@ -108,6 +108,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "ec2:DescribeInternetGateways",
         "ec2:DescribeKeyPairs",
         "ec2:DescribeLaunchTemplates",
+        "ec2:DescribeLaunchTemplateVersions",
         "ec2:DescribeManagedPrefixLists",
         "ec2:DescribeNatGateways",
         "ec2:DescribeNetworkAcls",
@@ -250,8 +251,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "macie2:ListFindings",
         "network-firewall:DescribeFirewall",
         "network-firewall:DescribeFirewallPolicy",
-        "network-firewall:DescribeRuleGroup",
-        "network-firewall:ListFirewallPolicies"
+        "network-firewall:DescribeRuleGroup"
       ]
     }
   ]
@@ -273,6 +273,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "network-firewall:ListFirewallPolicies",
         "network-firewall:ListFirewalls",
         "network-firewall:ListRuleGroups",
         "organizations:DescribeOrganization",
