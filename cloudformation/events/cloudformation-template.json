@@ -121,6 +121,7 @@
               "AttachUserPolicy",
               "ChangePassword",
               "CreateAccessKey",
+              "CreateFleet",
               "CreateGroup",
               "CreateInstanceProfile",
               "CreateLoginProfile",
