@@ -50,6 +50,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "eks:List*",
         "elasticfilesystem:Describe*",
         "fms:List*",
+        "glacier:List*",
         "glue:GetJob",
         "glue:GetSecurityConfigurations",
         "glue:GetTags",
