@@ -200,6 +200,7 @@ JupiterOne currently supports the following events:
 | StartInstances     | `aws_instance`            |                                                                                                                                                                                                            |
 | StopInstances      | `aws_instance`            |                                                                                                                                                                                                            |
 | TerminateInstances | `aws_instance`            |                                                                                                                                                                                                            |
+| CreateFleet        | `aws_instance`            | `aws_ec2_has_aws_instance` `aws_instance_uses_ami` `aws_instance_uses_key_pair` `aws_instance_uses_eni` `aws_resource_has_security_group` `aws_security_group_protects_resource` `aws_subnet_has_instance` |
 
 ### AutoScaling
 
