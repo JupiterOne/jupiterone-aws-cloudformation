@@ -153,6 +153,10 @@
         "fms:ListResourceSetResources",
         "fms:ListResourceSets",
         "fms:ListTagsForResource",
+        "glacier:GetVaultAccessPolicy",
+        "glacier:GetVaultLock",
+        "glacier:ListTagsForVault",
+        "glacier:ListVaults",
         "glue:GetDatabases",
         "glue:GetDataCatalogEncryptionSettings",
         "glue:GetJob",
@@ -223,9 +227,7 @@
         "logs:ListTagsLogGroup",
         "macie2:GetFindings",
         "macie2:ListFindings",
-        "network-firewall:DescribeFirewall",
-        "network-firewall:DescribeFirewallPolicy",
-        "network-firewall:DescribeRuleGroup"
+        "network-firewall:DescribeFirewall"
       ]
     }
   ]
@@ -242,6 +244,8 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "network-firewall:DescribeFirewallPolicy",
+        "network-firewall:DescribeRuleGroup",
         "network-firewall:ListFirewallPolicies",
         "network-firewall:ListFirewalls",
         "network-firewall:ListRuleGroups",

@@ -22,6 +22,7 @@
         "eks:List*",
         "elasticfilesystem:Describe*",
         "fms:List*",
+        "glacier:List*",
         "glue:GetJob",
         "glue:GetSecurityConfigurations",
         "glue:GetTags",
