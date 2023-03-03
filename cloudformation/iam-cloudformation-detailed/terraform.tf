@@ -183,6 +183,9 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "glacier:GetVaultLock",
         "glacier:ListTagsForVault",
         "glacier:ListVaults",
+        "globalaccelerator:ListAccelerators",
+        "globalaccelerator:ListCustomRoutingAccelerators",
+        "globalaccelerator:ListTagsForResource",
         "glue:GetDatabases",
         "glue:GetDataCatalogEncryptionSettings",
         "glue:GetJob",
@@ -248,12 +251,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "lex:DescribeResourcePolicy",
         "lex:ListBotAliases",
         "lex:ListBots",
-        "logs:DescribeDestinations",
-        "logs:DescribeLogGroups",
-        "logs:ListTagsLogGroup",
-        "macie2:GetFindings",
-        "macie2:ListFindings",
-        "network-firewall:DescribeFirewall"
+        "logs:DescribeDestinations"
       ]
     }
   ]
@@ -275,6 +273,11 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "logs:DescribeLogGroups",
+        "logs:ListTagsLogGroup",
+        "macie2:GetFindings",
+        "macie2:ListFindings",
+        "network-firewall:DescribeFirewall",
         "network-firewall:DescribeFirewallPolicy",
         "network-firewall:DescribeRuleGroup",
         "network-firewall:ListFirewallPolicies",
