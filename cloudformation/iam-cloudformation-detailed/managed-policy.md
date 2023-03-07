@@ -215,17 +215,7 @@
         "kinesis:ListTagsForStream",
         "kms:DescribeKey",
         "kms:GetKeyPolicy",
-        "kms:GetKeyRotationStatus",
-        "kms:ListAliases",
-        "kms:ListKeys",
-        "lambda:GetFunction",
-        "lambda:GetPolicy",
-        "lambda:ListFunctions",
-        "lambda:ListTags",
-        "lex:DescribeResourcePolicy",
-        "lex:ListBotAliases",
-        "lex:ListBots",
-        "logs:DescribeDestinations"
+        "kms:GetKeyRotationStatus"
       ]
     }
   ]
@@ -242,6 +232,16 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "kms:ListAliases",
+        "kms:ListKeys",
+        "lambda:GetFunction",
+        "lambda:GetPolicy",
+        "lambda:ListFunctions",
+        "lambda:ListTags",
+        "lex:DescribeResourcePolicy",
+        "lex:ListBotAliases",
+        "lex:ListBots",
+        "logs:DescribeDestinations",
         "logs:DescribeLogGroups",
         "logs:ListTagsLogGroup",
         "macie2:GetFindings",
