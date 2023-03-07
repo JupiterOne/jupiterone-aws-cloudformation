@@ -241,17 +241,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "kinesis:ListTagsForStream",
         "kms:DescribeKey",
         "kms:GetKeyPolicy",
-        "kms:GetKeyRotationStatus",
-        "kms:ListAliases",
-        "kms:ListKeys",
-        "lambda:GetFunction",
-        "lambda:GetPolicy",
-        "lambda:ListFunctions",
-        "lambda:ListTags",
-        "lex:DescribeResourcePolicy",
-        "lex:ListBotAliases",
-        "lex:ListBots",
-        "logs:DescribeDestinations"
+        "kms:GetKeyRotationStatus"
       ]
     }
   ]
@@ -273,6 +263,16 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "kms:ListAliases",
+        "kms:ListKeys",
+        "lambda:GetFunction",
+        "lambda:GetPolicy",
+        "lambda:ListFunctions",
+        "lambda:ListTags",
+        "lex:DescribeResourcePolicy",
+        "lex:ListBotAliases",
+        "lex:ListBots",
+        "logs:DescribeDestinations",
         "logs:DescribeLogGroups",
         "logs:ListTagsLogGroup",
         "macie2:GetFindings",
@@ -382,8 +382,4 @@ EOF
 resource "aws_iam_role_policy_attachment" "jupiterone_security_audit_policy_attachment_2" {
   role       = "${ aws_iam_role.jupiterone.name }"
   policy_arn = "${ aws_iam_policy.jupiterone_security_audit_policy_2.arn }"
-}
-resource "aws_iam_role_policy_attachment" "aws_security_audit_policy_attachment" {
-  role       = "${ aws_iam_role.jupiterone.name }"
-  policy_arn = "arn:aws:iam::aws:policy/SecurityAudit"
 }
