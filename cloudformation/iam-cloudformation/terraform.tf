@@ -63,6 +63,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "network-firewall:Describe*",
         "network-firewall:List*",
         "redshift-serverless:List*",
+        "ses:GetEmailIdentityPoliciesCommand",
+        "ses:List*",
         "shield:GetSubscriptionState",
         "sns:GetSubscriptionAttributes",
         "ssm:GetDocument"
