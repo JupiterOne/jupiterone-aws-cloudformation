@@ -297,6 +297,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "rds:DescribeDBParameterGroups",
         "rds:DescribeDBParameters",
         "rds:DescribeDBSnapshots",
+        "rds:DescribeOptionGroups",
         "redshift-serverless:ListEndpointAccess",
         "redshift-serverless:ListNamespaces",
         "redshift-serverless:ListRecoveryPoints",
