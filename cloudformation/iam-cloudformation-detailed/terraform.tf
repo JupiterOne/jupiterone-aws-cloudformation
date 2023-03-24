@@ -54,6 +54,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
       "Action": [
         "access-analyzer:ListAnalyzers",
         "access-analyzer:ListFindings",
+        "account:GetAlternateContact",
         "acm:DescribeCertificate",
         "acm:ListCertificates",
         "acm:ListTagsForCertificate",
@@ -238,8 +239,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "inspector:ListFindings",
         "inspector2:ListCoverage",
         "inspector2:ListFindings",
-        "kinesis:DescribeStreamSummary",
-        "kinesis:ListStreamConsumers"
+        "kinesis:DescribeStreamSummary"
       ]
     }
   ]
@@ -261,6 +261,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "kinesis:ListStreamConsumers",
         "kinesis:ListStreams",
         "kinesis:ListTagsForStream",
         "kms:DescribeKey",

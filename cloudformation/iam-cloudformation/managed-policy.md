@@ -8,6 +8,7 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "account:GetAlternateContact",
         "backup:GetBackupVaultAccessPolicy",
         "batch:Describe*",
         "batch:List*",
