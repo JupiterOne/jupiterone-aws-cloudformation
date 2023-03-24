@@ -266,6 +266,7 @@
         "rds:DescribeDBParameterGroups",
         "rds:DescribeDBParameters",
         "rds:DescribeDBSnapshots",
+        "rds:DescribeOptionGroups",
         "redshift-serverless:ListEndpointAccess",
         "redshift-serverless:ListNamespaces",
         "redshift-serverless:ListRecoveryPoints",
