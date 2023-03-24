@@ -28,6 +28,7 @@
       "Action": [
         "access-analyzer:ListAnalyzers",
         "access-analyzer:ListFindings",
+        "account:GetAlternateContact",
         "acm:DescribeCertificate",
         "acm:ListCertificates",
         "acm:ListTagsForCertificate",
@@ -212,8 +213,7 @@
         "inspector:ListFindings",
         "inspector2:ListCoverage",
         "inspector2:ListFindings",
-        "kinesis:DescribeStreamSummary",
-        "kinesis:ListStreamConsumers"
+        "kinesis:DescribeStreamSummary"
       ]
     }
   ]
@@ -230,6 +230,7 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "kinesis:ListStreamConsumers",
         "kinesis:ListStreams",
         "kinesis:ListTagsForStream",
         "kms:DescribeKey",
