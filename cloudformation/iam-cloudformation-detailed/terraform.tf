@@ -164,6 +164,9 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "elasticloadbalancing:DescribeTags",
         "elasticloadbalancing:DescribeTargetGroups",
         "elasticloadbalancing:DescribeTargetHealth",
+        "elasticmapreduce:DescribeCluster",
+        "elasticmapreduce:ListClusters",
+        "elasticmapreduce:ListInstances",
         "es:DescribeElasticsearchDomains",
         "es:ListDomainNames",
         "es:ListTags",
@@ -236,12 +239,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "inspector2:ListCoverage",
         "inspector2:ListFindings",
         "kinesis:DescribeStreamSummary",
-        "kinesis:ListStreamConsumers",
-        "kinesis:ListStreams",
-        "kinesis:ListTagsForStream",
-        "kms:DescribeKey",
-        "kms:GetKeyPolicy",
-        "kms:GetKeyRotationStatus"
+        "kinesis:ListStreamConsumers"
       ]
     }
   ]
@@ -263,6 +261,11 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "kinesis:ListStreams",
+        "kinesis:ListTagsForStream",
+        "kms:DescribeKey",
+        "kms:GetKeyPolicy",
+        "kms:GetKeyRotationStatus",
         "kms:ListAliases",
         "kms:ListKeys",
         "lambda:GetFunction",
