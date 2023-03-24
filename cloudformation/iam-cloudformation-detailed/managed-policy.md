@@ -138,6 +138,9 @@
         "elasticloadbalancing:DescribeTags",
         "elasticloadbalancing:DescribeTargetGroups",
         "elasticloadbalancing:DescribeTargetHealth",
+        "elasticmapreduce:DescribeCluster",
+        "elasticmapreduce:ListClusters",
+        "elasticmapreduce:ListInstances",
         "es:DescribeElasticsearchDomains",
         "es:ListDomainNames",
         "es:ListTags",
@@ -210,12 +213,7 @@
         "inspector2:ListCoverage",
         "inspector2:ListFindings",
         "kinesis:DescribeStreamSummary",
-        "kinesis:ListStreamConsumers",
-        "kinesis:ListStreams",
-        "kinesis:ListTagsForStream",
-        "kms:DescribeKey",
-        "kms:GetKeyPolicy",
-        "kms:GetKeyRotationStatus"
+        "kinesis:ListStreamConsumers"
       ]
     }
   ]
@@ -232,6 +230,11 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "kinesis:ListStreams",
+        "kinesis:ListTagsForStream",
+        "kms:DescribeKey",
+        "kms:GetKeyPolicy",
+        "kms:GetKeyRotationStatus",
         "kms:ListAliases",
         "kms:ListKeys",
         "lambda:GetFunction",
