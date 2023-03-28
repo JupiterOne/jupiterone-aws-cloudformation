@@ -27,7 +27,10 @@ JupiterOne currently supports the following services:
 - AccessAnalyzer
 - ACM
 - API Gateway
+  - API Gateway v1
+  - API Gateway v2
 - Autoscaling
+- Backup
 - Batch
 - CloudFormation
 - CloudFront
@@ -37,35 +40,45 @@ JupiterOne currently supports the following services:
   - CloudWatch Alarms
   - CloudWatch Events
   - CloudWatch Logs
+- CodeBuild
 - CodeCommit
 - CodePipeline
 - Config
+- DirectConnect
 - DynamoDB
 - EC2
 - ECR
 - ECS
 - EFS
 - EKS
-- ELB
 - ElastiCache
+- ELB
+- EMR
 - ES
+- Firehose
 - Firewall Manager
+- Global Accelerator
 - Glue
-- Direct Connect
 - GuardDuty
 - IAM (including IAM Policy analysis)
 - Inspector
 - Inspector2
+- Kinesis
 - KMS
 - Lambda
-- Macie
+- Lex v2
+- Macie 2
+- Network Firewall
 - Organizations
 - RDS
 - Redshift
   - Redshift Serverless
 - Route53
-- Route53Domains
+  - Route53 Domains
 - S3 (including Bucket Policy analysis)
+  - S3 Glacier
+- Secrets Manager
+- SES
 - Shield
 - SNS
 - SQS
@@ -73,6 +86,7 @@ JupiterOne currently supports the following services:
 - Transfer
 - VPC (including VPC Peering)
 - WAF
+- WAF v2
 - Workspaces
 
 For detailed and specific permissions, see **"Specific Permissions Policy"**
