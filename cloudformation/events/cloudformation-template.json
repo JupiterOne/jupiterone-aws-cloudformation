@@ -188,7 +188,12 @@
               "ModifyDBInstance",
               "StartDBInstance",
               "StopDBInstance",
-              "DeleteDBInstance"
+              "DeleteDBInstance",
+              "CreateDBCluster",
+              "ModifyDBCluster",
+              "StartDBCluster",
+              "StopDBCluster",
+              "DeleteDBCluster"
             ]
           }
         },
