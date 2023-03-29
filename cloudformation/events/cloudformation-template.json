@@ -83,14 +83,21 @@
         "Name": "jupiterone-cloudtrail-events",
         "Description": "Send CloudTrail Events to JupiterOne",
         "EventPattern": {
-          "source": ["aws.s3", "aws.iam", "aws.ec2", "aws.autoscaling"],
+          "source": [
+            "aws.s3",
+            "aws.iam",
+            "aws.ec2",
+            "aws.autoscaling",
+            "aws.rds"
+          ],
           "detail-type": ["AWS API Call via CloudTrail"],
           "detail": {
             "eventSource": [
               "s3.amazonaws.com",
               "iam.amazonaws.com",
               "ec2.amazonaws.com",
-              "autoscaling.amazonaws.com"
+              "autoscaling.amazonaws.com",
+              "rds.amazonaws.com"
             ],
             "eventName": [
               "CreateAutoScalingGroup",
@@ -176,7 +183,12 @@
               "RunInstances",
               "StartInstances",
               "StopInstances",
-              "TerminateInstances"
+              "TerminateInstances",
+              "CreateDBInstance",
+              "ModifyDBInstance",
+              "StartDBInstance",
+              "StopDBInstance",
+              "DeleteDBInstance"
             ]
           }
         },
