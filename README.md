@@ -226,6 +226,16 @@ JupiterOne currently supports the following events:
 | UpdateAutoScalingGroup | `aws_autoscaling_group`   |                                                                                                                                                                                                              |
 | DeleteAutoScalingGroup | `aws_autoscaling_group`   |                                                                                                                                                                                                              |
 
+### RDS
+
+| Event Name       | Modified Entities `_type` | Modified Relationships                                                                                                                                                                                                                                                                              |
+| ---------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CreateDBInstance | `aws_db_instance`         | `aws_rds_has_aws_db_instance` `aws_rds_cluster_contains_instance` `aws_rds_parameter_group_in_use` `aws_security_group_protects_resource` `aws_resource_has_security_group` `aws_resource_uses_kms_key` `aws_vpc_has_db_instance` `aws_db_instance_uses_secret` `aws_db_instance_uses_option_group` |
+| ModifyDBInstance | `aws_db_instance`         | `aws_rds_has_aws_db_instance` `aws_rds_cluster_contains_instance` `aws_rds_parameter_group_in_use` `aws_security_group_protects_resource` `aws_resource_has_security_group` `aws_resource_uses_kms_key` `aws_vpc_has_db_instance` `aws_db_instance_uses_secret` `aws_db_instance_uses_option_group` |
+| StartDBInstance  | `aws_db_instance`         |                                                                                                                                                                                                                                                                                                     |
+| StopDBInstance   | `aws_db_instance`         |                                                                                                                                                                                                                                                                                                     |
+| DeleteDBInstance | `aws_db_instance`         |                                                                                                                                                                                                                                                                                                     |
+
 ### Events CloudFormation with AWS CLI
 
 ```bash
