@@ -193,7 +193,9 @@
               "ModifyDBCluster",
               "StartDBCluster",
               "StopDBCluster",
-              "DeleteDBCluster"
+              "DeleteDBCluster",
+              "CreateDBSnapshot",
+              "DeleteDBSnapshot"
             ]
           }
         },
