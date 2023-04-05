@@ -245,6 +245,14 @@ JupiterOne currently supports the following events:
 | CreateDBClusterSnapshot | `aws_db_cluster_snapshot` | `aws_db_cluster_has_snapshot` `aws_db_cluster_snapshot_uses_kms_key`                                                                                                                                                                                                                                |
 | DeleteDBClusterSnapshot | `aws_db_cluster_snapshot` |                                                                                                                                                                                                                                                                                                     |
 
+### Redshift
+
+| Event Name    | Modified Entities `_type` | Modified Relationships `_type`                                                                                                                                                                                          |
+| ------------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CreateCluster | `aws_redshift_cluster`    | `aws_redshift_has_aws_redshift_cluster` `aws_redshift_cluster_uses_parameter_group` `aws_security_group_protects_resource` `aws_resource_has_security_group` `aws_resource_uses_kms_key` `aws_vpc_has_redshift_cluster` |
+| ModifyCluster | `aws_redshift_cluster`    | `aws_redshift_has_aws_redshift_cluster` `aws_redshift_cluster_uses_parameter_group` `aws_security_group_protects_resource` `aws_resource_has_security_group` `aws_resource_uses_kms_key` `aws_vpc_has_redshift_cluster` |
+| DeleteCluster | `aws_redshift_cluster`    |                                                                                                                                                                                                                         |
+
 ### Events CloudFormation with AWS CLI
 
 ```bash
