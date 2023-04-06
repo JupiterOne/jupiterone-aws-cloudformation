@@ -88,7 +88,8 @@
             "aws.iam",
             "aws.ec2",
             "aws.autoscaling",
-            "aws.rds"
+            "aws.rds",
+            "aws.redshift"
           ],
           "detail-type": ["AWS API Call via CloudTrail"],
           "detail": {
@@ -97,7 +98,8 @@
               "iam.amazonaws.com",
               "ec2.amazonaws.com",
               "autoscaling.amazonaws.com",
-              "rds.amazonaws.com"
+              "rds.amazonaws.com",
+              "redshift.amazonaws.com"
             ],
             "eventName": [
               "CreateAutoScalingGroup",
@@ -197,7 +199,10 @@
               "CreateDBSnapshot",
               "DeleteDBSnapshot",
               "CreateDBClusterSnapshot",
-              "DeleteDBClusterSnapshot"
+              "DeleteDBClusterSnapshot",
+              "CreateCluster",
+              "ModifyCluster",
+              "DeleteCluster"
             ]
           }
         },
