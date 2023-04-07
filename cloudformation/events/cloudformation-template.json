@@ -202,7 +202,9 @@
               "DeleteDBClusterSnapshot",
               "CreateCluster",
               "ModifyCluster",
-              "DeleteCluster"
+              "DeleteCluster",
+              "CreateImage",
+              "RegisterImage"
             ]
           }
         },

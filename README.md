@@ -217,6 +217,8 @@ JupiterOne currently supports the following events:
 | CreateFleet         | `aws_instance`            | `aws_ec2_has_aws_instance` `aws_instance_uses_ami` `aws_instance_uses_key_pair` `aws_instance_uses_eni` `aws_resource_has_security_group` `aws_security_group_protects_resource` `aws_subnet_has_instance` |
 | CreateSecurityGroup | `aws_security_group`      | `aws_ec2_has_aws_security_group`                                                                                                                                                                           |
 | DeleteSecurityGroup | `aws_security_group`      |                                                                                                                                                                                                            |
+| CreateImage         | `aws_ami`                 | `aws_ami_contains_snapshot`                                                                                                                                                                                |
+| RegisterImage       | `aws_ami`                 | `aws_ami_contains_snapshot`                                                                                                                                                                                |
 
 ### AutoScaling
 
