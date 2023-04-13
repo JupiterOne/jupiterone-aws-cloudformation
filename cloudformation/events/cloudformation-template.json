@@ -148,7 +148,9 @@
               "ModifyCluster",
               "DeleteCluster",
               "CreateImage",
-              "RegisterImage"
+              "RegisterImage",
+              "CreateSnapshot",
+              "CreateSnapshots"
             ]
           }
         },
