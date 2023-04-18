@@ -150,7 +150,8 @@
               "CreateImage",
               "RegisterImage",
               "CreateSnapshot",
-              "CreateSnapshots"
+              "CreateSnapshots",
+              "ModifyInstanceAttribute"
             ]
           }
         },
