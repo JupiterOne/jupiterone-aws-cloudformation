@@ -151,7 +151,9 @@
               "RegisterImage",
               "CreateSnapshot",
               "CreateSnapshots",
-              "ModifyInstanceAttribute"
+              "ModifyInstanceAttribute",
+              "AuthorizeSecurityGroupIngress",
+              "AuthorizeSecurityGroupEgress"
             ]
           }
         },
