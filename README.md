@@ -324,7 +324,7 @@ From your AWS Management Console, perform the following steps:
     }
     ```
     and a trust relationship which looks like:
-    ```
+    ```json
     {
         "Version": "2012-10-17",
         "Statement": [
