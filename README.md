@@ -317,7 +317,7 @@ From your AWS Management Console, perform the following steps:
                     "events:PutEvents"
                 ],
                 "Resource": [
-                    "arn:aws:events:us-east-1:612791702201:event-bus/jupiter-integration-aws"
+                    "arn:aws:events:<TARGET AWS REGION>:<JUPITERONE ACCOUNT ID>:event-bus/jupiter-integration-aws"
                 ]
             }
         ]
