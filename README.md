@@ -305,37 +305,38 @@ From your AWS Management Console, perform the following steps:
     account**. For the **Event Bus** field, enter
     `arn:aws:events:us-east-1:612791702201:event-bus/jupiter-integration-aws`.
     For the role, select **Create a new role for this specific resource**.
-    
+
     The role should have be created with a policy which looks like:
+
     ```json
     {
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-                "Effect": "Allow",
-                "Action": [
-                    "events:PutEvents"
-                ],
-                "Resource": [
-                    "arn:aws:events:<TARGET AWS REGION>:<JUPITERONE ACCOUNT ID>:event-bus/jupiter-integration-aws"
-                ]
-            }
-        ]
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": ["events:PutEvents"],
+          "Resource": [
+            "arn:aws:events:<TARGET AWS REGION>:<JUPITERONE ACCOUNT ID>:event-bus/jupiter-integration-aws"
+          ]
+        }
+      ]
     }
     ```
+
     and a trust relationship which looks like:
+
     ```json
     {
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-                "Effect": "Allow",
-                "Principal": {
-                    "Service": "events.amazonaws.com"
-                },
-                "Action": "sts:AssumeRole"
-            }
-        ]
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": {
+            "Service": "events.amazonaws.com"
+          },
+          "Action": "sts:AssumeRole"
+        }
+      ]
     }
     ```
 
