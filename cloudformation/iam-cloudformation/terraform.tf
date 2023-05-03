@@ -29,6 +29,7 @@ output "aws_iam_role_jupiterone_role_arn" {
 resource "aws_iam_policy" "jupiterone_security_audit_policy" {
   name = "JupiterOneSecurityAudit"
   policy = <<EOF
+  # oak9: Avoid using wildcards ['*'] in IAM actions
 {
   "Version": "2012-10-17",
   "Statement": [
