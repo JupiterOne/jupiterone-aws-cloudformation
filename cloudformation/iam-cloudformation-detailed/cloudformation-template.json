@@ -309,6 +309,7 @@
                 "rds:DescribeDBParameterGroups",
                 "rds:DescribeDBParameters",
                 "rds:DescribeDBSnapshots",
+                "rds:DescribeDBSubnetGroups",
                 "rds:DescribeOptionGroups",
                 "redshift-serverless:ListEndpointAccess",
                 "redshift-serverless:ListNamespaces",
