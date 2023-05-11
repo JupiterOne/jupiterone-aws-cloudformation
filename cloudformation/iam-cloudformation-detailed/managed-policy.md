@@ -69,6 +69,7 @@
         "directconnect:DescribeDirectConnectGateways",
         "directconnect:DescribeLags",
         "directconnect:DescribeVirtualInterfaces",
+        "ds:DescribeDirectories",
         "dynamodb:DescribeContinuousBackups",
         "dynamodb:DescribeTable",
         "dynamodb:ListBackups",
@@ -212,8 +213,7 @@
         "inspector:ListAssessmentRuns",
         "inspector:ListFindings",
         "inspector2:ListCoverage",
-        "inspector2:ListFindings",
-        "kinesis:DescribeStreamSummary"
+        "inspector2:ListFindings"
       ]
     }
   ]
@@ -230,6 +230,7 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "kinesis:DescribeStreamSummary",
         "kinesis:ListStreamConsumers",
         "kinesis:ListStreams",
         "kinesis:ListTagsForStream",
