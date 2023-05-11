@@ -188,6 +188,7 @@
         "iam:GetRole",
         "iam:GetRolePolicy",
         "iam:GetSAMLProvider",
+        "iam:GetServerCertificate",
         "iam:GetUser",
         "iam:GetUserPolicy",
         "iam:ListAccessKeys",
@@ -204,6 +205,7 @@
         "iam:ListRoles",
         "iam:ListRoleTags",
         "iam:ListSAMLProviders",
+        "iam:ListServerCertificates",
         "iam:ListUserPolicies",
         "iam:ListUsers",
         "iam:ListUserTags",
@@ -211,9 +213,7 @@
         "inspector:DescribeFindings",
         "inspector:DescribeRulesPackages",
         "inspector:ListAssessmentRuns",
-        "inspector:ListFindings",
-        "inspector2:ListCoverage",
-        "inspector2:ListFindings"
+        "inspector:ListFindings"
       ]
     }
   ]
@@ -230,6 +230,8 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "inspector2:ListCoverage",
+        "inspector2:ListFindings",
         "kinesis:DescribeStreamSummary",
         "kinesis:ListStreamConsumers",
         "kinesis:ListStreams",
