@@ -95,6 +95,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "directconnect:DescribeDirectConnectGateways",
         "directconnect:DescribeLags",
         "directconnect:DescribeVirtualInterfaces",
+        "ds:DescribeDirectories",
         "dynamodb:DescribeContinuousBackups",
         "dynamodb:DescribeTable",
         "dynamodb:ListBackups",
@@ -238,8 +239,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "inspector:ListAssessmentRuns",
         "inspector:ListFindings",
         "inspector2:ListCoverage",
-        "inspector2:ListFindings",
-        "kinesis:DescribeStreamSummary"
+        "inspector2:ListFindings"
       ]
     }
   ]
@@ -261,6 +261,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "kinesis:DescribeStreamSummary",
         "kinesis:ListStreamConsumers",
         "kinesis:ListStreams",
         "kinesis:ListTagsForStream",
