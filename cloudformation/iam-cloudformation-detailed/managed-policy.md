@@ -78,6 +78,7 @@
         "ec2:DescribeAddresses",
         "ec2:DescribeCustomerGateways",
         "ec2:DescribeFlowLogs",
+        "ec2:DescribeImageAttribute",
         "ec2:DescribeImages",
         "ec2:DescribeInstanceAttribute",
         "ec2:DescribeInstances",
@@ -212,8 +213,7 @@
         "inspector:DescribeAssessmentRuns",
         "inspector:DescribeFindings",
         "inspector:DescribeRulesPackages",
-        "inspector:ListAssessmentRuns",
-        "inspector:ListFindings"
+        "inspector:ListAssessmentRuns"
       ]
     }
   ]
@@ -230,6 +230,7 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "inspector:ListFindings",
         "inspector2:ListCoverage",
         "inspector2:ListFindings",
         "kinesis:DescribeStreamSummary",

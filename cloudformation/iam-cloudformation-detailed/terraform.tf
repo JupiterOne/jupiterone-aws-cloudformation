@@ -104,6 +104,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "ec2:DescribeAddresses",
         "ec2:DescribeCustomerGateways",
         "ec2:DescribeFlowLogs",
+        "ec2:DescribeImageAttribute",
         "ec2:DescribeImages",
         "ec2:DescribeInstanceAttribute",
         "ec2:DescribeInstances",
@@ -238,8 +239,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "inspector:DescribeAssessmentRuns",
         "inspector:DescribeFindings",
         "inspector:DescribeRulesPackages",
-        "inspector:ListAssessmentRuns",
-        "inspector:ListFindings"
+        "inspector:ListAssessmentRuns"
       ]
     }
   ]
@@ -261,6 +261,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "inspector:ListFindings",
         "inspector2:ListCoverage",
         "inspector2:ListFindings",
         "kinesis:DescribeStreamSummary",
