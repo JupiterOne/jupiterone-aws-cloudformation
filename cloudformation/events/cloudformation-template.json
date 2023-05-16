@@ -149,11 +149,16 @@
               "DeleteCluster",
               "CreateImage",
               "RegisterImage",
+              "DeregisterImage",
               "CreateSnapshot",
               "CreateSnapshots",
+              "ModifySnapshotAttribute",
+              "DeleteSnapshot",
               "ModifyInstanceAttribute",
               "AuthorizeSecurityGroupIngress",
-              "AuthorizeSecurityGroupEgress"
+              "RevokeSecurityGroupIngress",
+              "AuthorizeSecurityGroupEgress",
+              "RevokeSecurityGroupEgress"
             ]
           }
         },
