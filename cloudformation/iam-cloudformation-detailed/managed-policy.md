@@ -71,8 +71,10 @@
         "directconnect:DescribeVirtualInterfaces",
         "ds:DescribeDirectories",
         "dynamodb:DescribeContinuousBackups",
+        "dynamodb:DescribeGlobalTable",
         "dynamodb:DescribeTable",
         "dynamodb:ListBackups",
+        "dynamodb:ListGlobalTables",
         "dynamodb:ListTables",
         "dynamodb:ListTagsOfResource",
         "ec2:DescribeAddresses",
@@ -211,9 +213,7 @@
         "iam:ListUsers",
         "iam:ListUserTags",
         "inspector:DescribeAssessmentRuns",
-        "inspector:DescribeFindings",
-        "inspector:DescribeRulesPackages",
-        "inspector:ListAssessmentRuns"
+        "inspector:DescribeFindings"
       ]
     }
   ]
@@ -230,6 +230,8 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "inspector:DescribeRulesPackages",
+        "inspector:ListAssessmentRuns",
         "inspector:ListFindings",
         "inspector2:ListCoverage",
         "inspector2:ListFindings",
@@ -251,6 +253,7 @@
         "lex:ListBots",
         "logs:DescribeDestinations",
         "logs:DescribeLogGroups",
+        "logs:DescribeLogStreams",
         "logs:ListTagsLogGroup",
         "macie2:GetFindings",
         "macie2:ListFindings",
