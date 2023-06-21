@@ -97,8 +97,10 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "directconnect:DescribeVirtualInterfaces",
         "ds:DescribeDirectories",
         "dynamodb:DescribeContinuousBackups",
+        "dynamodb:DescribeGlobalTable",
         "dynamodb:DescribeTable",
         "dynamodb:ListBackups",
+        "dynamodb:ListGlobalTables",
         "dynamodb:ListTables",
         "dynamodb:ListTagsOfResource",
         "ec2:DescribeAddresses",
@@ -237,9 +239,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "iam:ListUsers",
         "iam:ListUserTags",
         "inspector:DescribeAssessmentRuns",
-        "inspector:DescribeFindings",
-        "inspector:DescribeRulesPackages",
-        "inspector:ListAssessmentRuns"
+        "inspector:DescribeFindings"
       ]
     }
   ]
@@ -261,6 +261,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "inspector:DescribeRulesPackages",
+        "inspector:ListAssessmentRuns",
         "inspector:ListFindings",
         "inspector2:ListCoverage",
         "inspector2:ListFindings",
