@@ -15,6 +15,9 @@
         "arn:aws:apigateway:*::/restapis/*/resources",
         "arn:aws:apigateway:*::/restapis/*/resources/*",
         "arn:aws:apigateway:*::/domainnames",
+        "arn:aws:apigateway:*::/restapis/*/resources/*/methods/*",
+        "arn:aws:apigateway:*::/restapis/*/stages",
+        "arn:aws:apigateway:*::/restapis/*/stages/*",
         "arn:aws:apigateway:*::/apis",
         "arn:aws:apigateway:*::/apis/*/integrations",
         "arn:aws:apigateway:*::/apis/*/authorizers",
@@ -208,12 +211,7 @@
         "iam:ListRoles",
         "iam:ListRoleTags",
         "iam:ListSAMLProviders",
-        "iam:ListServerCertificates",
-        "iam:ListUserPolicies",
-        "iam:ListUsers",
-        "iam:ListUserTags",
-        "inspector:DescribeAssessmentRuns",
-        "inspector:DescribeFindings"
+        "iam:ListServerCertificates"
       ]
     }
   ]
@@ -230,6 +228,11 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "iam:ListUserPolicies",
+        "iam:ListUsers",
+        "iam:ListUserTags",
+        "inspector:DescribeAssessmentRuns",
+        "inspector:DescribeFindings",
         "inspector:DescribeRulesPackages",
         "inspector:ListAssessmentRuns",
         "inspector:ListFindings",
