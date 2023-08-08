@@ -41,6 +41,9 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "arn:aws:apigateway:*::/restapis/*/resources",
         "arn:aws:apigateway:*::/restapis/*/resources/*",
         "arn:aws:apigateway:*::/domainnames",
+        "arn:aws:apigateway:*::/restapis/*/resources/*/methods/*",
+        "arn:aws:apigateway:*::/restapis/*/stages",
+        "arn:aws:apigateway:*::/restapis/*/stages/*",
         "arn:aws:apigateway:*::/apis",
         "arn:aws:apigateway:*::/apis/*/integrations",
         "arn:aws:apigateway:*::/apis/*/authorizers",
@@ -69,6 +72,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "batch:ListJobs",
         "cloudformation:DescribeStacks",
         "cloudformation:ListStacks",
+        "cloudfront:GetDistributionConfig",
         "cloudfront:ListDistributions",
         "cloudfront:ListTagsForResource",
         "cloudhsm:DescribeBackups",
@@ -232,14 +236,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "iam:ListPolicies",
         "iam:ListRolePolicies",
         "iam:ListRoles",
-        "iam:ListRoleTags",
-        "iam:ListSAMLProviders",
-        "iam:ListServerCertificates",
-        "iam:ListUserPolicies",
-        "iam:ListUsers",
-        "iam:ListUserTags",
-        "inspector:DescribeAssessmentRuns",
-        "inspector:DescribeFindings"
+        "iam:ListRoleTags"
       ]
     }
   ]
@@ -261,6 +258,13 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "iam:ListSAMLProviders",
+        "iam:ListServerCertificates",
+        "iam:ListUserPolicies",
+        "iam:ListUsers",
+        "iam:ListUserTags",
+        "inspector:DescribeAssessmentRuns",
+        "inspector:DescribeFindings",
         "inspector:DescribeRulesPackages",
         "inspector:ListAssessmentRuns",
         "inspector:ListFindings",
