@@ -357,6 +357,7 @@
         "wafv2:GetWebACL",
         "wafv2:ListResourcesForWebACL",
         "wafv2:ListWebACLs",
+        "workspaces:DescribeTags",
         "workspaces:DescribeWorkspaceBundles",
         "workspaces:DescribeWorkspaces"
       ]
