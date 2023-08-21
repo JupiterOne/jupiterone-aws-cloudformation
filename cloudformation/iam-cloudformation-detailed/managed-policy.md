@@ -316,6 +316,7 @@
         "s3:GetInventoryConfiguration",
         "s3:GetLifecycleConfiguration",
         "s3:GetReplicationConfiguration",
+        "s3:ListAccessPoints",
         "s3:ListAllMyBuckets",
         "secretsmanager:DescribeSecret",
         "secretsmanager:GetResourcePolicy",
