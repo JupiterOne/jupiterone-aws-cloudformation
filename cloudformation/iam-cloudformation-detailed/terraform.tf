@@ -343,6 +343,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "s3:GetBucketPublicAccessBlock",
         "s3:GetBucketTagging",
         "s3:GetBucketVersioning",
+        "s3:GetBucketWebsite",
         "s3:GetEncryptionConfiguration",
         "s3:GetInventoryConfiguration",
         "s3:GetLifecycleConfiguration",
