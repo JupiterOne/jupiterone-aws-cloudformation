@@ -281,6 +281,7 @@
         "rds:DescribeDBInstances",
         "rds:DescribeDBParameterGroups",
         "rds:DescribeDBParameters",
+        "rds:DescribeDBProxies",
         "rds:DescribeDBSnapshots",
         "rds:DescribeDBSubnetGroups",
         "rds:DescribeOptionGroups",
