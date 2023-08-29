@@ -8,12 +8,12 @@
           "Label": {
             "default": "JupiterOne Authentication Parameters"
           },
-          "Parameters": ["JupiterOneAwsAccountId", "JupiterOneExternalId"]
+          "Parameters": ["JupiterOneAwsAccountArns", "JupiterOneExternalId"]
         }
       ],
       "ParameterLabels": {
-        "JupiterOneAwsAccountId": {
-          "default": "What is the JupiterOne AWS account Id?"
+        "JupiterOneAwsAccountArns": {
+          "default": "What are the JupiterOne AWS account ARNs?"
         },
         "JupiterOneExternalId": {
           "default": "What is the JupiterOne external Id you were provided?"
@@ -22,10 +22,11 @@
     }
   },
   "Parameters": {
-    "JupiterOneAwsAccountId": {
-      "Description": "The JupiterOne AWS account Id",
-      "Type": "String",
-      "Default": "612791702201"
+    "JupiterOneAwsAccountArns": {
+      "Description":
+        "The JupiterOne AWS account ARN(s), in the format 'arn:aws:iam::<aws-account-id>:root'. If multiple, comma-delimited",
+      "Type": "CommaDelimitedList",
+      "Default": "arn:aws:iam::612791702201:root"
     },
     "JupiterOneExternalId": {
       "Description": "The JupiterOne external Id",
@@ -428,16 +429,7 @@
               "Effect": "Allow",
               "Principal": {
                 "AWS": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:aws:iam::",
-                      {
-                        "Ref": "JupiterOneAwsAccountId"
-                      },
-                      ":root"
-                    ]
-                  ]
+                  "Ref": "JupiterOneAwsAccountArns"
                 }
               },
               "Condition": {
