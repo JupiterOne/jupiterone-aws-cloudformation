@@ -8,7 +8,7 @@ resource "aws_iam_role" "jupiterone" {
     {
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::612791702201:root"
+        "AWS": ["arn:aws:iam::612791702201:root","arn:aws:iam::592277296164:root","arn:aws:iam::543056157939:root","arn:aws:iam::688694159727:root","arn:aws:iam::248422699954:root","arn:aws:iam::703115985002:root"]
       },
       "Action": "sts:AssumeRole",
       "Condition": {
