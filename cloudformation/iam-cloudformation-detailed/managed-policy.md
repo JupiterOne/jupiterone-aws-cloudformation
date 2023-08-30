@@ -282,6 +282,7 @@
         "rds:DescribeDBParameterGroups",
         "rds:DescribeDBParameters",
         "rds:DescribeDBProxies",
+        "rds:DescribeDBProxyTargetGroups",
         "rds:DescribeDBSnapshots",
         "rds:DescribeDBSubnetGroups",
         "rds:DescribeOptionGroups",
