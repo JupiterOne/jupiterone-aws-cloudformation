@@ -313,6 +313,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "rds:DescribeDBParameterGroups",
         "rds:DescribeDBParameters",
         "rds:DescribeDBProxies",
+        "rds:DescribeDBProxyTargetGroups",
+        "rds:DescribeDBProxyTargets",
         "rds:DescribeDBSnapshots",
         "rds:DescribeDBSubnetGroups",
         "rds:DescribeOptionGroups",
