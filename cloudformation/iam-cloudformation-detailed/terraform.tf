@@ -392,6 +392,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "waf:ListWebACLs",
         "wafv2:GetWebACL",
         "wafv2:ListResourcesForWebACL",
+        "wafv2:ListTagsForResource",
         "wafv2:ListWebACLs",
         "workspaces:DescribeTags",
         "workspaces:DescribeWorkspaceBundles",
