@@ -97,6 +97,7 @@
               "s3.amazonaws.com",
               "iam.amazonaws.com",
               "ec2.amazonaws.com",
+              "elasticloadbalancing.amazonaws.com",
               "autoscaling.amazonaws.com",
               "rds.amazonaws.com",
               "redshift.amazonaws.com"
@@ -159,7 +160,13 @@
               "AuthorizeSecurityGroupIngress",
               "RevokeSecurityGroupIngress",
               "AuthorizeSecurityGroupEgress",
-              "RevokeSecurityGroupEgress"
+              "RevokeSecurityGroupEgress",
+              "CreateLoadBalancer",
+              "CreateListener",
+              "CreateRule",
+              "CreateTargetGroup",
+              "SetSecurityGroups",
+              "RegisterTargets"
             ]
           }
         },

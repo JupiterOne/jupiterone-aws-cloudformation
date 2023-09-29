@@ -231,6 +231,17 @@ JupiterOne currently supports the following events:
 | ModifySnapshotAttribute       | `aws_ebs_snapshot`        |                                                                                                                                                                                                            |
 | DeleteSnapshot                | `aws_ebs_snapshot`        |                                                                                                                                                                                                            |
 
+### Elastic Load Balancing (ELB)
+
+| Event Name         | Modified Entities `_type`     | Modified Relationships `_type`                                                                                                                                                                                            |
+| ------------------ | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CreateLoadBalancer | `aws_alb` `aws_elb` `aws_nlb` | `aws_elasticloadbalancing_has_aws_alb` `aws_elasticloadbalancing_has_aws_elb` `aws_elasticloadbalancing_has_aws_nlb` `aws_vpc_has_load_balancer` `aws_resource_has_security_group` `aws_security_group_protects_resource` |
+| CreateListener     | `aws_lb_listener`             | `aws_load_balancer_has_listener` `aws_lb_listener_uses_acm_certificate` `aws_lb_listener_uses_iam_server_certificate`                                                                                                     |
+| CreateTargetGroup  | `aws_lb_target_group`         | `aws_load_balancer_connects_target_group`                                                                                                                                                                                 |
+| CreateRule         | `aws_lb_listener_rule`        | `aws_lb_listener_has_rule`                                                                                                                                                                                                |
+| SetSecurityGroups  |                               | `aws_resource_has_security_group` `aws_security_group_protects_resource`                                                                                                                                                  |
+| RegisterTargets    |                               | `aws_load_balancer_connects_target_group`                                                                                                                                                                                 |
+
 ### AutoScaling
 
 | Event Name             | Modified Entities `_type` | Modified Relationships `_type`                                                                                                                                                                               |
