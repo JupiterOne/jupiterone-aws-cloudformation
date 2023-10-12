@@ -334,6 +334,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "route53domains:GetDomainDetail",
         "route53domains:ListDomains",
         "route53domains:ListTagsForDomain",
+        "route53resolver:ListResolverRules",
+        "route53resolver:ListTagsForResource",
         "s3:GetAccountPublicAccessBlock",
         "s3:GetBucketAcl",
         "s3:GetBucketLocation",
