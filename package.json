@@ -2,17 +2,17 @@
   "name": "@jupiterone/jupiterone-aws-cloudformation",
   "version": "1.0.0",
   "description": "JupiterOne AWS Integration",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JupiterOne/jupiterone-aws-cloudformation"
+  },
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "precommit": "lint-staged",
     "prettier": "prettier ./**/*.{js,md,json} *.js --write"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jupiterone/jupiterone-aws-cloudformation.git"
-  },
   "author": "JupiterOne <dev@jupiterone.io>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jupiterone/jupiterone-aws-cloudformation/issues"
   },

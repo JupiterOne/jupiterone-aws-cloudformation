@@ -1,0 +1,12 @@
+openapi: 3.0.1
+info:
+  title: '@jupiterone/jupiterone-aws-cloudformation'
+  description: JupiterOne AWS Integration
+  x-cortex-git:
+    github:
+      repository: JupiterOne/jupiterone-aws-cloudformation
+  x-cortex-owners:
+    - type: group
+      name: JupiterOne/integrations
+  x-cortex-service-groups: tier-4
+  x-cortex-tag: '@jupiterone/jupiterone-aws-cloudformation'
