@@ -363,6 +363,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "ses:GetEmailIdentity",
         "ses:ListConfigurationSets",
         "ses:ListEmailIdentities",
+        "ses:ListReceiptFilters",
         "shield:DescribeSubscription",
         "shield:GetSubscriptionState",
         "shield:ListProtectionGroups",
