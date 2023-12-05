@@ -332,6 +332,7 @@
         "ses:GetEmailIdentity",
         "ses:ListConfigurationSets",
         "ses:ListEmailIdentities",
+        "ses:ListReceiptFilters",
         "shield:DescribeSubscription",
         "shield:GetSubscriptionState",
         "shield:ListProtectionGroups",
