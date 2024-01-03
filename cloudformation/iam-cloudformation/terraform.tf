@@ -52,6 +52,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "glue:GetJob",
         "glue:GetTags",
         "glue:List*",
+        "identitystore:List*",
         "lambda:GetFunction",
         "lex:List*",
         "macie2:GetFindings",
