@@ -24,6 +24,7 @@
         "glue:GetJob",
         "glue:GetTags",
         "glue:List*",
+        "identitystore:List*",
         "lambda:GetFunction",
         "lex:List*",
         "macie2:GetFindings",
