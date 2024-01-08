@@ -359,6 +359,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "s3:GetReplicationConfiguration",
         "s3:ListAccessPoints",
         "s3:ListAllMyBuckets",
+        "sagemaker:DescribeNotebookInstance",
+        "sagemaker:ListNotebookInstances",
         "secretsmanager:DescribeSecret",
         "secretsmanager:GetResourcePolicy",
         "secretsmanager:ListSecrets",
