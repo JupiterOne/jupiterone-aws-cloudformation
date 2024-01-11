@@ -61,6 +61,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "ses:GetConfigurationSet",
         "ses:GetEmailIdentity",
         "ses:List*",
+        "signer:List*",
         "sns:GetSubscriptionAttributes",
         "ssm:GetDocument"
       ]
