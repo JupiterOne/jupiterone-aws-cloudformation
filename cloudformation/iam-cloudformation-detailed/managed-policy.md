@@ -344,6 +344,7 @@
         "shield:ListProtections",
         "shield:ListResourcesInProtectionGroup",
         "shield:ListTagsForResource",
+        "signer:ListSigningProfiles",
         "sns:GetSubscriptionAttributes",
         "sns:GetTopicAttributes",
         "sns:ListSubscriptions",

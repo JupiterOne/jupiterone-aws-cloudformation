@@ -375,6 +375,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "shield:ListProtections",
         "shield:ListResourcesInProtectionGroup",
         "shield:ListTagsForResource",
+        "signer:ListSigningProfiles",
         "sns:GetSubscriptionAttributes",
         "sns:GetTopicAttributes",
         "sns:ListSubscriptions",

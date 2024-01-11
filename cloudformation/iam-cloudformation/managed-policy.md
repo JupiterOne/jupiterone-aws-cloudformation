@@ -33,6 +33,7 @@
         "ses:GetConfigurationSet",
         "ses:GetEmailIdentity",
         "ses:List*",
+        "signer:List*",
         "sns:GetSubscriptionAttributes",
         "ssm:GetDocument"
       ]
