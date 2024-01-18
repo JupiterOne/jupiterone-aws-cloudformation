@@ -365,6 +365,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "secretsmanager:GetResourcePolicy",
         "secretsmanager:ListSecrets",
         "securityhub:DescribeStandards",
+        "securityhub:DescribeStandardsControls",
+        "securityhub:GetEnabledStandards",
         "ses:GetConfigurationSet",
         "ses:GetEmailIdentity",
         "ses:ListConfigurationSets",

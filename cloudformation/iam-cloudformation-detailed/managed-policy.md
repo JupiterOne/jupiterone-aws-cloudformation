@@ -334,6 +334,8 @@
         "secretsmanager:GetResourcePolicy",
         "secretsmanager:ListSecrets",
         "securityhub:DescribeStandards",
+        "securityhub:DescribeStandardsControls",
+        "securityhub:GetEnabledStandards",
         "ses:GetConfigurationSet",
         "ses:GetEmailIdentity",
         "ses:ListConfigurationSets",
