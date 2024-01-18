@@ -336,6 +336,7 @@
         "securityhub:DescribeStandards",
         "securityhub:DescribeStandardsControls",
         "securityhub:GetEnabledStandards",
+        "securityhub:GetFindings",
         "ses:GetConfigurationSet",
         "ses:GetEmailIdentity",
         "ses:ListConfigurationSets",
