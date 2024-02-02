@@ -332,6 +332,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "redshift:DescribeClusterParameters",
         "redshift:DescribeClusters",
         "redshift:DescribeLoggingStatus",
+        "route53:GetHostedZone",
         "route53:ListHostedZones",
         "route53:ListResourceRecordSets",
         "route53domains:GetDomainDetail",

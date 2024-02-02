@@ -301,6 +301,7 @@
         "redshift:DescribeClusterParameters",
         "redshift:DescribeClusters",
         "redshift:DescribeLoggingStatus",
+        "route53:GetHostedZone",
         "route53:ListHostedZones",
         "route53:ListResourceRecordSets",
         "route53domains:GetDomainDetail",
