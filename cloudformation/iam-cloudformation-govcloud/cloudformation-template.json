@@ -59,7 +59,7 @@
             "Ref": "JupiterOneSecurityAuditPolicy"
           }
         ],
-        "UserName": "jupiterone-access-user"
+        "UserName": "JupiterOneAccessUser"
       }
     }
   },
