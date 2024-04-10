@@ -8,7 +8,7 @@
           "Label": {
             "default": "JupiterOne Authentication Parameters"
           },
-          "Parameters": ["JupiterOneAwsAccountArns", "JupiterOneExternalId"]
+          "Parameters": ["JupiterOneAwsAccountArns", "JupiterOneExternalId", "JupiterOneRoleName"]
         }
       ],
       "ParameterLabels": {
@@ -17,6 +17,9 @@
         },
         "JupiterOneExternalId": {
           "default": "What is the JupiterOne external Id you were provided?"
+        },
+        "JupiterOneRoleName": {
+          "default": "Enter the desired IAM role name to be created and used."
         }
       }
     }
@@ -31,6 +34,11 @@
     "JupiterOneExternalId": {
       "Description": "The JupiterOne external Id",
       "Type": "String"
+    },
+    "JupiterOneRoleName": {
+      "Description": "The IAM role that JupiterOne will use. If the option 'Configure Organization Accounts' has been selected within JupiterOne, the same role name must be used in the Org and sub-accounts",
+      "Type": "String",
+      "Default": "JupiterOneIntegration-JupiterOneRole"
     }
   },
   "Resources": {
@@ -89,6 +97,9 @@
     "JupiterOneRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
+        "RoleName": {
+            "Ref": "JupiterOneRoleName"
+        },
         "ManagedPolicyArns": [
           "arn:aws:iam::aws:policy/SecurityAudit",
           {
