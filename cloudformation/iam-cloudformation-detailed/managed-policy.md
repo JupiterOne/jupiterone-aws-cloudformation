@@ -102,6 +102,8 @@
         "ec2:DescribeSnapshotAttribute",
         "ec2:DescribeSnapshots",
         "ec2:DescribeSubnets",
+        "ec2:DescribeTransitGateways",
+        "ec2:DescribeTransitGatewayVpcAttachments",
         "ec2:DescribeVolumes",
         "ec2:DescribeVpcEndpoints",
         "ec2:DescribeVpcPeeringConnections",
@@ -207,10 +209,7 @@
         "iam:ListMFADevices",
         "iam:ListOpenIDConnectProviders",
         "iam:ListOpenIDConnectProviderTags",
-        "iam:ListPolicies",
-        "iam:ListRolePolicies",
-        "iam:ListRoles",
-        "iam:ListRoleTags"
+        "iam:ListPolicies"
       ]
     }
   ]
@@ -227,6 +226,9 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "iam:ListRolePolicies",
+        "iam:ListRoles",
+        "iam:ListRoleTags",
         "iam:ListSAMLProviders",
         "iam:ListServerCertificates",
         "iam:ListUserPolicies",
