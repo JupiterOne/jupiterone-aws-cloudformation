@@ -128,6 +128,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "ec2:DescribeSnapshotAttribute",
         "ec2:DescribeSnapshots",
         "ec2:DescribeSubnets",
+        "ec2:DescribeTransitGateways",
+        "ec2:DescribeTransitGatewayVpcAttachments",
         "ec2:DescribeVolumes",
         "ec2:DescribeVpcEndpoints",
         "ec2:DescribeVpcPeeringConnections",
@@ -233,10 +235,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "iam:ListMFADevices",
         "iam:ListOpenIDConnectProviders",
         "iam:ListOpenIDConnectProviderTags",
-        "iam:ListPolicies",
-        "iam:ListRolePolicies",
-        "iam:ListRoles",
-        "iam:ListRoleTags"
+        "iam:ListPolicies"
       ]
     }
   ]
@@ -258,6 +257,9 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "iam:ListRolePolicies",
+        "iam:ListRoles",
+        "iam:ListRoleTags",
         "iam:ListSAMLProviders",
         "iam:ListServerCertificates",
         "iam:ListUserPolicies",
