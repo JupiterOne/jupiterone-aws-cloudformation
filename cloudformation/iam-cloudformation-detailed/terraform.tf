@@ -99,6 +99,9 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "directconnect:DescribeDirectConnectGateways",
         "directconnect:DescribeLags",
         "directconnect:DescribeVirtualInterfaces",
+        "dms:DescribeEndpoints",
+        "dms:DescribeReplicationInstances",
+        "dms:ListTagsForResource",
         "ds:DescribeDirectories",
         "dynamodb:DescribeContinuousBackups",
         "dynamodb:DescribeGlobalTable",
@@ -232,10 +235,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "iam:ListGroupPolicies",
         "iam:ListGroups",
         "iam:ListInstanceProfiles",
-        "iam:ListMFADevices",
-        "iam:ListOpenIDConnectProviders",
-        "iam:ListOpenIDConnectProviderTags",
-        "iam:ListPolicies"
+        "iam:ListMFADevices"
       ]
     }
   ]
@@ -257,6 +257,9 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "iam:ListOpenIDConnectProviders",
+        "iam:ListOpenIDConnectProviderTags",
+        "iam:ListPolicies",
         "iam:ListRolePolicies",
         "iam:ListRoles",
         "iam:ListRoleTags",
