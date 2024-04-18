@@ -73,6 +73,9 @@
         "directconnect:DescribeDirectConnectGateways",
         "directconnect:DescribeLags",
         "directconnect:DescribeVirtualInterfaces",
+        "dms:DescribeEndpoints",
+        "dms:DescribeReplicationInstances",
+        "dms:ListTagsForResource",
         "ds:DescribeDirectories",
         "dynamodb:DescribeContinuousBackups",
         "dynamodb:DescribeGlobalTable",
@@ -206,10 +209,7 @@
         "iam:ListGroupPolicies",
         "iam:ListGroups",
         "iam:ListInstanceProfiles",
-        "iam:ListMFADevices",
-        "iam:ListOpenIDConnectProviders",
-        "iam:ListOpenIDConnectProviderTags",
-        "iam:ListPolicies"
+        "iam:ListMFADevices"
       ]
     }
   ]
@@ -226,6 +226,9 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "iam:ListOpenIDConnectProviders",
+        "iam:ListOpenIDConnectProviderTags",
+        "iam:ListPolicies",
         "iam:ListRolePolicies",
         "iam:ListRoles",
         "iam:ListRoleTags",
