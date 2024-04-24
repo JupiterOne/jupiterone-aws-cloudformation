@@ -109,6 +109,8 @@
         "ec2:DescribeTransitGatewayVpcAttachments",
         "ec2:DescribeVolumes",
         "ec2:DescribeVpcEndpoints",
+        "ec2:DescribeVpcEndpointServicePermissions",
+        "ec2:DescribeVpcEndpointServices",
         "ec2:DescribeVpcPeeringConnections",
         "ec2:DescribeVpcs",
         "ec2:DescribeVpnConnections",
@@ -206,10 +208,7 @@
         "iam:ListAccessKeys",
         "iam:ListAccountAliases",
         "iam:ListEntitiesForPolicy",
-        "iam:ListGroupPolicies",
-        "iam:ListGroups",
-        "iam:ListInstanceProfiles",
-        "iam:ListMFADevices"
+        "iam:ListGroupPolicies"
       ]
     }
   ]
@@ -226,6 +225,9 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "iam:ListGroups",
+        "iam:ListInstanceProfiles",
+        "iam:ListMFADevices",
         "iam:ListOpenIDConnectProviders",
         "iam:ListOpenIDConnectProviderTags",
         "iam:ListPolicies",
