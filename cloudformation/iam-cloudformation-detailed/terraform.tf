@@ -135,6 +135,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "ec2:DescribeTransitGatewayVpcAttachments",
         "ec2:DescribeVolumes",
         "ec2:DescribeVpcEndpoints",
+        "ec2:DescribeVpcEndpointServicePermissions",
+        "ec2:DescribeVpcEndpointServices",
         "ec2:DescribeVpcPeeringConnections",
         "ec2:DescribeVpcs",
         "ec2:DescribeVpnConnections",
@@ -232,10 +234,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "iam:ListAccessKeys",
         "iam:ListAccountAliases",
         "iam:ListEntitiesForPolicy",
-        "iam:ListGroupPolicies",
-        "iam:ListGroups",
-        "iam:ListInstanceProfiles",
-        "iam:ListMFADevices"
+        "iam:ListGroupPolicies"
       ]
     }
   ]
@@ -257,6 +256,9 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "iam:ListGroups",
+        "iam:ListInstanceProfiles",
+        "iam:ListMFADevices",
         "iam:ListOpenIDConnectProviders",
         "iam:ListOpenIDConnectProviderTags",
         "iam:ListPolicies",
