@@ -36,6 +36,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "airflow:GetEnvironment",
         "batch:Describe*",
         "batch:List*",
         "cloudhsm:Describe*",

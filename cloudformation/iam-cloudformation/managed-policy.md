@@ -8,6 +8,7 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "airflow:GetEnvironment",
         "batch:Describe*",
         "batch:List*",
         "cloudhsm:Describe*",
