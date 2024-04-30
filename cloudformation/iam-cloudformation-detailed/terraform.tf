@@ -61,6 +61,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "acm:DescribeCertificate",
         "acm:ListCertificates",
         "acm:ListTagsForCertificate",
+        "airflow:GetEnvironment",
+        "airflow:ListEnvironments",
         "autoscaling:DescribeAutoScalingGroups",
         "autoscaling:DescribeLaunchConfigurations",
         "autoscaling:DescribePolicies",
@@ -232,9 +234,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "iam:GetUser",
         "iam:GetUserPolicy",
         "iam:ListAccessKeys",
-        "iam:ListAccountAliases",
-        "iam:ListEntitiesForPolicy",
-        "iam:ListGroupPolicies"
+        "iam:ListAccountAliases"
       ]
     }
   ]
@@ -256,6 +256,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "iam:ListEntitiesForPolicy",
+        "iam:ListGroupPolicies",
         "iam:ListGroups",
         "iam:ListInstanceProfiles",
         "iam:ListMFADevices",

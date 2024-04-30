@@ -35,6 +35,8 @@
         "acm:DescribeCertificate",
         "acm:ListCertificates",
         "acm:ListTagsForCertificate",
+        "airflow:GetEnvironment",
+        "airflow:ListEnvironments",
         "autoscaling:DescribeAutoScalingGroups",
         "autoscaling:DescribeLaunchConfigurations",
         "autoscaling:DescribePolicies",
@@ -206,9 +208,7 @@
         "iam:GetUser",
         "iam:GetUserPolicy",
         "iam:ListAccessKeys",
-        "iam:ListAccountAliases",
-        "iam:ListEntitiesForPolicy",
-        "iam:ListGroupPolicies"
+        "iam:ListAccountAliases"
       ]
     }
   ]
@@ -225,6 +225,8 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "iam:ListEntitiesForPolicy",
+        "iam:ListGroupPolicies",
         "iam:ListGroups",
         "iam:ListInstanceProfiles",
         "iam:ListMFADevices",
