@@ -394,6 +394,7 @@
         "transfer:ListUsers",
         "waf:GetWebACL",
         "waf:ListWebACLs",
+        "wafv2:GetLoggingConfiguration",
         "wafv2:GetWebACL",
         "wafv2:ListResourcesForWebACL",
         "wafv2:ListTagsForResource",
