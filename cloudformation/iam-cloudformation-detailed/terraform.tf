@@ -68,6 +68,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "autoscaling:DescribePolicies",
         "backup:GetBackupVaultAccessPolicy",
         "backup:ListBackupVaults",
+        "backup:ListRecoveryPointsByBackupVault",
         "batch:DescribeComputeEnvironments",
         "batch:DescribeJobDefinitions",
         "batch:DescribeJobQueues",
@@ -232,9 +233,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "iam:GetSAMLProvider",
         "iam:GetServerCertificate",
         "iam:GetUser",
-        "iam:GetUserPolicy",
-        "iam:ListAccessKeys",
-        "iam:ListAccountAliases"
+        "iam:GetUserPolicy"
       ]
     }
   ]
@@ -256,6 +255,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "iam:ListAccessKeys",
+        "iam:ListAccountAliases",
         "iam:ListEntitiesForPolicy",
         "iam:ListGroupPolicies",
         "iam:ListGroups",
