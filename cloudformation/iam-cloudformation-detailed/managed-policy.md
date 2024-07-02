@@ -42,6 +42,7 @@
         "autoscaling:DescribePolicies",
         "backup:GetBackupVaultAccessPolicy",
         "backup:ListBackupVaults",
+        "backup:ListRecoveryPointsByBackupVault",
         "batch:DescribeComputeEnvironments",
         "batch:DescribeJobDefinitions",
         "batch:DescribeJobQueues",
@@ -206,9 +207,7 @@
         "iam:GetSAMLProvider",
         "iam:GetServerCertificate",
         "iam:GetUser",
-        "iam:GetUserPolicy",
-        "iam:ListAccessKeys",
-        "iam:ListAccountAliases"
+        "iam:GetUserPolicy"
       ]
     }
   ]
@@ -225,6 +224,8 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "iam:ListAccessKeys",
+        "iam:ListAccountAliases",
         "iam:ListEntitiesForPolicy",
         "iam:ListGroupPolicies",
         "iam:ListGroups",

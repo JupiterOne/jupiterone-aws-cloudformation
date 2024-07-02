@@ -8,6 +8,7 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "backup:List*",
         "batch:Describe*",
         "batch:List*",
         "cloudhsm:Describe*",
