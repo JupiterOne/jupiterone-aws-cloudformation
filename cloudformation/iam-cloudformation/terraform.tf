@@ -36,6 +36,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "backup:List*",
         "batch:Describe*",
         "batch:List*",
         "cloudhsm:Describe*",
