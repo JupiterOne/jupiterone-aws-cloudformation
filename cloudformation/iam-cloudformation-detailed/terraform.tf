@@ -68,6 +68,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "autoscaling:DescribePolicies",
         "backup:GetBackupVaultAccessPolicy",
         "backup:ListBackupVaults",
+        "backup:ListRecoveryPointsByBackupVault",
         "batch:DescribeComputeEnvironments",
         "batch:DescribeJobDefinitions",
         "batch:DescribeJobQueues",
@@ -137,6 +138,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "ec2:DescribeTransitGatewayVpcAttachments",
         "ec2:DescribeVolumes",
         "ec2:DescribeVpcEndpoints",
+        "ec2:DescribeVpcEndpointServiceConfigurations",
+        "ec2:DescribeVpcEndpointServiceConnections",
         "ec2:DescribeVpcEndpointServicePermissions",
         "ec2:DescribeVpcEndpointServices",
         "ec2:DescribeVpcPeeringConnections",
@@ -228,13 +231,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "iam:GetOpenIDConnectProvider",
         "iam:GetPolicyVersion",
         "iam:GetRole",
-        "iam:GetRolePolicy",
-        "iam:GetSAMLProvider",
-        "iam:GetServerCertificate",
-        "iam:GetUser",
-        "iam:GetUserPolicy",
-        "iam:ListAccessKeys",
-        "iam:ListAccountAliases"
+        "iam:GetRolePolicy"
       ]
     }
   ]
@@ -256,6 +253,12 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "iam:GetSAMLProvider",
+        "iam:GetServerCertificate",
+        "iam:GetUser",
+        "iam:GetUserPolicy",
+        "iam:ListAccessKeys",
+        "iam:ListAccountAliases",
         "iam:ListEntitiesForPolicy",
         "iam:ListGroupPolicies",
         "iam:ListGroups",
@@ -295,6 +298,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "kms:ListAliases",
         "kms:ListKeys",
         "lambda:GetFunction",
+        "lambda:GetFunctionUrlConfig",
         "lambda:GetPolicy",
         "lambda:ListFunctions",
         "lambda:ListTags",
