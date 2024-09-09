@@ -8,6 +8,7 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "backup:List*",
         "batch:Describe*",
         "batch:List*",
         "cloudhsm:Describe*",
@@ -23,6 +24,7 @@
         "glue:GetJob",
         "glue:List*",
         "lambda:GetFunction",
+        "lambda:GetFunctionUrlConfig",
         "lex:List*",
         "macie2:GetFindings",
         "redshift-serverless:List*",
@@ -34,8 +36,12 @@
     },
     {
       "Effect": "Allow",
-      "Action": ["apigateway:GET"],
-      "Resource": ["arn:aws:apigateway:*::/*"]
+      "Action": [
+        "apigateway:GET"
+      ],
+      "Resource": [
+        "arn:aws:apigateway:*::/*"
+      ]
     }
   ]
 }
