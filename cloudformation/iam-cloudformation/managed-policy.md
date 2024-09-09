@@ -36,12 +36,8 @@
     },
     {
       "Effect": "Allow",
-      "Action": [
-        "apigateway:GET"
-      ],
-      "Resource": [
-        "arn:aws:apigateway:*::/*"
-      ]
+      "Action": ["apigateway:GET"],
+      "Resource": ["arn:aws:apigateway:*::/*"]
     }
   ]
 }

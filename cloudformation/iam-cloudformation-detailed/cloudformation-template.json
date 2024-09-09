@@ -8,10 +8,7 @@
           "Label": {
             "default": "JupiterOne Authentication Parameters"
           },
-          "Parameters": [
-            "JupiterOneAwsAccountArns",
-            "JupiterOneExternalId"
-          ]
+          "Parameters": ["JupiterOneAwsAccountArns", "JupiterOneExternalId"]
         }
       ],
       "ParameterLabels": {
@@ -26,7 +23,8 @@
   },
   "Parameters": {
     "JupiterOneAwsAccountArns": {
-      "Description": "The JupiterOne AWS account ARN(s), in the format 'arn:aws:iam::<aws-account-id>:root'. If multiple, comma-delimited",
+      "Description":
+        "The JupiterOne AWS account ARN(s), in the format 'arn:aws:iam::<aws-account-id>:root'. If multiple, comma-delimited",
       "Type": "CommaDelimitedList",
       "Default": "arn:aws:iam::612791702201:root"
     },
@@ -501,10 +499,7 @@
     "RoleARN": {
       "Description": "ARN of the JupiterOne role",
       "Value": {
-        "Fn::GetAtt": [
-          "JupiterOneRole",
-          "Arn"
-        ]
+        "Fn::GetAtt": ["JupiterOneRole", "Arn"]
       }
     }
   }
