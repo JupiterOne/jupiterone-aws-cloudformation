@@ -128,6 +128,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "ec2:DescribeAddresses",
         "ec2:DescribeCustomerGateways",
         "ec2:DescribeFlowLogs",
+        "ec2:DescribeIamInstanceProfileAssociations",
         "ec2:DescribeImageAttribute",
         "ec2:DescribeImages",
         "ec2:DescribeInstanceAttribute",
@@ -230,14 +231,14 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "glue:GetDevEndpoint",
         "glue:GetDevEndpoints",
         "glue:GetJob",
+        "glue:GetResourcePolicy",
         "glue:GetSecurityConfigurations",
         "glue:GetTags",
         "glue:ListJobs",
         "glue:ListSessions",
         "guardduty:GetDetector",
         "guardduty:GetFindings",
-        "guardduty:ListDetectors",
-        "guardduty:ListFindings"
+        "guardduty:ListDetectors"
       ]
     }
   ]
@@ -259,6 +260,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "guardduty:ListFindings",
         "iam:GenerateCredentialReport",
         "iam:GetAccessKeyLastUsed",
         "iam:GetAccountPasswordPolicy",
@@ -303,7 +305,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "inspector2:ListCoverage",
         "inspector2:ListFindings",
         "kafka:GetBootstrapBrokers",
-        "kafka:ListClusters",
+        "kafka:ListClustersV2",
         "kafka:ListTagsForResource",
         "kinesis:DescribeStreamSummary",
         "kinesis:ListStreamConsumers",
@@ -336,6 +338,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "network-firewall:ListFirewallPolicies",
         "network-firewall:ListFirewalls",
         "network-firewall:ListRuleGroups",
+        "organizations:DescribeAccount",
         "organizations:DescribeOrganization",
         "organizations:DescribeOrganizationalUnit",
         "organizations:DescribePolicy",
@@ -425,6 +428,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "sqs:GetQueueAttributes",
         "sqs:ListQueues",
         "sqs:ListQueueTags",
+        "ssm:DescribeDocumentPermission",
         "ssm:DescribeInstanceInformation",
         "ssm:DescribeInstancePatchStates",
         "ssm:DescribeParameters",
@@ -435,6 +439,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "ssm:GetServiceSetting",
         "ssm:ListAssociations",
         "ssm:ListComplianceItems",
+        "ssm:ListComplianceSummaries",
         "ssm:ListDocuments",
         "ssm:ListInventoryEntries",
         "sso:DescribePermissionSet",
