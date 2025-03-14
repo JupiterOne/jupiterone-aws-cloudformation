@@ -222,6 +222,10 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "glacier:ListVaults",
         "globalaccelerator:ListAccelerators",
         "globalaccelerator:ListCustomRoutingAccelerators",
+        "globalaccelerator:ListCustomRoutingEndpointGroups",
+        "globalaccelerator:ListCustomRoutingListeners",
+        "globalaccelerator:ListEndpointGroups",
+        "globalaccelerator:ListListeners",
         "globalaccelerator:ListTagsForResource",
         "glue:GetConnection",
         "glue:GetConnections",
@@ -230,15 +234,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "glue:GetDataCatalogEncryptionSettings",
         "glue:GetDevEndpoint",
         "glue:GetDevEndpoints",
-        "glue:GetJob",
-        "glue:GetResourcePolicy",
-        "glue:GetSecurityConfigurations",
-        "glue:GetTags",
-        "glue:ListJobs",
-        "glue:ListSessions",
-        "guardduty:GetDetector",
-        "guardduty:GetFindings",
-        "guardduty:ListDetectors"
+        "glue:GetJob"
       ]
     }
   ]
@@ -260,7 +256,17 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "glue:GetResourcePolicy",
+        "glue:GetSecurityConfigurations",
+        "glue:GetTags",
+        "glue:ListJobs",
+        "glue:ListSessions",
+        "guardduty:GetDetector",
+        "guardduty:GetFindings",
+        "guardduty:ListDetectors",
         "guardduty:ListFindings",
+        "health:DescribeEventDetails",
+        "health:DescribeEvents",
         "iam:GenerateCredentialReport",
         "iam:GetAccessKeyLastUsed",
         "iam:GetAccountPasswordPolicy",
@@ -347,6 +353,15 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "organizations:ListPolicies",
         "organizations:ListRoots",
         "organizations:ListTagsForResource",
+        "organizations:ListTargetsForPolicy",
+        "quicksight:DescribeDashboard",
+        "quicksight:DescribeDataSet",
+        "quicksight:DescribeDataSource",
+        "quicksight:DescribeVpcConnection",
+        "quicksight:ListDashboards",
+        "quicksight:ListDataSets",
+        "quicksight:ListDataSources",
+        "quicksight:ListVpcConnections",
         "rds:DescribeDBClusterParameterGroups",
         "rds:DescribeDBClusterParameters",
         "rds:DescribeDBClusters",
@@ -442,6 +457,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "ssm:ListComplianceSummaries",
         "ssm:ListDocuments",
         "ssm:ListInventoryEntries",
+        "ssm:ListTagsForResource",
         "sso:DescribePermissionSet",
         "sso:ListApplications",
         "sso:ListCustomerManagedPolicyReferencesInPermissionSet",
@@ -457,8 +473,28 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "waf:ListWebACLs",
         "wafv2:GetLoggingConfiguration",
         "wafv2:GetWebACL",
-        "wafv2:ListResourcesForWebACL",
-        "wafv2:ListTagsForResource",
+        "wafv2:ListResourcesForWebACL"
+      ]
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "jupiterone_security_audit_policy_attachment_3" {
+  role       = "${ aws_iam_role.jupiterone.name }"
+  policy_arn = "${ aws_iam_policy.jupiterone_security_audit_policy_3.arn }"
+}
+resource "aws_iam_policy" "jupiterone_security_audit_policy_3" {
+  name = "JupiterOneSecurityAudit3"
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": "*",
+      "Action": [
         "wafv2:ListWebACLs",
         "workspaces:DescribeTags",
         "workspaces:DescribeWorkspaceBundles",
@@ -470,7 +506,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "jupiterone_security_audit_policy_attachment_2" {
+resource "aws_iam_role_policy_attachment" "jupiterone_security_audit_policy_attachment_3" {
   role       = "${ aws_iam_role.jupiterone.name }"
-  policy_arn = "${ aws_iam_policy.jupiterone_security_audit_policy_2.arn }"
+  policy_arn = "${ aws_iam_policy.jupiterone_security_audit_policy_3.arn }"
 }
