@@ -18,15 +18,15 @@
         "codebuild:List*",
         "ec2:GetEbsDefaultKmsKeyId",
         "fms:List*",
-        "glacier:ListTagsForVault",
+        "glacier:List*",
         "glue:Get*",
         "glue:List*",
         "lambda:Get*",
         "lex:ListBotAliases",
         "macie2:GetFindings",
         "redshift-serverless:List*",
-        "ses:ListEmailIdentities",
-        "signer:ListSigningProfiles",
+        "ses:List*",
+        "signer:List*",
         "sns:GetSubscriptionAttributes",
         "ssm:GetDocument"
       ]
