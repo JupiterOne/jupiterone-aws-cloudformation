@@ -196,6 +196,10 @@
         "glacier:ListVaults",
         "globalaccelerator:ListAccelerators",
         "globalaccelerator:ListCustomRoutingAccelerators",
+        "globalaccelerator:ListCustomRoutingEndpointGroups",
+        "globalaccelerator:ListCustomRoutingListeners",
+        "globalaccelerator:ListEndpointGroups",
+        "globalaccelerator:ListListeners",
         "globalaccelerator:ListTagsForResource",
         "glue:GetConnection",
         "glue:GetConnections",
@@ -204,15 +208,7 @@
         "glue:GetDataCatalogEncryptionSettings",
         "glue:GetDevEndpoint",
         "glue:GetDevEndpoints",
-        "glue:GetJob",
-        "glue:GetResourcePolicy",
-        "glue:GetSecurityConfigurations",
-        "glue:GetTags",
-        "glue:ListJobs",
-        "glue:ListSessions",
-        "guardduty:GetDetector",
-        "guardduty:GetFindings",
-        "guardduty:ListDetectors"
+        "glue:GetJob"
       ]
     }
   ]
@@ -229,7 +225,17 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "glue:GetResourcePolicy",
+        "glue:GetSecurityConfigurations",
+        "glue:GetTags",
+        "glue:ListJobs",
+        "glue:ListSessions",
+        "guardduty:GetDetector",
+        "guardduty:GetFindings",
+        "guardduty:ListDetectors",
         "guardduty:ListFindings",
+        "health:DescribeEventDetails",
+        "health:DescribeEvents",
         "iam:GenerateCredentialReport",
         "iam:GetAccessKeyLastUsed",
         "iam:GetAccountPasswordPolicy",
@@ -316,6 +322,15 @@
         "organizations:ListPolicies",
         "organizations:ListRoots",
         "organizations:ListTagsForResource",
+        "organizations:ListTargetsForPolicy",
+        "quicksight:DescribeDashboard",
+        "quicksight:DescribeDataSet",
+        "quicksight:DescribeDataSource",
+        "quicksight:DescribeVpcConnection",
+        "quicksight:ListDashboards",
+        "quicksight:ListDataSets",
+        "quicksight:ListDataSources",
+        "quicksight:ListVpcConnections",
         "rds:DescribeDBClusterParameterGroups",
         "rds:DescribeDBClusterParameters",
         "rds:DescribeDBClusters",
@@ -411,6 +426,7 @@
         "ssm:ListComplianceSummaries",
         "ssm:ListDocuments",
         "ssm:ListInventoryEntries",
+        "ssm:ListTagsForResource",
         "sso:DescribePermissionSet",
         "sso:ListApplications",
         "sso:ListCustomerManagedPolicyReferencesInPermissionSet",
@@ -426,8 +442,23 @@
         "waf:ListWebACLs",
         "wafv2:GetLoggingConfiguration",
         "wafv2:GetWebACL",
-        "wafv2:ListResourcesForWebACL",
-        "wafv2:ListTagsForResource",
+        "wafv2:ListResourcesForWebACL"
+      ]
+    }
+  ]
+}
+```
+
+## Managed Policy Statement 3
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": "*",
+      "Action": [
         "wafv2:ListWebACLs",
         "workspaces:DescribeTags",
         "workspaces:DescribeWorkspaceBundles",
