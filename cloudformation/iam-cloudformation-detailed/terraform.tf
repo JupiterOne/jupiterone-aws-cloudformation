@@ -322,6 +322,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "kms:GetKeyRotationStatus",
         "kms:ListAliases",
         "kms:ListKeys",
+        "kms:ListResourceTag",
         "lambda:GetFunction",
         "lambda:GetFunctionUrlConfig",
         "lambda:GetPolicy",
