@@ -291,7 +291,7 @@
         "kms:GetKeyRotationStatus",
         "kms:ListAliases",
         "kms:ListKeys",
-        "kms:ListResourceTag",
+        "kms:ListResourceTags",
         "lambda:GetFunction",
         "lambda:GetFunctionUrlConfig",
         "lambda:GetPolicy",
