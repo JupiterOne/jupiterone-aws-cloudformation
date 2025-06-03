@@ -499,7 +499,15 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_3" {
         "wafv2:ListWebACLs",
         "workspaces:DescribeTags",
         "workspaces:DescribeWorkspaceBundles",
-        "workspaces:DescribeWorkspaces"
+        "workspaces:DescribeWorkspaces",
+        "cognito-identity:ListIdentityPools",
+        "cognito-identity:DescribeIdentityPool",
+        "cognito-idp:ListUserPoolClients",
+        "cognito-idp:DescribeUserPoolClient",
+        "cognito-idp:ListUsers",
+        "fsx:DescribeFileSystems",
+        "wafv2:GetIPSet",
+        "wafv2:ListIPSets"
       ]
     }
   ]
