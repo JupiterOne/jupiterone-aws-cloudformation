@@ -507,7 +507,9 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_3" {
         "cognito-idp:ListUsers",
         "fsx:DescribeFileSystems",
         "wafv2:GetIPSet",
-        "wafv2:ListIPSets"
+        "wafv2:ListIPSets",
+        "cognito-idp:DescribeRiskConfiguration",
+        "config:BatchGetResourceConfig"
       ]
     }
   ]
