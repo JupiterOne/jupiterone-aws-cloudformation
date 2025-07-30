@@ -509,7 +509,16 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_3" {
         "wafv2:GetIPSet",
         "wafv2:ListIPSets",
         "cognito-idp:DescribeRiskConfiguration",
-        "config:BatchGetResourceConfig"
+        "sso:ListTagsForResource",
+        "bedrock:GetEvaluationJob",
+        "bedrock:GetModelCustomizationJob",
+        "bedrock:ListEvaluationJobs",
+        "bedrock:ListModelCustomizationJobs",
+        "opensearch:DescribeDomains",
+        "opensearch:ListDomainNames",
+        "states:DescribeStateMachine",
+        "states:ListStateMachines",
+        "states:ListTagsForResource"
       ]
     }
   ]
