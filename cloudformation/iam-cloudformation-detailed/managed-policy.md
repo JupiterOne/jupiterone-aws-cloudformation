@@ -482,7 +482,11 @@
         "opensearch:ListDomainNames",
         "states:DescribeStateMachine",
         "states:ListStateMachines",
-        "states:ListTagsForResource"
+        "states:ListTagsForResource",
+        "rolesanywhere:GetProfile",
+        "rolesanywhere:GetTrustAnchor",
+        "rolesanywhere:ListProfiles",
+        "rolesanywhere:ListTrustAnchors"
       ]
     }
   ]
