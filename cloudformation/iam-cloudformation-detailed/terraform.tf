@@ -496,6 +496,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_3" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "license-manager:ListLicenses",
         "wafv2:ListWebACLs",
         "workspaces:DescribeTags",
         "workspaces:DescribeWorkspaceBundles",
