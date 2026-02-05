@@ -460,6 +460,7 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "license-manager:ListLicenses",
         "wafv2:ListWebACLs",
         "workspaces:DescribeTags",
         "workspaces:DescribeWorkspaceBundles",
