@@ -496,6 +496,13 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_3" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
+        "codedeploy:BatchGetApplications",
+        "codedeploy:BatchGetDeploymentGroups",
+        "codedeploy:GetDeploymentConfig",
+        "codedeploy:ListApplications",
+        "codedeploy:ListDeploymentConfigs",
+        "codedeploy:ListDeploymentGroups",
+        "codedeploy:ListTagsForResource",
         "license-manager:ListLicenses",
         "wafv2:ListWebACLs",
         "workspaces:DescribeTags",
