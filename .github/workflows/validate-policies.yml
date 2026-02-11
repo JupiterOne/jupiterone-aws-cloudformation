@@ -1,0 +1,35 @@
+name: Validate IAM Policies
+
+on:
+  pull_request:
+    paths:
+      - 'cloudformation/**/cloudformation-template.json'
+  push:
+    branches:
+      - main
+    paths:
+      - 'cloudformation/**/cloudformation-template.json'
+
+jobs:
+  validate-policy-size:
+    name: Validate Policy Size
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate IAM policy sizes
+        run: pnpm validate:policies
