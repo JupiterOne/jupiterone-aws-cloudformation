@@ -7,31 +7,25 @@
     "url": "https://github.com/JupiterOne/jupiterone-aws-cloudformation"
   },
   "license": "MIT",
-  "main": "index.js",
   "scripts": {
-    "precommit": "lint-staged",
+    "prepare": "husky",
     "prettier": "prettier ./**/*.{js,md,json} *.js --write",
-    "validate:policies": "npx tsx scripts/validate-policy-size.ts"
+    "validate:policies": "tsx scripts/validate-policy-size.ts"
   },
   "author": "JupiterOne <dev@jupiterone.io>",
   "bugs": {
     "url": "https://github.com/jupiterone/jupiterone-aws-cloudformation/issues"
   },
   "lint-staged": {
-    "*.{js,md,json}": [
-      "prettier --write",
-      "git add"
-    ],
-    "**/cloudformation-template.json": [
-      "npx tsx scripts/validate-policy-size.ts"
-    ]
+    "*.{js,md,json}": "prettier --write",
+    "**/cloudformation-template.json": "tsx scripts/validate-policy-size.ts"
   },
   "homepage": "https://github.com/jupiterone/jupiterone-aws-cloudformation#readme",
   "devDependencies": {
     "@types/node": "^20.11.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.2.0",
-    "prettier": "^1.13.5",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.2.0",
     "tsx": "^4.7.0",
     "typescript": "^5.3.0"
   }
