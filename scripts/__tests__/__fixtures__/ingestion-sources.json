@@ -1,0 +1,60 @@
+{
+  "ingestionSourcesConfig": [
+    {
+      "id": "create-aws-account",
+      "title": "AWS Account",
+      "childIngestionSourcesMetadata": [
+        {
+          "id": "fetch-aws-organization",
+          "permissions": [
+            "organizations:DescribeOrganization",
+            "organizations:ListAccounts",
+            "organizations:ListTagsForResource"
+          ],
+          "roles": ["organizations:Describe*", "organizations:List*"]
+        },
+        {
+          "id": "fetch-iam-users",
+          "permissions": ["iam:ListUsers", "iam:GetUser", "iam:ListAccessKeys"],
+          "roles": ["iam:Get*", "iam:List*"]
+        }
+      ]
+    },
+    {
+      "id": "fetch-ec2-vpcs",
+      "childIngestionSourcesMetadata": [
+        {
+          "id": "fetch-ec2-vpcs",
+          "permissions": ["ec2:DescribeVpcs", "ec2:DescribeFlowLogs"],
+          "roles": ["ec2:Describe*"]
+        }
+      ]
+    },
+    {
+      "id": "fetch-apigateway-rest-apis",
+      "childIngestionSourcesMetadata": [
+        {
+          "id": "fetch-apigateway-rest-apis",
+          "permissions": [
+            "apigateway:GET arn:aws:apigateway:*::/restapis",
+            "apigateway:GET arn:aws:apigateway:*::/restapis/*/stages"
+          ],
+          "roles": ["apigateway:GET arn:aws:apigateway:*::/*"]
+        },
+        {
+          "id": "fetch-apigatewayv2-apis",
+          "permissions": [
+            "apigateway:GET arn:aws:apigateway:*::/apis",
+            "apigateway:GET arn:aws:apigateway:*::/apis/*/integrations"
+          ],
+          "roles": ["apigateway:GET arn:aws:apigateway:*::/*"]
+        }
+      ]
+    },
+    {
+      "id": "duplicate-source",
+      "permissions": ["ec2:DescribeVpcs"],
+      "roles": ["ec2:Describe*"]
+    }
+  ]
+}

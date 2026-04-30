@@ -1,0 +1,61 @@
+name: Sync IAM Permissions Scheduled Update
+
+on:
+  # Should run every time a PR is opened (validation only - no commit)
+  pull_request:
+  # Allows running this workflow manually from the Actions tab
+  workflow_dispatch:
+  schedule:
+    # Run once every eight hours
+    - cron: '0 */8 * * *'
+
+jobs:
+  sync-permissions:
+    runs-on: scaleset-jupiterone-infra-arm64
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          # Use the automation PAT so the resulting commit can re-trigger CI
+          # (commits made with the default GITHUB_TOKEN do not trigger workflows).
+          token: ${{ secrets.AUTO_GITHUB_PAT_TOKEN }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '10'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate (PR only - never writes)
+        if: github.event_name == 'pull_request'
+        run: pnpm sync:permissions:check
+
+      - name: Regenerate templates from upstream ingestion sources
+        if: github.event_name != 'pull_request'
+        run: pnpm sync:permissions
+
+      - name: Validate IAM policy sizes
+        if: github.event_name != 'pull_request'
+        run: pnpm validate:policies
+
+      - name: Commit changes
+        if: github.event_name != 'pull_request'
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Sync IAM permissions from upstream ingestion sources'
+          # Restrict the commit to the cloudformation/ tree so no other files
+          # accidentally ride along.
+          add: "['cloudformation/']"
+          author_name: j1-internal-automation
+          author_email: internal-automation.bot@jupiterone.com

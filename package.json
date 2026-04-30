@@ -10,7 +10,11 @@
   "scripts": {
     "prepare": "husky",
     "prettier": "prettier ./**/*.{js,md,json} *.js --write",
-    "validate:policies": "tsx scripts/validate-policy-size.ts"
+    "validate:policies": "tsx scripts/validate-policy-size.ts",
+    "sync:permissions": "tsx scripts/sync-permissions.ts",
+    "sync:permissions:check": "tsx scripts/sync-permissions.ts --check",
+    "test": "node --import tsx --test scripts/__tests__/*.test.ts",
+    "typecheck": "tsc --noEmit"
   },
   "author": "JupiterOne <dev@jupiterone.io>",
   "bugs": {

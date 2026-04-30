@@ -12,49 +12,100 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
-        "batch:Describe*",
+        "access-analyzer:List*",
+        "auditmanager:Get*",
+        "backup:List*",
         "batch:List*",
+        "cloudfront:List*",
         "cloudhsm:Describe*",
-        "cloudhsm:List*",
-        "cloudwatch:GetMetricData",
-        "codebuild:BatchGetReportGroups",
-        "codebuild:GetResourcePolicy",
-        "codebuild:List*",
-        "ec2:GetEbsDefaultKmsKeyId",
+        "cloudtrail:Describe*",
+        "cloudtrail:Get*",
+        "cloudwatch:Get*",
+        "codedeploy:BatchGet*",
+        "codedeploy:List*",
+        "cognito-idp:Describe*",
+        "cognito-idp:List*",
+        "datasync:Describe*",
+        "datasync:List*",
+        "detective:Get*",
+        "detective:List*",
+        "devops-guru:List*",
+        "ec2:Describe*",
+        "ecr:Describe*",
+        "ecs:Describe*",
+        "ecs:List*",
         "eks:Describe*",
         "eks:List*",
+        "elasticache:Describe*",
+        "elasticache:List*",
+        "elasticfilesystem:Describe*",
+        "elasticloadbalancing:Describe*",
+        "elasticmapreduce:List*",
         "fms:List*",
-        "glacier:List*",
-        "glue:GetJob",
-        "glue:GetTags",
-        "glue:List*",
-        "lambda:GetFunction",
+        "globalaccelerator:List*",
+        "guardduty:Get*",
+        "guardduty:List*",
+        "iam:Get*",
+        "iam:List*",
+        "identitystore:List*",
+        "inspector:Describe*",
+        "inspector:List*",
+        "inspector2:List*",
+        "lex:Describe*",
         "lex:List*",
-        "ses:GetConfigurationSet",
-        "ses:GetEmailIdentity",
-        "ses:List*",
-        "sns:GetSubscriptionAttributes",
-        "ssm:GetDocument"
+        "logs:Describe*",
+        "organizations:Describe*",
+        "organizations:List*",
+        "quicksight:Describe*",
+        "quicksight:List*",
+        "ram:Get*",
+        "rds:Describe*",
+        "route53:List*",
+        "route53resolver:List*",
+        "s3:Get*",
+        "s3:List*",
+        "secretsmanager:Describe*",
+        "secretsmanager:Get*",
+        "secretsmanager:List*",
+        "servicediscovery:Get*",
+        "servicediscovery:List*",
+        "ssm:Describe*",
+        "ssm:List*",
+        "sso:Describe*",
+        "sso:Get*",
+        "sso:List*",
+        "storagegateway:Describe*",
+        "storagegateway:List*",
+        "tag:Get*",
+        "transfer:List*",
+        "vpc-lattice:List*",
+        "wafv2:Get*",
+        "wafv2:List*"
       ]
     },
     {
       "Effect": "Allow",
-      "Action": ["apigateway:GET"],
-      "Resource": ["arn:aws-us-gov:apigateway:*::/*"]
+      "Action": [
+        "apigateway:GET"
+      ],
+      "Resource": [
+        "arn:aws-us-gov:apigateway:*::/*"
+      ]
     }
   ]
 }
 EOF
 }
 
-resource "aws_iam_user" "jupiterone_access_user" {
-  name = "jupiterone-access-user"
-}
-
 resource "aws_iam_user_policy_attachment" "jupiterone_security_audit_policy_attachment" {
   user       = "${ aws_iam_user.jupiterone_access_user.name }"
   policy_arn = "${ aws_iam_policy.jupiterone_security_audit_policy.arn }"
 }
+
+resource "aws_iam_user" "jupiterone_access_user" {
+  name = "jupiterone-access-user"
+}
+
 resource "aws_iam_user_policy_attachment" "aws_security_audit_policy_attachment" {
   user       = "${ aws_iam_user.jupiterone_access_user.name }"
   policy_arn = "arn:aws-us-gov:iam::aws:policy/SecurityAudit"
