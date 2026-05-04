@@ -50,9 +50,7 @@ jobs:
 
       - name: Validate (PR only - never writes)
         if: github.event_name == 'pull_request'
-        # Use the checked-in fixture so PR validation does not depend on
-        # the live upstream endpoint being available.
-        run: INGESTION_SOURCES_FILE=scripts/__tests__/__fixtures__/ingestion-sources.json pnpm sync:permissions:check
+        run: pnpm sync:permissions:check
 
       - name: Regenerate templates from upstream ingestion sources
         if: github.event_name != 'pull_request'
