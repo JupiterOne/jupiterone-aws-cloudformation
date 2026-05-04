@@ -1,8 +1,16 @@
 name: Sync IAM Permissions Scheduled Update
 
 on:
-  # Should run every time a PR is opened (validation only - no commit)
+  # Should run every time a PR is opened (validation only - no commit).
+  # Scoped to paths that affect template generation so unrelated PRs are
+  # not charged unnecessary CI minutes.
   pull_request:
+    paths:
+      - 'cloudformation/**'
+      - 'scripts/**'
+      - '.github/workflows/sync-permissions.yml'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
   # Allows running this workflow manually from the Actions tab
   workflow_dispatch:
   schedule:
@@ -11,7 +19,10 @@ on:
 
 jobs:
   sync-permissions:
-    runs-on: scaleset-jupiterone-infra-arm64
+    # Use the public runner for PR validation so fork PRs cannot execute
+    # arbitrary code on the self-hosted runner. The self-hosted runner is
+    # only used for schedule/dispatch where secrets are needed for the commit.
+    runs-on: ${{ github.event_name == 'pull_request' && 'ubuntu-latest' || 'scaleset-jupiterone-infra-arm64' }}
     permissions:
       contents: write
 
@@ -39,7 +50,9 @@ jobs:
 
       - name: Validate (PR only - never writes)
         if: github.event_name == 'pull_request'
-        run: pnpm sync:permissions:check
+        # Use the checked-in fixture so PR validation does not depend on
+        # the live upstream endpoint being available.
+        run: INGESTION_SOURCES_FILE=scripts/__tests__/__fixtures__/ingestion-sources.json pnpm sync:permissions:check
 
       - name: Regenerate templates from upstream ingestion sources
         if: github.event_name != 'pull_request'
@@ -51,7 +64,7 @@ jobs:
 
       - name: Commit changes
         if: github.event_name != 'pull_request'
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5  # v9.1.4
         with:
           message: 'Sync IAM permissions from upstream ingestion sources'
           # Restrict the commit to the cloudformation/ tree so no other files

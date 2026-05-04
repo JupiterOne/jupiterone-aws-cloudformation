@@ -11,7 +11,7 @@
  */
 import { format, resolveConfig } from 'prettier';
 import type { CloudFormationTemplate } from './templates';
-import type { PolicyDocument, PolicyStatement } from './policy';
+import type { PolicyDocument } from './policy';
 
 /**
  * Re-format a generated file with the project's prettier config so output
@@ -104,16 +104,6 @@ function policyToTerraformJson(doc: PolicyDocument): string {
   return JSON.stringify(doc, null, 2);
 }
 
-function statementResourceListEqualsRoot(stmt: PolicyStatement): boolean {
-  return (
-    typeof stmt.Resource === 'string' && stmt.Resource === '*'
-  );
-}
-// `statementResourceListEqualsRoot` is intentionally exported nowhere; it's
-// retained as a structural helper for future renderer tweaks but unused right
-// now — we render PolicyDocument with JSON.stringify directly.
-void statementResourceListEqualsRoot;
-
 interface TerraformRenderOptions {
   /** `role` ⇒ commercial IAM role; `user` ⇒ GovCloud IAM user. */
   principal: 'role' | 'user';
@@ -129,10 +119,7 @@ export function renderTerraform(
   const out: string[] = [];
 
   if (opts.principal === 'role') {
-    const trustArns = JSON.stringify(JUPITERONE_ACCOUNT_ARNS).replace(
-      /","/g,
-      '","',
-    );
+    const trustArns = JSON.stringify(JUPITERONE_ACCOUNT_ARNS);
     out.push(
       `resource "aws_iam_role" "jupiterone" {
   name = "JupiterOne"
@@ -166,7 +153,7 @@ output "aws_iam_role_jupiterone_role_arn" {
   } else {
     out.push(
       `output "aws_iam_user_jupiterone_access_user" {
-  value = "\${aws_iam_role.jupiterone.arn}"
+  value = "\${aws_iam_user.jupiterone_access_user.arn}"
 }
 `,
     );

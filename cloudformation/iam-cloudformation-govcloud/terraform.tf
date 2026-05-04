@@ -1,5 +1,5 @@
 output "aws_iam_user_jupiterone_access_user" {
-  value = "${aws_iam_role.jupiterone.arn}"
+  value = "${aws_iam_user.jupiterone_access_user.arn}"
 }
 
 resource "aws_iam_policy" "jupiterone_security_audit_policy" {

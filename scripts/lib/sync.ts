@@ -44,10 +44,18 @@ export async function syncTemplates(
 ): Promise<FileWrite[]> {
   const perms = extractPermissions(payload);
 
-  if (perms.exactActions.length === 0) {
+  const totalActions =
+    perms.exactActions.length + perms.wildcardActions.length;
+  const MAX_ACTIONS = 600;
+  if (totalActions === 0) {
     throw new Error(
-      'Source payload contained no exact IAM permissions. Refusing to ' +
-        'overwrite templates with an empty action list.',
+      'Source payload contained no IAM permissions. Refusing to overwrite templates.',
+    );
+  }
+  if (totalActions > MAX_ACTIONS) {
+    throw new Error(
+      `Sanity check failed: ${totalActions} actions exceeds the expected ceiling of ${MAX_ACTIONS}. ` +
+        'Verify the upstream source before proceeding.',
     );
   }
 
