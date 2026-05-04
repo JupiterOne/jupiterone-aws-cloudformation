@@ -19,10 +19,7 @@ on:
 
 jobs:
   sync-permissions:
-    # Use the public runner for PR validation so fork PRs cannot execute
-    # arbitrary code on the self-hosted runner. The self-hosted runner is
-    # only used for schedule/dispatch where secrets are needed for the commit.
-    runs-on: ${{ github.event_name == 'pull_request' && 'ubuntu-latest' || 'scaleset-jupiterone-infra-arm64' }}
+    runs-on: ubuntu-latest
     permissions:
       contents: write
 
