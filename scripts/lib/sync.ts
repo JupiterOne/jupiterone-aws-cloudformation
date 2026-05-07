@@ -46,7 +46,7 @@ export async function syncTemplates(
 
   const totalActions =
     perms.exactActions.length + perms.wildcardActions.length;
-  const MAX_ACTIONS = 600;
+  const MAX_ACTIONS = 1500;
   if (totalActions === 0) {
     throw new Error(
       'Source payload contained no IAM permissions. Refusing to overwrite templates.',

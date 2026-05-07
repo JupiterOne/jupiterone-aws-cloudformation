@@ -25,6 +25,15 @@ export interface RawIngestionSource {
 
 export interface RawIngestionSourcesPayload {
   ingestionSourcesConfig?: RawIngestionSource[];
+  /**
+   * Aggregated authorization for the whole integration. The upstream pipeline
+   * publishes this alongside the per-step blocks; reading it ensures we
+   * capture permissions/roles even when individual steps don't declare them.
+   */
+  authorization?: {
+    permissions?: string[];
+    roles?: string[];
+  };
 }
 
 export interface ResourcePermission {
@@ -53,6 +62,10 @@ export interface ExtractedPermissions {
 
 function collectSources(payload: RawIngestionSourcesPayload): RawIngestionSource[] {
   const out: RawIngestionSource[] = [];
+  // Root-level aggregated authorization (set by the upstream build pipeline).
+  if (payload.authorization) {
+    out.push({ authorization: payload.authorization });
+  }
   const visit = (source: RawIngestionSource | undefined) => {
     if (!source) return;
     out.push(source);
