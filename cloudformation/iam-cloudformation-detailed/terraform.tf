@@ -35,19 +35,20 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
     {
       "Effect": "Allow",
       "Resource": [
+        "arn:aws:apigateway:*::/apis",
+        "arn:aws:apigateway:*::/apis/*/authorizers",
+        "arn:aws:apigateway:*::/apis/*/integrations",
+        "arn:aws:apigateway:*::/apis/*/routes",
+        "arn:aws:apigateway:*::/apis/*/stages",
+        "arn:aws:apigateway:*::/domainnames",
         "arn:aws:apigateway:*::/restapis",
         "arn:aws:apigateway:*::/restapis/*/authorizers",
         "arn:aws:apigateway:*::/restapis/*/authorizers/*",
         "arn:aws:apigateway:*::/restapis/*/resources",
         "arn:aws:apigateway:*::/restapis/*/resources/*",
-        "arn:aws:apigateway:*::/domainnames",
         "arn:aws:apigateway:*::/restapis/*/resources/*/methods/*",
         "arn:aws:apigateway:*::/restapis/*/stages",
-        "arn:aws:apigateway:*::/restapis/*/stages/*",
-        "arn:aws:apigateway:*::/apis",
-        "arn:aws:apigateway:*::/apis/*/integrations",
-        "arn:aws:apigateway:*::/apis/*/authorizers",
-        "arn:aws:apigateway:*::/apis/*/routes"
+        "arn:aws:apigateway:*::/restapis/*/stages/*"
       ],
       "Action": "apigateway:GET"
     },
@@ -58,6 +59,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "access-analyzer:ListAnalyzers",
         "access-analyzer:ListFindings",
         "account:GetAlternateContact",
+        "account:GetContactInformation",
         "acm-pca:ListCertificateAuthorities",
         "acm-pca:ListTags",
         "acm:DescribeCertificate",
@@ -65,6 +67,19 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "acm:ListTagsForCertificate",
         "airflow:GetEnvironment",
         "airflow:ListEnvironments",
+        "athena:GetWorkGroup",
+        "athena:ListTagsForResource",
+        "athena:ListWorkGroups",
+        "auditmanager:GetAssessment",
+        "auditmanager:GetAssessmentFramework",
+        "auditmanager:GetControl",
+        "auditmanager:GetDelegations",
+        "auditmanager:GetEvidenceFoldersByAssessmentControl",
+        "auditmanager:GetSettings",
+        "auditmanager:ListAssessmentFrameworks",
+        "auditmanager:ListAssessments",
+        "auditmanager:ListControls",
+        "auditmanager:ListTagsForResource",
         "autoscaling:DescribeAutoScalingGroups",
         "autoscaling:DescribeLaunchConfigurations",
         "autoscaling:DescribePolicies",
@@ -76,10 +91,39 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "backup:ListRecoveryPointsByBackupVault",
         "backup:ListRestoreJobs",
         "backup:ListRestoreTestingPlans",
+        "backup:ListTagsForResource",
         "batch:DescribeComputeEnvironments",
         "batch:DescribeJobDefinitions",
         "batch:DescribeJobQueues",
         "batch:ListJobs",
+        "bedrock-agentcore:GetAgentRuntime",
+        "bedrock-agentcore:GetCodeInterpreter",
+        "bedrock-agentcore:ListAgentRuntimes",
+        "bedrock-agentcore:ListCodeInterpreters",
+        "bedrock:GetAgent",
+        "bedrock:GetAgentActionGroup",
+        "bedrock:GetCustomModel",
+        "bedrock:GetDataSource",
+        "bedrock:GetEvaluationJob",
+        "bedrock:GetFlow",
+        "bedrock:GetGuardrail",
+        "bedrock:GetInferenceProfile",
+        "bedrock:GetKnowledgeBase",
+        "bedrock:GetModelCustomizationJob",
+        "bedrock:GetModelInvocationLoggingConfiguration",
+        "bedrock:GetProvisionedModelThroughput",
+        "bedrock:ListAgentActionGroups",
+        "bedrock:ListAgents",
+        "bedrock:ListCustomModels",
+        "bedrock:ListDataSources",
+        "bedrock:ListEvaluationJobs",
+        "bedrock:ListFlows",
+        "bedrock:ListFoundationModels",
+        "bedrock:ListGuardrails",
+        "bedrock:ListInferenceProfiles",
+        "bedrock:ListKnowledgeBases",
+        "bedrock:ListModelCustomizationJobs",
+        "bedrock:ListProvisionedModelThroughputs",
         "cloudformation:DescribeStacks",
         "cloudformation:ListStacks",
         "cloudfront:GetDistributionConfig",
@@ -103,13 +147,54 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "codecommit:GetRepository",
         "codecommit:ListRepositories",
         "codecommit:ListTagsForResource",
+        "codedeploy:BatchGetApplications",
+        "codedeploy:BatchGetDeploymentGroups",
+        "codedeploy:GetDeploymentConfig",
+        "codedeploy:ListApplications",
+        "codedeploy:ListDeploymentConfigs",
+        "codedeploy:ListDeploymentGroups",
+        "codedeploy:ListTagsForResource",
+        "codeguru-profiler:ListProfilingGroups",
+        "codeguru-reviewer:DescribeRepositoryAssociation",
+        "codeguru-reviewer:ListRepositoryAssociations",
+        "codeguru-reviewer:ListTagsForResource",
+        "codepipeline:GetPipeline",
         "codepipeline:ListPipelines",
+        "cognito-identity:DescribeIdentityPool",
+        "cognito-identity:ListIdentityPools",
+        "cognito-idp:DescribeRiskConfiguration",
         "cognito-idp:DescribeUserPool",
+        "cognito-idp:DescribeUserPoolClient",
+        "cognito-idp:DescribeUserPoolDomain",
+        "cognito-idp:ListUserPoolClients",
         "cognito-idp:ListUserPools",
+        "cognito-idp:ListUsers",
+        "config:BatchGetResourceConfig",
         "config:DescribeComplianceByConfigRule",
         "config:DescribeConfigRules",
         "config:GetComplianceDetailsByConfigRule",
+        "datasync:DescribeLocationEfs",
+        "datasync:DescribeLocationFsxLustre",
+        "datasync:DescribeLocationFsxOntap",
+        "datasync:DescribeLocationFsxOpenZfs",
+        "datasync:DescribeLocationFsxWindows",
+        "datasync:DescribeLocationHdfs",
+        "datasync:DescribeLocationNfs",
+        "datasync:DescribeLocationObjectStorage",
+        "datasync:DescribeLocationS3",
+        "datasync:DescribeLocationSmb",
+        "datasync:DescribeTask",
+        "datasync:ListLocations",
+        "datasync:ListTagsForResource",
+        "datasync:ListTasks",
         "dax:DescribeClusters",
+        "detective:GetInvestigation",
+        "detective:ListGraphs",
+        "detective:ListInvestigations",
+        "detective:ListTagsForResource",
+        "devops-guru:ListAnomaliesForInsight",
+        "devops-guru:ListInsights",
+        "devops-guru:ListNotificationChannels",
         "directconnect:DescribeConnections",
         "directconnect:DescribeDirectConnectGateways",
         "directconnect:DescribeLags",
@@ -128,6 +213,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "ec2:DescribeAddresses",
         "ec2:DescribeCustomerGateways",
         "ec2:DescribeFlowLogs",
+        "ec2:DescribeHosts",
         "ec2:DescribeIamInstanceProfileAssociations",
         "ec2:DescribeImageAttribute",
         "ec2:DescribeImages",
@@ -144,9 +230,33 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "ec2:DescribeRegions",
         "ec2:DescribeRouteTables",
         "ec2:DescribeSecurityGroups",
-        "ec2:DescribeSnapshotAttribute",
+        "ec2:DescribeSnapshotAttribute"
+      ]
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "jupiterone_security_audit_policy_attachment" {
+  role       = "${ aws_iam_role.jupiterone.name }"
+  policy_arn = "${ aws_iam_policy.jupiterone_security_audit_policy.arn }"
+}
+
+resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
+  name = "JupiterOneSecurityAudit2"
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": "*",
+      "Action": [
         "ec2:DescribeSnapshots",
         "ec2:DescribeSubnets",
+        "ec2:DescribeTransitGatewayAttachments",
+        "ec2:DescribeTransitGatewayRouteTables",
         "ec2:DescribeTransitGateways",
         "ec2:DescribeTransitGatewayVpcAttachments",
         "ec2:DescribeVolumes",
@@ -179,6 +289,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "ecs:ListTaskDefinitionFamilies",
         "ecs:ListTasks",
         "eks:DescribeCluster",
+        "eks:DescribeClusterVersions",
         "eks:DescribeNodegroup",
         "eks:ListClusters",
         "eks:ListNodegroups",
@@ -201,6 +312,9 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "elasticmapreduce:DescribeCluster",
         "elasticmapreduce:ListClusters",
         "elasticmapreduce:ListInstances",
+        "emr-serverless:GetApplication",
+        "emr-serverless:ListApplications",
+        "es:DescribeDomains",
         "es:DescribeElasticsearchDomains",
         "es:ListDomainNames",
         "es:ListTags",
@@ -216,6 +330,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "fms:ListResourceSetResources",
         "fms:ListResourceSets",
         "fms:ListTagsForResource",
+        "fsx:DescribeFileSystems",
         "glacier:GetVaultAccessPolicy",
         "glacier:GetVaultLock",
         "glacier:ListTagsForVault",
@@ -234,33 +349,14 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "glue:GetDataCatalogEncryptionSettings",
         "glue:GetDevEndpoint",
         "glue:GetDevEndpoints",
-        "glue:GetJob"
-      ]
-    }
-  ]
-}
-EOF
-}
-
-resource "aws_iam_role_policy_attachment" "jupiterone_security_audit_policy_attachment" {
-  role       = "${ aws_iam_role.jupiterone.name }"
-  policy_arn = "${ aws_iam_policy.jupiterone_security_audit_policy.arn }"
-}
-resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
-  name = "JupiterOneSecurityAudit2"
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Resource": "*",
-      "Action": [
+        "glue:GetJob",
         "glue:GetResourcePolicy",
         "glue:GetSecurityConfigurations",
         "glue:GetTags",
         "glue:ListJobs",
         "glue:ListSessions",
+        "grafana:DescribeWorkspace",
+        "grafana:ListWorkspaces",
         "guardduty:GetDetector",
         "guardduty:GetFindings",
         "guardduty:ListDetectors",
@@ -297,6 +393,7 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "iam:ListRoleTags",
         "iam:ListSAMLProviders",
         "iam:ListServerCertificates",
+        "iam:ListServiceSpecificCredentials",
         "iam:ListUserPolicies",
         "iam:ListUsers",
         "iam:ListUserTags",
@@ -331,14 +428,22 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "lex:DescribeResourcePolicy",
         "lex:ListBotAliases",
         "lex:ListBots",
+        "license-manager:ListLicenses",
+        "license-manager:ListReceivedLicenses",
         "logs:DescribeDestinations",
         "logs:DescribeLogGroups",
+        "logs:DescribeMetricFilters",
         "logs:DescribeSubscriptionFilters",
-        "logs:ListTagsLogGroup",
         "macie2:GetFindings",
         "macie2:ListFindings",
         "mq:DescribeBroker",
         "mq:ListBrokers",
+        "neptune-graph:GetGraph",
+        "neptune-graph:ListGraphs",
+        "neptune-graph:ListPrivateGraphEndpoints",
+        "neptune-graph:ListTagsForResource",
+        "neptune:DescribeDBClusters",
+        "neptune:DescribeDBInstances",
         "network-firewall:DescribeFirewall",
         "network-firewall:DescribeFirewallPolicy",
         "network-firewall:DescribeRuleGroup",
@@ -359,10 +464,34 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "quicksight:DescribeDataSet",
         "quicksight:DescribeDataSource",
         "quicksight:DescribeVpcConnection",
-        "quicksight:ListDashboards",
+        "quicksight:ListDashboards"
+      ]
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "jupiterone_security_audit_policy_attachment_2" {
+  role       = "${ aws_iam_role.jupiterone.name }"
+  policy_arn = "${ aws_iam_policy.jupiterone_security_audit_policy_2.arn }"
+}
+
+resource "aws_iam_policy" "jupiterone_security_audit_policy_3" {
+  name = "JupiterOneSecurityAudit3"
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Resource": "*",
+      "Action": [
         "quicksight:ListDataSets",
         "quicksight:ListDataSources",
         "quicksight:ListVpcConnections",
+        "ram:GetResourceShareInvitations",
+        "ram:GetResourceShares",
         "rds:DescribeDBClusterParameterGroups",
         "rds:DescribeDBClusterParameters",
         "rds:DescribeDBClusters",
@@ -387,6 +516,10 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "redshift:DescribeClusterParameters",
         "redshift:DescribeClusters",
         "redshift:DescribeLoggingStatus",
+        "rolesanywhere:GetProfile",
+        "rolesanywhere:GetTrustAnchor",
+        "rolesanywhere:ListProfiles",
+        "rolesanywhere:ListTrustAnchors",
         "route53:GetHostedZone",
         "route53:ListHostedZones",
         "route53:ListResourceRecordSets",
@@ -415,15 +548,28 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "s3:GetReplicationConfiguration",
         "s3:ListAccessPoints",
         "s3:ListAllMyBuckets",
+        "sagemaker:DescribeEndpoint",
+        "sagemaker:DescribeEndpointConfig",
+        "sagemaker:DescribeModel",
         "sagemaker:DescribeNotebookInstance",
+        "sagemaker:ListEndpoints",
+        "sagemaker:ListModels",
         "sagemaker:ListNotebookInstances",
         "secretsmanager:DescribeSecret",
         "secretsmanager:GetResourcePolicy",
         "secretsmanager:ListSecrets",
+        "secretsmanager:ListSecretVersionIds",
+        "securityhub:DescribeHub",
         "securityhub:DescribeStandards",
         "securityhub:DescribeStandardsControls",
         "securityhub:GetEnabledStandards",
         "securityhub:GetFindings",
+        "servicediscovery:GetInstance",
+        "servicediscovery:GetNamespace",
+        "servicediscovery:GetService",
+        "servicediscovery:ListInstances",
+        "servicediscovery:ListNamespaces",
+        "servicediscovery:ListServices",
         "ses:GetConfigurationSet",
         "ses:GetEmailIdentity",
         "ses:ListConfigurationSets",
@@ -460,119 +606,14 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "ssm:ListInventoryEntries",
         "ssm:ListTagsForResource",
         "sso:DescribePermissionSet",
-        "sso:ListApplications",
-        "sso:ListInstances",
+        "sso:GetInlinePolicyForPermissionSet",
         "sso:ListAccountAssignments",
         "sso:ListAccountAssignmentsForPrincipal",
-        "sso:ListPermissionSets",
-        "tag:GetResources",
-        "transfer:DescribeServer",
-        "transfer:ListServers",
-        "transfer:ListTagsForResource",
-        "transfer:ListUsers",
-        "waf:GetWebACL",
-        "waf:ListWebACLs",
-        "wafv2:GetLoggingConfiguration",
-        "wafv2:GetWebACL",
-        "wafv2:ListResourcesForWebACL"
-      ]
-    }
-  ]
-}
-EOF
-}
-
-resource "aws_iam_role_policy_attachment" "jupiterone_security_audit_policy_attachment_3" {
-  role       = "${ aws_iam_role.jupiterone.name }"
-  policy_arn = "${ aws_iam_policy.jupiterone_security_audit_policy_3.arn }"
-}
-resource "aws_iam_policy" "jupiterone_security_audit_policy_3" {
-  name = "JupiterOneSecurityAudit3"
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Resource": "*",
-      "Action": [
-        "account:GetContactInformation",
-        "auditmanager:GetAssessment",
-        "auditmanager:GetAssessmentFramework",
-        "auditmanager:GetControl",
-        "auditmanager:GetEvidenceFoldersByAssessmentControl",
-        "auditmanager:ListAssessmentFrameworks",
-        "auditmanager:ListAssessments",
-        "auditmanager:ListControls",
-        "auditmanager:ListTagsForResource",
-        "backup:ListTagsForResource",
-        "bedrock-agentcore:GetCodeInterpreter",
-        "bedrock-agentcore:ListCodeInterpreters",
-        "bedrock:GetEvaluationJob",
-        "bedrock:GetModelCustomizationJob",
-        "bedrock:ListEvaluationJobs",
-        "bedrock:ListModelCustomizationJobs",
-        "codedeploy:BatchGetApplications",
-        "codedeploy:BatchGetDeploymentGroups",
-        "codedeploy:GetDeploymentConfig",
-        "codedeploy:ListApplications",
-        "codedeploy:ListDeploymentConfigs",
-        "codedeploy:ListDeploymentGroups",
-        "codedeploy:ListTagsForResource",
-        "codeguru-profiler:ListProfilingGroups",
-        "codeguru-reviewer:DescribeRepositoryAssociation",
-        "codeguru-reviewer:ListRepositoryAssociations",
-        "codeguru-reviewer:ListTagsForResource",
-        "codepipeline:GetPipeline",
-        "cognito-identity:DescribeIdentityPool",
-        "cognito-identity:ListIdentityPools",
-        "cognito-idp:DescribeRiskConfiguration",
-        "cognito-idp:DescribeUserPoolClient",
-        "cognito-idp:DescribeUserPoolDomain",
-        "cognito-idp:ListUserPoolClients",
-        "cognito-idp:ListUsers",
-        "config:BatchGetResourceConfig",
-        "datasync:DescribeLocationEfs",
-        "datasync:DescribeLocationFsxLustre",
-        "datasync:DescribeLocationFsxOntap",
-        "datasync:DescribeLocationFsxOpenZfs",
-        "datasync:DescribeLocationFsxWindows",
-        "datasync:DescribeLocationHdfs",
-        "datasync:DescribeLocationNfs",
-        "datasync:DescribeLocationObjectStorage",
-        "datasync:DescribeLocationS3",
-        "datasync:DescribeLocationSmb",
-        "datasync:DescribeTask",
-        "datasync:ListLocations",
-        "datasync:ListTagsForResource",
-        "datasync:ListTasks",
-        "ec2:DescribeHosts",
-        "eks:DescribeClusterVersions",
-        "fsx:DescribeFileSystems",
-        "grafana:DescribeWorkspace",
-        "grafana:ListWorkspaces",
-        "license-manager:ListLicenses",
-        "logs:DescribeMetricFilters",
-        "opensearch:DescribeDomains",
-        "opensearch:ListDomainNames",
-        "ram:GetResourceShareInvitations",
-        "ram:GetResourceShares",
-        "rolesanywhere:GetProfile",
-        "rolesanywhere:GetTrustAnchor",
-        "rolesanywhere:ListProfiles",
-        "rolesanywhere:ListTrustAnchors",
-        "sagemaker:DescribeModel",
-        "sagemaker:ListModels",
-        "securityhub:DescribeHub",
-        "servicediscovery:GetInstance",
-        "servicediscovery:GetNamespace",
-        "servicediscovery:GetService",
-        "servicediscovery:ListInstances",
-        "servicediscovery:ListNamespaces",
-        "servicediscovery:ListServices",
-        "sso:GetInlinePolicyForPermissionSet",
+        "sso:ListApplications",
         "sso:ListCustomerManagedPolicyReferencesInPermissionSet",
+        "sso:ListInstances",
         "sso:ListManagedPoliciesInPermissionSet",
+        "sso:ListPermissionSets",
         "sso:ListTagsForResource",
         "states:DescribeStateMachine",
         "states:ListStateMachines",
@@ -589,22 +630,36 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_3" {
         "storagegateway:ListTapePools",
         "storagegateway:ListTapes",
         "storagegateway:ListVolumes",
+        "tag:GetResources",
+        "transfer:DescribeServer",
+        "transfer:ListServers",
+        "transfer:ListTagsForResource",
+        "transfer:ListUsers",
         "vpc-lattice:ListListeners",
+        "vpc-lattice:ListServiceNetworks",
         "vpc-lattice:ListServiceNetworkServiceAssociations",
         "vpc-lattice:ListServiceNetworkVpcAssociations",
         "vpc-lattice:ListServiceNetworkVpcEndpointAssociations",
-        "vpc-lattice:ListServiceNetworks",
         "vpc-lattice:ListServices",
         "vpc-lattice:ListTargetGroups",
+        "waf:GetWebACL",
+        "waf:ListWebACLs",
         "wafv2:GetIPSet",
+        "wafv2:GetLoggingConfiguration",
         "wafv2:GetRuleGroup",
+        "wafv2:GetWebACL",
         "wafv2:ListIPSets",
+        "wafv2:ListResourcesForWebACL",
         "wafv2:ListRuleGroups",
         "wafv2:ListTagsForResource",
         "wafv2:ListWebACLs",
         "workspaces:DescribeTags",
         "workspaces:DescribeWorkspaceBundles",
-        "workspaces:DescribeWorkspaces"
+        "workspaces:DescribeWorkspaces",
+        "xray:GetEncryptionConfig",
+        "xray:GetGroups",
+        "xray:ListResourcePolicies",
+        "xray:ListTagsForResource"
       ]
     }
   ]
@@ -615,4 +670,9 @@ EOF
 resource "aws_iam_role_policy_attachment" "jupiterone_security_audit_policy_attachment_3" {
   role       = "${ aws_iam_role.jupiterone.name }"
   policy_arn = "${ aws_iam_policy.jupiterone_security_audit_policy_3.arn }"
+}
+
+resource "aws_iam_role_policy_attachment" "aws_security_audit_policy_attachment" {
+  role       = "${ aws_iam_role.jupiterone.name }"
+  policy_arn = "arn:aws:iam::aws:policy/SecurityAudit"
 }
