@@ -10,6 +10,7 @@ import {
   buildAdditionalTemplate,
   buildDetailedTemplate,
   buildGovCloudTemplate,
+  buildOrganizationTemplate,
   type CloudFormationTemplate,
 } from './templates';
 import {
@@ -34,8 +35,9 @@ export interface SyncOptions {
 interface VariantSpec {
   dir: string;
   template: CloudFormationTemplate;
-  markdown: 'multi' | 'single';
-  terraform: { principal: 'role' | 'user'; partition: 'aws' | 'aws-us-gov' };
+  /** Omitted when the policy is already documented by another variant. */
+  markdown?: 'multi' | 'single';
+  terraform?: { principal: 'role' | 'user'; partition: 'aws' | 'aws-us-gov' };
 }
 
 export async function syncTemplates(
@@ -75,6 +77,11 @@ export async function syncTemplates(
       terraform: { principal: 'role', partition: 'aws' },
     },
     {
+      // Same policy as iam-cloudformation; only the role/policy naming differs.
+      dir: 'cloudformation/iam-cloudformation-organization',
+      template: buildOrganizationTemplate(perms),
+    },
+    {
       dir: 'cloudformation/iam-cloudformation-govcloud',
       template: buildGovCloudTemplate(perms),
       markdown: 'single',
@@ -99,21 +106,25 @@ export async function syncTemplates(
         renderCloudFormationJson(variant.template),
       ),
     });
-    writes.push({
-      path: mdPath,
-      content: await formatWithPrettier(
-        mdPath,
-        renderManagedPolicyMarkdown(variant.template, {
-          layout: variant.markdown,
-        }),
-      ),
-    });
+    if (variant.markdown) {
+      writes.push({
+        path: mdPath,
+        content: await formatWithPrettier(
+          mdPath,
+          renderManagedPolicyMarkdown(variant.template, {
+            layout: variant.markdown,
+          }),
+        ),
+      });
+    }
     // Terraform files aren't formatted by the project's prettier config; we
     // emit them as-is.
-    writes.push({
-      path: tfPath,
-      content: renderTerraform(variant.template, variant.terraform),
-    });
+    if (variant.terraform) {
+      writes.push({
+        path: tfPath,
+        content: renderTerraform(variant.template, variant.terraform),
+      });
+    }
   }
 
   return writes;

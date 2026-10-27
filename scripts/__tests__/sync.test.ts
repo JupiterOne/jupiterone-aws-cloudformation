@@ -12,13 +12,13 @@ const fixture = JSON.parse(
 );
 
 describe('syncTemplates', () => {
-  it('produces nine writes - 3 files for each of 3 variants', async () => {
+  it('produces 3 files for each of 3 variants plus the organization template', async () => {
     const writes = await syncTemplates(fixture, { repoRoot: '/repo' });
-    assert.equal(writes.length, 9);
+    assert.equal(writes.length, 10);
     const filenames = writes.map((w) => w.path.split(sep).pop()!);
     assert.equal(
       filenames.filter((f) => f === 'cloudformation-template.json').length,
-      3,
+      4,
     );
     assert.equal(filenames.filter((f) => f === 'managed-policy.md').length, 3);
     assert.equal(filenames.filter((f) => f === 'terraform.tf').length, 3);

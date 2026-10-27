@@ -7,6 +7,7 @@ import {
   buildAdditionalTemplate,
   buildDetailedTemplate,
   buildGovCloudTemplate,
+  buildOrganizationTemplate,
 } from '../lib/templates';
 import { policyDocumentSize, type PolicyDocument } from '../lib/policy';
 
@@ -172,5 +173,42 @@ describe('buildGovCloudTemplate', () => {
         `expected aws-us-gov partition, got ${r}`,
       );
     }
+  });
+});
+
+describe('buildOrganizationTemplate', () => {
+  it('names the role from the JupiterOneRoleName parameter', () => {
+    const t = buildOrganizationTemplate(perms);
+    assert.deepEqual(t.Resources.JupiterOneRole.Properties?.RoleName, {
+      Ref: 'JupiterOneRoleName',
+    });
+    const param = t.Parameters?.JupiterOneRoleName as { Default: string };
+    assert.equal(param.Default, 'JupiterOne');
+  });
+
+  it('derives the policy name from the role name', () => {
+    const t = buildOrganizationTemplate(perms);
+    assert.deepEqual(
+      t.Resources.JupiterOneSecurityAuditPolicy.Properties?.ManagedPolicyName,
+      { 'Fn::Sub': '${JupiterOneRoleName}-SecurityAudit' },
+    );
+  });
+
+  it('grants the same permissions and trust as the additional template', () => {
+    const org = buildOrganizationTemplate(perms);
+    const additional = buildAdditionalTemplate(perms);
+    assert.deepEqual(
+      org.Resources.JupiterOneSecurityAuditPolicy.Properties?.PolicyDocument,
+      additional.Resources.JupiterOneSecurityAuditPolicy.Properties
+        ?.PolicyDocument,
+    );
+    assert.deepEqual(
+      org.Resources.JupiterOneRole.Properties?.AssumeRolePolicyDocument,
+      additional.Resources.JupiterOneRole.Properties?.AssumeRolePolicyDocument,
+    );
+    assert.deepEqual(
+      org.Parameters?.JupiterOneAwsAccountArns,
+      additional.Parameters?.JupiterOneAwsAccountArns,
+    );
   });
 });

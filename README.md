@@ -10,6 +10,11 @@ accomplished using one of the following methods:
 2.  [Launch JupiterOne IAM CloudFormation Stack using the AWS CLI](#iam-cloudformation-with-aws-cli)
 3.  [Create a Role using the AWS Management Console](#manual-iam-role-creation-with-aws-management-console)
 
+Connecting a whole AWS Organization (the **Configure Organization Accounts**
+option in JupiterOne)? Use the [AWS Organizations](#aws-organizations) setup
+instead: it creates the role with the same name in every account, including the
+management account.
+
 JupiterOne is also capable of processing CloudTrail events. Sending them to
 JupiterOne's AWS account requires an EventBridge event rule, which can be
 configured using one of the following methods:
@@ -126,6 +131,88 @@ stay under the 6,144 non-whitespace character limit. If you have requested a quo
 [Link to Specific Permissions Policy](cloudformation/iam-cloudformation-detailed/managed-policy.md)
 
 [![Launch JupiterOne IAM CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=JupiterOneIntegration&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fjupiterone-prod-us-aws-cloudformation-templates%2Fcloudformation-detailed.json)
+
+### AWS Organizations
+
+When **Configure Organization Accounts** is enabled, JupiterOne creates an
+integration for every member account and assumes the role **with the same name
+and External ID** as the management account's role. The role therefore has to
+exist, with an identical name, in the management account _and_ in every member
+account.
+
+Use the [organization template](cloudformation/iam-cloudformation-organization/cloudformation-template.json)
+for both steps below. Unlike the single-account template, it names the role
+from the `JupiterOneRoleName` parameter (default `JupiterOne`) instead of
+letting CloudFormation generate a name such as
+`JupiterOneIntegration-JupiterOneRole-A1B2C3D4E5F6`, which can never match
+across accounts.
+
+Template URL:
+`https://jupiterone-prod-us-aws-cloudformation-templates.s3.amazonaws.com/iam-cloudformation-organization.json`
+
+Use the External ID and JupiterOne AWS account ARNs shown in JupiterOne when
+you create the integration. They differ by region (for example, EU accounts
+must trust `arn:aws:iam::043196788006:root`), so don't rely on the template
+defaults.
+
+#### 1. Member accounts: StackSet
+
+Create a StackSet with **service-managed permissions** from the management
+account (or a delegated administrator), targeting your organization root or
+the OUs you want to monitor. Service-managed StackSets require
+[trusted access with AWS Organizations](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-activate-trusted-access.html)
+to be activated.
+
+```bash
+aws cloudformation create-stack-set \
+  --stack-set-name JupiterOneIntegration \
+  --template-url https://jupiterone-prod-us-aws-cloudformation-templates.s3.amazonaws.com/iam-cloudformation-organization.json \
+  --permission-model SERVICE_MANAGED \
+  --auto-deployment Enabled=true,RetainStacksOnAccountRemoval=false \
+  --capabilities CAPABILITY_NAMED_IAM \
+  --parameters \
+    ParameterKey=JupiterOneExternalId,ParameterValue=<external-id> \
+    ParameterKey=JupiterOneAwsAccountArns,ParameterValue='"<jupiterone-account-arns>"' \
+    ParameterKey=JupiterOneRoleName,ParameterValue=JupiterOne
+
+aws cloudformation create-stack-instances \
+  --stack-set-name JupiterOneIntegration \
+  --deployment-targets OrganizationalUnitIds=<root-or-ou-id> \
+  --regions us-east-1
+```
+
+Deploy to **one region only**. IAM roles and policies are global, so a second
+region fails with "already exists".
+
+#### 2. Management account: regular stack
+
+AWS never deploys service-managed StackSet instances to the management
+account, even when you target the organization root
+([AWS docs](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-associate-stackset-with-org.html)).
+Create the role there with a regular stack, using **the same template and the
+same parameter values**:
+
+```bash
+aws cloudformation create-stack \
+  --stack-name JupiterOneIntegration \
+  --template-url https://jupiterone-prod-us-aws-cloudformation-templates.s3.amazonaws.com/iam-cloudformation-organization.json \
+  --capabilities CAPABILITY_NAMED_IAM \
+  --parameters \
+    ParameterKey=JupiterOneExternalId,ParameterValue=<external-id> \
+    ParameterKey=JupiterOneAwsAccountArns,ParameterValue='"<jupiterone-account-arns>"' \
+    ParameterKey=JupiterOneRoleName,ParameterValue=JupiterOne
+```
+
+#### 3. In JupiterOne
+
+Configure the AWS integration with the management account's role ARN (the
+stack's `RoleARN` output, for example
+`arn:aws:iam::<management-account-id>:role/JupiterOne`) and enable
+**Configure Organization Accounts**.
+
+If the management account already has a role from the single-account template
+(a name ending in random characters), it doesn't conflict with this stack. Once
+the integration uses the new role ARN, delete the old stack.
 
 ### IAM CloudFormation with AWS CLI
 
@@ -295,7 +382,6 @@ From your AWS Management Console, perform the following steps:
     selected, click **Create rule**.
 
 1.  Enter the following values:
-
     - Name: `jupiterone-cloudtrail-events`
     - Description: `Send CloudTrail Events to JupiterOne`
 
