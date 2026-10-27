@@ -192,12 +192,14 @@ region fails with "already exists".
 AWS never deploys service-managed StackSet instances to the management
 account, even when you target the organization root
 ([AWS docs](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-associate-stackset-with-org.html)).
-Create the role there with a regular stack, using **the same template and the
-same parameter values**:
+Create the role there with a regular stack named `JupiterOneOrganization`,
+using **the same template and the same parameter values**. Don't name it
+`JupiterOneIntegration`: that's the single-account stack name, and creating a
+stack with a name that already exists fails.
 
 ```bash
 aws cloudformation create-stack \
-  --stack-name JupiterOneIntegration \
+  --stack-name JupiterOneOrganization \
   --template-url https://jupiterone-prod-us-aws-cloudformation-templates.s3.amazonaws.com/iam-cloudformation-organization.json \
   --capabilities CAPABILITY_NAMED_IAM \
   --parameters \
@@ -217,9 +219,11 @@ If an account already has an IAM role named `JupiterOne` (for example, created
 manually), the stack fails with "already exists". Either delete that role or
 set `JupiterOneRoleName` to another name, the same in every account.
 
-If the management account already has a role from the single-account template
-(a name ending in random characters), it doesn't conflict with this stack. Once
-the integration uses the new role ARN, delete the old stack.
+If the management account already has the single-account stack (usually named
+`JupiterOneIntegration`), keep it while you set up the organization: its role
+name ends in random characters, so it doesn't conflict with the `JupiterOne`
+role, and the `JupiterOneOrganization` stack has a different name. Once the
+integration uses the new role ARN, delete the old stack.
 
 ### IAM CloudFormation with AWS CLI
 
