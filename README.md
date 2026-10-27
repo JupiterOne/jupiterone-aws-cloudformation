@@ -181,6 +181,9 @@ aws cloudformation create-stack-instances \
   --regions us-east-1
 ```
 
+From a delegated administrator account, add `--call-as DELEGATED_ADMIN` to
+both commands.
+
 Deploy to **one region only**. IAM roles and policies are global, so a second
 region fails with "already exists".
 
@@ -209,6 +212,10 @@ Configure the AWS integration with the management account's role ARN (the
 stack's `RoleARN` output, for example
 `arn:aws:iam::<management-account-id>:role/JupiterOne`) and enable
 **Configure Organization Accounts**.
+
+If an account already has an IAM role named `JupiterOne` (for example, created
+manually), the stack fails with "already exists". Either delete that role or
+set `JupiterOneRoleName` to another name, the same in every account.
 
 If the management account already has a role from the single-account template
 (a name ending in random characters), it doesn't conflict with this stack. Once
