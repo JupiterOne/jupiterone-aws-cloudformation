@@ -1,11 +1,14 @@
 /**
- * Builds the three CloudFormation templates this repository ships:
+ * Builds the four CloudFormation templates this repository ships:
  *
  * - `iam-cloudformation-detailed`: exact action list, partitioned across
  *   multiple `AWS::IAM::ManagedPolicy` resources to fit the 6,144-char limit.
  *   Attached (with `arn:aws:iam::aws:policy/SecurityAudit`) to a single role.
  * - `iam-cloudformation`: a single managed policy of *wildcard* actions plus
  *   one resource-specific statement for `apigateway:GET`. Same role shape.
+ * - `iam-cloudformation-organization`: same policy as `iam-cloudformation`,
+ *   with a fixed, parameterised role name for AWS Organizations (StackSet +
+ *   management account stack).
  * - `iam-cloudformation-govcloud`: same as `iam-cloudformation` but with the
  *   `aws-us-gov` ARN partition and an IAM User (GovCloud lacks the same
  *   cross-account role trust capabilities used in commercial AWS).
@@ -14,6 +17,7 @@
  * hand-maintained templates so the contract toward consumers does not change.
  */
 import {
+  actionsNotCoveredByWildcards,
   type PolicyDocument,
   type PolicyStatement,
   buildDetailedResourceStatements,
@@ -181,11 +185,18 @@ function buildWildcardPolicyDocument(
 ): PolicyDocument {
   const statements: PolicyStatement[] = [];
 
-  if (perms.wildcardActions.length > 0) {
+  // Steps that only declare exact `permissions[]` (no `roles[]` wildcard)
+  // would otherwise be missing here and work only with the detailed template.
+  const actions = [
+    ...perms.wildcardActions,
+    ...actionsNotCoveredByWildcards(perms.exactActions, perms.wildcardActions),
+  ].sort((a, b) => a.localeCompare(b));
+
+  if (actions.length > 0) {
     statements.push({
       Effect: 'Allow',
       Resource: '*',
-      Action: perms.wildcardActions,
+      Action: actions,
     });
   }
 
@@ -227,6 +238,105 @@ export function buildAdditionalTemplate(
     Metadata: J1_AUTH_METADATA,
     Parameters: J1_AUTH_PARAMETERS,
     Resources: resources,
+    Outputs: {
+      RoleARN: {
+        Description: 'ARN of the JupiterOne role',
+        Value: { 'Fn::GetAtt': ['JupiterOneRole', 'Arn'] },
+      },
+    },
+  };
+}
+
+const ORGANIZATION_DESCRIPTION =
+  'CloudFormation Template for JupiterOne AWS Integration IAM (AWS Organizations). ' +
+  'Deploy it as a service-managed StackSet for member accounts and as a regular stack in the management account, ' +
+  'using the same role name and External ID in both. Deploy to a single Region: IAM is global.';
+
+const ORGANIZATION_ROLE_NAME_PARAMETER = {
+  Description:
+    'Name of the IAM role to create. Every account in the organization, including the management account, must use the same name.',
+  Type: 'String',
+  Default: 'JupiterOne',
+  AllowedPattern: '[\\w+=,.@-]{1,64}',
+  ConstraintDescription:
+    'Use 1-64 letters, numbers or +=,.@_- characters (no spaces).',
+} as const;
+
+/**
+ * Organization template: same permissions as the additional template, but
+ * the role and policy get fixed names. Configure Organization Accounts
+ * derives each member account's role ARN from the management account's role
+ * name, so a CloudFormation-generated name (`<stack>-JupiterOneRole-<random>`)
+ * can never match across accounts. The policy name is derived from the role
+ * name so it does not collide with a `JupiterOneSecurityAudit` policy left by
+ * an earlier single-account stack.
+ */
+export function buildOrganizationTemplate(
+  perms: ExtractedPermissions,
+): CloudFormationTemplate {
+  const document = buildWildcardPolicyDocument(perms, 'aws');
+  const policy = managedPolicyResource(
+    'JupiterOneSecurityAudit',
+    document,
+  );
+  const role = roleResource([
+    'arn:aws:iam::aws:policy/SecurityAudit',
+    { Ref: 'JupiterOneSecurityAuditPolicy' },
+  ]);
+  return {
+    AWSTemplateFormatVersion: '2010-09-09',
+    Description: ORGANIZATION_DESCRIPTION,
+    Metadata: {
+      'AWS::CloudFormation::Interface': {
+        ParameterGroups: [
+          {
+            Label: { default: 'JupiterOne Authentication Parameters' },
+            Parameters: [
+              'JupiterOneAwsAccountArns',
+              'JupiterOneExternalId',
+              'JupiterOneRoleName',
+            ],
+          },
+        ],
+        ParameterLabels: {
+          ...J1_AUTH_METADATA['AWS::CloudFormation::Interface'].ParameterLabels,
+          JupiterOneRoleName: {
+            default:
+              'IAM role name (must be identical in every account of the organization)',
+          },
+        },
+      },
+    },
+    Parameters: {
+      ...J1_AUTH_PARAMETERS,
+      // A StackSet puts this stack in every member account; NoEcho keeps the
+      // External ID out of DescribeStacks there, and an empty value would
+      // create a role no AssumeRole call can satisfy.
+      JupiterOneExternalId: {
+        ...J1_AUTH_PARAMETERS.JupiterOneExternalId,
+        NoEcho: true,
+        MinLength: 1,
+      },
+      JupiterOneRoleName: ORGANIZATION_ROLE_NAME_PARAMETER,
+    },
+    Resources: {
+      JupiterOneSecurityAuditPolicy: {
+        ...policy,
+        Properties: {
+          ...policy.Properties,
+          ManagedPolicyName: {
+            'Fn::Sub': '${JupiterOneRoleName}-SecurityAudit',
+          },
+        },
+      },
+      JupiterOneRole: {
+        ...role,
+        Properties: {
+          ...role.Properties,
+          RoleName: { Ref: 'JupiterOneRoleName' },
+        },
+      },
+    },
     Outputs: {
       RoleARN: {
         Description: 'ARN of the JupiterOne role',

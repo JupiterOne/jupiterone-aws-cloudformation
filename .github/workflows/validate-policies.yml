@@ -4,11 +4,13 @@ on:
   pull_request:
     paths:
       - 'cloudformation/**/cloudformation-template.json'
+      - 'scripts/validate-policy-size.ts'
   push:
     branches:
       - main
     paths:
       - 'cloudformation/**/cloudformation-template.json'
+      - 'scripts/validate-policy-size.ts'
 
 jobs:
   validate-policy-size:

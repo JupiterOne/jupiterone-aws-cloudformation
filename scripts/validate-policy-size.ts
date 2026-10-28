@@ -1,8 +1,14 @@
 #!/usr/bin/env npx tsx
 
 /**
- * Validates that IAM policy documents in CloudFormation templates
- * do not exceed AWS's 6,144 non-whitespace character limit.
+ * Validates CloudFormation templates against the AWS limits they can hit:
+ *
+ * - each IAM policy document: 6,144 non-whitespace characters
+ * - managed policies attached to one role or user: 10 (default quota)
+ * - the template itself: 1 MB when referenced by S3 URL, which is how every
+ *   supported path (launch link, `--template-url`, StackSets) deploys it.
+ *   Past 51,200 bytes a direct upload (`--template-body`, console file
+ *   upload) is rejected, so that limit is reported as a warning.
  *
  * Usage:
  *   npx tsx scripts/validate-policy-size.ts [files...]
@@ -14,6 +20,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const POLICY_SIZE_LIMIT = 6144;
+const MANAGED_POLICIES_PER_PRINCIPAL_LIMIT = 10;
+const TEMPLATE_URL_BYTES_LIMIT = 1048576;
+const TEMPLATE_BODY_BYTES_LIMIT = 51200;
 
 interface PolicyDocument {
   Version: string;
@@ -24,6 +33,7 @@ interface CloudFormationResource {
   Type: string;
   Properties?: {
     PolicyDocument?: PolicyDocument;
+    ManagedPolicyArns?: unknown[];
     [key: string]: unknown;
   };
 }
@@ -41,10 +51,39 @@ interface PolicyValidationResult {
   valid: boolean;
 }
 
-interface TemplateValidationResult {
+export interface LimitCheck {
+  name: string;
+  value: number;
+  limit: number;
+  valid: boolean;
+  /** Warnings are reported but don't fail the run. */
+  severity: 'error' | 'warning';
+}
+
+export interface TemplateValidationResult {
   file: string;
   error: string | null;
   policies: PolicyValidationResult[];
+  /** Template size and per-principal attachment counts. */
+  limits: LimitCheck[];
+}
+
+function limitCheck(
+  name: string,
+  value: number,
+  limit: number,
+  severity: LimitCheck['severity'] = 'error'
+): LimitCheck {
+  return { name, value, limit, valid: value <= limit, severity };
+}
+
+/** True when the result has a policy or limit violation that fails the run. */
+export function hasBlockingErrors(result: TemplateValidationResult): boolean {
+  return (
+    result.error !== null ||
+    result.policies.some((p) => !p.valid) ||
+    result.limits.some((l) => !l.valid && l.severity === 'error')
+  );
 }
 
 function findCloudFormationTemplates(dir: string): string[] {
@@ -80,8 +119,14 @@ function validatePolicySize(
   };
 }
 
-function validateTemplate(filePath: string): TemplateValidationResult {
-  const content = fs.readFileSync(filePath, 'utf8');
+export function validateTemplate(filePath: string): TemplateValidationResult {
+  return validateTemplateContent(filePath, fs.readFileSync(filePath, 'utf8'));
+}
+
+export function validateTemplateContent(
+  filePath: string,
+  content: string
+): TemplateValidationResult {
   let template: CloudFormationTemplate;
 
   try {
@@ -92,10 +137,21 @@ function validateTemplate(filePath: string): TemplateValidationResult {
       file: filePath,
       error: `Invalid JSON: ${error}`,
       policies: [],
+      limits: [],
     };
   }
 
   const policies: PolicyValidationResult[] = [];
+  const templateBytes = Buffer.byteLength(content, 'utf8');
+  const limits: LimitCheck[] = [
+    limitCheck('template size (bytes)', templateBytes, TEMPLATE_URL_BYTES_LIMIT),
+    limitCheck(
+      'template size for direct upload (bytes)',
+      templateBytes,
+      TEMPLATE_BODY_BYTES_LIMIT,
+      'warning'
+    ),
+  ];
   const resources = template.Resources ?? {};
 
   for (const [resourceName, resource] of Object.entries(resources)) {
@@ -105,12 +161,23 @@ function validateTemplate(filePath: string): TemplateValidationResult {
         policies.push(validatePolicySize(resourceName, policyDocument));
       }
     }
+    const attached = resource.Properties?.ManagedPolicyArns;
+    if (Array.isArray(attached)) {
+      limits.push(
+        limitCheck(
+          `${resourceName} managed policies`,
+          attached.length,
+          MANAGED_POLICIES_PER_PRINCIPAL_LIMIT
+        )
+      );
+    }
   }
 
   return {
     file: filePath,
     error: null,
     policies,
+    limits,
   };
 }
 
@@ -143,14 +210,8 @@ function main(): void {
     const result = validateTemplate(file);
     results.push(result);
 
-    if (result.error) {
+    if (hasBlockingErrors(result)) {
       hasErrors = true;
-    } else {
-      for (const policy of result.policies) {
-        if (!policy.valid) {
-          hasErrors = true;
-        }
-      }
     }
   }
 
@@ -162,6 +223,17 @@ function main(): void {
     if (result.error) {
       console.log(`  ERROR: ${result.error}\n`);
       continue;
+    }
+
+    for (const check of result.limits) {
+      const status = check.valid
+        ? 'OK'
+        : check.severity === 'warning'
+          ? 'WARNING'
+          : 'OVER LIMIT';
+      console.log(
+        `  ${check.name}: ${check.value} of ${check.limit} - ${status}`
+      );
     }
 
     if (result.policies.length === 0) {
@@ -186,18 +258,25 @@ function main(): void {
     (sum, r) => sum + r.policies.filter((p) => !p.valid).length,
     0
   );
+  const invalidLimits = results.reduce(
+    (sum, r) =>
+      sum + r.limits.filter((l) => !l.valid && l.severity === 'error').length,
+    0
+  );
 
   if (hasErrors) {
     console.log(
-      `\nFAILED: ${invalidPolicies} of ${totalPolicies} policies exceed the size limit.`
+      `\nFAILED: ${invalidPolicies} of ${totalPolicies} policies exceed the size limit; ${invalidLimits} template size or attachment limit(s) exceeded.`
     );
     process.exit(1);
   } else {
     console.log(
-      `\nPASSED: All ${totalPolicies} policies are within the size limit.`
+      `\nPASSED: All ${totalPolicies} policies, template sizes and attachment counts are within AWS limits.`
     );
     process.exit(0);
   }
 }
 
-main();
+if (require.main === module) {
+  main();
+}

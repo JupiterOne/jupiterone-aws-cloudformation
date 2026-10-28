@@ -124,6 +124,24 @@ function collapseResourceMap(
     .sort((a, b) => a.action.localeCompare(b.action));
 }
 
+/**
+ * Actions the integration can use but the templates must not grant by
+ * default because they read customer data, not configuration.
+ *
+ * `cassandra:Select`: Amazon Keyspaces authorizes `GetTable` and
+ * `ListTagsForResource` with `Select` on the table itself, so there is no
+ * metadata-only grant; it also lets the role read every table's rows. Both
+ * Keyspaces steps are disabled by default, and the README explains how to add
+ * it when enabling them.
+ */
+export const DATA_ACCESS_ACTIONS: ReadonlySet<string> = new Set([
+  'cassandra:Select',
+]);
+
+function isDataAccessAction(action: string): boolean {
+  return DATA_ACCESS_ACTIONS.has(action);
+}
+
 export function extractPermissions(
   payload: RawIngestionSourcesPayload,
 ): ExtractedPermissions {
@@ -136,7 +154,7 @@ export function extractPermissions(
     for (const raw of getPermissions(source)) {
       if (!raw) continue;
       const { action, resource } = splitActionResource(raw);
-      if (!action) continue;
+      if (!action || isDataAccessAction(action)) continue;
       if (resource) {
         if (!resourceMap.has(action)) resourceMap.set(action, new Set());
         resourceMap.get(action)!.add(resource);
@@ -149,7 +167,7 @@ export function extractPermissions(
     for (const raw of getRoles(source)) {
       if (!raw) continue;
       const { action, resource } = splitActionResource(raw);
-      if (!action) continue;
+      if (!action || isDataAccessAction(action)) continue;
       if (resource) {
         // `roles[]` resource form is the broad-ARN catch-all used by the
         // wildcard templates (e.g. `apigateway:GET arn:aws:apigateway:*::/*`).

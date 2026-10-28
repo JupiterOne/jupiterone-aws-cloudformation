@@ -161,3 +161,26 @@ export function rewriteArnPartition(
     Resource: Array.isArray(s.Resource) ? s.Resource.map(swap) : swap(s.Resource),
   }));
 }
+
+function wildcardToRegExp(pattern: string): RegExp {
+  const escaped = pattern
+    .split('*')
+    .map((part) => part.replace(/[.+?^${}()|[\]\\]/g, '\\$&'))
+    .join('.*');
+  // IAM action matching is case-insensitive.
+  return new RegExp(`^${escaped}$`, 'i');
+}
+
+/**
+ * Exact actions that no wildcard pattern matches, e.g. a step that declares
+ * `servicecatalog:ListPortfolios` in `permissions[]` but nothing in `roles[]`.
+ */
+export function actionsNotCoveredByWildcards(
+  exactActions: string[],
+  wildcardActions: string[],
+): string[] {
+  const patterns = wildcardActions.map(wildcardToRegExp);
+  return exactActions.filter(
+    (action) => !patterns.some((pattern) => pattern.test(action)),
+  );
+}
