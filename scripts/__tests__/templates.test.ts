@@ -9,7 +9,11 @@ import {
   buildGovCloudTemplate,
   buildOrganizationTemplate,
 } from '../lib/templates';
-import { policyDocumentSize, type PolicyDocument } from '../lib/policy';
+import {
+  actionsNotCoveredByWildcards,
+  policyDocumentSize,
+  type PolicyDocument,
+} from '../lib/policy';
 
 const fixture = JSON.parse(
   readFileSync(
@@ -186,6 +190,16 @@ describe('buildOrganizationTemplate', () => {
     assert.equal(param.Default, 'JupiterOne');
   });
 
+  it('requires a non-empty, masked External ID', () => {
+    const t = buildOrganizationTemplate(perms);
+    const param = t.Parameters?.JupiterOneExternalId as {
+      NoEcho: boolean;
+      MinLength: number;
+    };
+    assert.equal(param.NoEcho, true);
+    assert.equal(param.MinLength, 1);
+  });
+
   it('derives the policy name from the role name', () => {
     const t = buildOrganizationTemplate(perms);
     assert.deepEqual(
@@ -209,6 +223,57 @@ describe('buildOrganizationTemplate', () => {
     assert.deepEqual(
       org.Parameters?.JupiterOneAwsAccountArns,
       additional.Parameters?.JupiterOneAwsAccountArns,
+    );
+  });
+});
+
+describe('wildcard template coverage', () => {
+  function wildcardTemplateActions(
+    t: ReturnType<typeof buildAdditionalTemplate>,
+  ): string[] {
+    const doc = t.Resources.JupiterOneSecurityAuditPolicy.Properties
+      ?.PolicyDocument as PolicyDocument;
+    return doc.Statement.flatMap((s) =>
+      Array.isArray(s.Action) ? s.Action : [s.Action],
+    );
+  }
+
+  it('grants every action the detailed template grants', () => {
+    for (const t of [
+      buildAdditionalTemplate(perms),
+      buildOrganizationTemplate(perms),
+      buildGovCloudTemplate(perms),
+    ]) {
+      assert.deepEqual(
+        actionsNotCoveredByWildcards(
+          perms.exactActions,
+          wildcardTemplateActions(t),
+        ),
+        [],
+      );
+    }
+  });
+
+  it('adds exact actions that no declared wildcard matches', () => {
+    const t = buildAdditionalTemplate({
+      ...perms,
+      exactActions: ['ec2:DescribeVpcs', 'servicecatalog:ListPortfolios'],
+      wildcardActions: ['ec2:Describe*'],
+    });
+    const actions = wildcardTemplateActions(t);
+    assert.ok(actions.includes('servicecatalog:ListPortfolios'));
+    assert.ok(!actions.includes('ec2:DescribeVpcs'));
+  });
+});
+
+describe('actionsNotCoveredByWildcards', () => {
+  it('matches IAM wildcards case-insensitively', () => {
+    assert.deepEqual(
+      actionsNotCoveredByWildcards(
+        ['ec2:describevpcs', 's3:GetObject', 'outposts:ListSites'],
+        ['ec2:Describe*', 's3:Get*'],
+      ),
+      ['outposts:ListSites'],
     );
   });
 });

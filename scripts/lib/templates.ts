@@ -17,6 +17,7 @@
  * hand-maintained templates so the contract toward consumers does not change.
  */
 import {
+  actionsNotCoveredByWildcards,
   type PolicyDocument,
   type PolicyStatement,
   buildDetailedResourceStatements,
@@ -184,11 +185,18 @@ function buildWildcardPolicyDocument(
 ): PolicyDocument {
   const statements: PolicyStatement[] = [];
 
-  if (perms.wildcardActions.length > 0) {
+  // Steps that only declare exact `permissions[]` (no `roles[]` wildcard)
+  // would otherwise be missing here and work only with the detailed template.
+  const actions = [
+    ...perms.wildcardActions,
+    ...actionsNotCoveredByWildcards(perms.exactActions, perms.wildcardActions),
+  ].sort((a, b) => a.localeCompare(b));
+
+  if (actions.length > 0) {
     statements.push({
       Effect: 'Allow',
       Resource: '*',
-      Action: perms.wildcardActions,
+      Action: actions,
     });
   }
 
@@ -301,6 +309,14 @@ export function buildOrganizationTemplate(
     },
     Parameters: {
       ...J1_AUTH_PARAMETERS,
+      // A StackSet puts this stack in every member account; NoEcho keeps the
+      // External ID out of DescribeStacks there, and an empty value would
+      // create a role no AssumeRole call can satisfy.
+      JupiterOneExternalId: {
+        ...J1_AUTH_PARAMETERS.JupiterOneExternalId,
+        NoEcho: true,
+        MinLength: 1,
+      },
       JupiterOneRoleName: ORGANIZATION_ROLE_NAME_PARAMETER,
     },
     Resources: {
@@ -316,8 +332,8 @@ export function buildOrganizationTemplate(
       JupiterOneRole: {
         ...role,
         Properties: {
-          RoleName: { Ref: 'JupiterOneRoleName' },
           ...role.Properties,
+          RoleName: { Ref: 'JupiterOneRoleName' },
         },
       },
     },

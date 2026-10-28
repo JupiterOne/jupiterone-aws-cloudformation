@@ -147,13 +147,19 @@ letting CloudFormation generate a name such as
 `JupiterOneIntegration-JupiterOneRole-A1B2C3D4E5F6`, which can never match
 across accounts.
 
-Template URL:
-`https://jupiterone-prod-us-aws-cloudformation-templates.s3.amazonaws.com/iam-cloudformation-organization.json`
+Use the template URL for your JupiterOne region. The **AWS Organization** tab
+in the integration's **Setup instructions** shows it, along with your External
+ID and JupiterOne AWS account ARNs:
 
-Use the External ID and JupiterOne AWS account ARNs shown in JupiterOne when
-you create the integration. They differ by region (for example, EU accounts
-must trust `arn:aws:iam::043196788006:root`), so don't rely on the template
-defaults.
+| JupiterOne region | Template URL                                                                                                    |
+| ----------------- | --------------------------------------------------------------------------------------------------------------- |
+| US                | `https://jupiterone-prod-us-aws-cloudformation-templates.s3.amazonaws.com/iam-cloudformation-organization.json` |
+| EU                | `https://jupiterone-prod-eu-aws-cloudformation-templates.s3.amazonaws.com/iam-cloudformation-organization.json` |
+
+Always set `JupiterOneExternalId` and `JupiterOneAwsAccountArns` to the values
+shown in JupiterOne. The StackSet console can't prefill parameters, and the
+template default trusts a single JupiterOne account, which is not enough in
+every region.
 
 #### 1. Member accounts: StackSet
 
@@ -166,7 +172,7 @@ to be activated.
 ```bash
 aws cloudformation create-stack-set \
   --stack-set-name JupiterOneIntegration \
-  --template-url https://jupiterone-prod-us-aws-cloudformation-templates.s3.amazonaws.com/iam-cloudformation-organization.json \
+  --template-url <template-url> \
   --permission-model SERVICE_MANAGED \
   --auto-deployment Enabled=true,RetainStacksOnAccountRemoval=false \
   --capabilities CAPABILITY_NAMED_IAM \
@@ -200,7 +206,7 @@ stack with a name that already exists fails.
 ```bash
 aws cloudformation create-stack \
   --stack-name JupiterOneOrganization \
-  --template-url https://jupiterone-prod-us-aws-cloudformation-templates.s3.amazonaws.com/iam-cloudformation-organization.json \
+  --template-url <template-url> \
   --capabilities CAPABILITY_NAMED_IAM \
   --parameters \
     ParameterKey=JupiterOneExternalId,ParameterValue=<external-id> \

@@ -5,9 +5,10 @@
  *
  * - each IAM policy document: 6,144 non-whitespace characters
  * - managed policies attached to one role or user: 10 (default quota)
- * - the template itself: 51,200 bytes, the most CloudFormation accepts when
- *   the file is uploaded directly (`--template-body`, console upload)
- *   instead of referenced by S3 URL
+ * - the template itself: 1 MB when referenced by S3 URL, which is how every
+ *   supported path (launch link, `--template-url`, StackSets) deploys it.
+ *   Past 51,200 bytes a direct upload (`--template-body`, console file
+ *   upload) is rejected, so that limit is reported as a warning.
  *
  * Usage:
  *   npx tsx scripts/validate-policy-size.ts [files...]
@@ -20,6 +21,7 @@ import * as path from 'path';
 
 const POLICY_SIZE_LIMIT = 6144;
 const MANAGED_POLICIES_PER_PRINCIPAL_LIMIT = 10;
+const TEMPLATE_URL_BYTES_LIMIT = 1048576;
 const TEMPLATE_BODY_BYTES_LIMIT = 51200;
 
 interface PolicyDocument {
@@ -49,14 +51,16 @@ interface PolicyValidationResult {
   valid: boolean;
 }
 
-interface LimitCheck {
+export interface LimitCheck {
   name: string;
   value: number;
   limit: number;
   valid: boolean;
+  /** Warnings are reported but don't fail the run. */
+  severity: 'error' | 'warning';
 }
 
-interface TemplateValidationResult {
+export interface TemplateValidationResult {
   file: string;
   error: string | null;
   policies: PolicyValidationResult[];
@@ -64,8 +68,22 @@ interface TemplateValidationResult {
   limits: LimitCheck[];
 }
 
-function limitCheck(name: string, value: number, limit: number): LimitCheck {
-  return { name, value, limit, valid: value <= limit };
+function limitCheck(
+  name: string,
+  value: number,
+  limit: number,
+  severity: LimitCheck['severity'] = 'error'
+): LimitCheck {
+  return { name, value, limit, valid: value <= limit, severity };
+}
+
+/** True when the result has a policy or limit violation that fails the run. */
+export function hasBlockingErrors(result: TemplateValidationResult): boolean {
+  return (
+    result.error !== null ||
+    result.policies.some((p) => !p.valid) ||
+    result.limits.some((l) => !l.valid && l.severity === 'error')
+  );
 }
 
 function findCloudFormationTemplates(dir: string): string[] {
@@ -101,8 +119,14 @@ function validatePolicySize(
   };
 }
 
-function validateTemplate(filePath: string): TemplateValidationResult {
-  const content = fs.readFileSync(filePath, 'utf8');
+export function validateTemplate(filePath: string): TemplateValidationResult {
+  return validateTemplateContent(filePath, fs.readFileSync(filePath, 'utf8'));
+}
+
+export function validateTemplateContent(
+  filePath: string,
+  content: string
+): TemplateValidationResult {
   let template: CloudFormationTemplate;
 
   try {
@@ -118,11 +142,14 @@ function validateTemplate(filePath: string): TemplateValidationResult {
   }
 
   const policies: PolicyValidationResult[] = [];
+  const templateBytes = Buffer.byteLength(content, 'utf8');
   const limits: LimitCheck[] = [
+    limitCheck('template size (bytes)', templateBytes, TEMPLATE_URL_BYTES_LIMIT),
     limitCheck(
-      'template size (bytes)',
-      Buffer.byteLength(content, 'utf8'),
-      TEMPLATE_BODY_BYTES_LIMIT
+      'template size for direct upload (bytes)',
+      templateBytes,
+      TEMPLATE_BODY_BYTES_LIMIT,
+      'warning'
     ),
   ];
   const resources = template.Resources ?? {};
@@ -183,14 +210,8 @@ function main(): void {
     const result = validateTemplate(file);
     results.push(result);
 
-    if (result.error) {
+    if (hasBlockingErrors(result)) {
       hasErrors = true;
-    } else {
-      for (const check of [...result.policies, ...result.limits]) {
-        if (!check.valid) {
-          hasErrors = true;
-        }
-      }
     }
   }
 
@@ -205,7 +226,11 @@ function main(): void {
     }
 
     for (const check of result.limits) {
-      const status = check.valid ? 'OK' : 'OVER LIMIT';
+      const status = check.valid
+        ? 'OK'
+        : check.severity === 'warning'
+          ? 'WARNING'
+          : 'OVER LIMIT';
       console.log(
         `  ${check.name}: ${check.value} of ${check.limit} - ${status}`
       );
@@ -234,7 +259,8 @@ function main(): void {
     0
   );
   const invalidLimits = results.reduce(
-    (sum, r) => sum + r.limits.filter((l) => !l.valid).length,
+    (sum, r) =>
+      sum + r.limits.filter((l) => !l.valid && l.severity === 'error').length,
     0
   );
 
@@ -251,4 +277,6 @@ function main(): void {
   }
 }
 
-main();
+if (require.main === module) {
+  main();
+}
