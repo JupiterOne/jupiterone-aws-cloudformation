@@ -151,7 +151,6 @@
         "bedrock:ListModelInvocationJobs",
         "bedrock:ListProvisionedModelThroughputs",
         "bedrock:ListTagsForResource",
-        "cassandra:Select",
         "cloudformation:DescribeStacks",
         "cloudformation:ListStacks",
         "cloudfront:GetDistributionConfig",
@@ -198,7 +197,8 @@
         "codeguru-reviewer:DescribeRepositoryAssociation",
         "codeguru-reviewer:ListRepositoryAssociations",
         "codeguru-reviewer:ListTagsForResource",
-        "codepipeline:GetPipeline"
+        "codepipeline:GetPipeline",
+        "codepipeline:ListPipelines"
       ]
     }
   ]
@@ -215,7 +215,6 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
-        "codepipeline:ListPipelines",
         "cognito-identity:DescribeIdentityPool",
         "cognito-identity:ListIdentityPools",
         "cognito-idp:DescribeRiskConfiguration",
@@ -411,7 +410,8 @@
         "guardduty:GetFindings",
         "guardduty:ListDetectors",
         "guardduty:ListFindings",
-        "guardduty:ListOrganizationAdminAccounts"
+        "guardduty:ListOrganizationAdminAccounts",
+        "guardduty:ListPublishingDestinations"
       ]
     }
   ]
@@ -428,7 +428,6 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
-        "guardduty:ListPublishingDestinations",
         "health:DescribeAffectedEntities",
         "health:DescribeEventDetails",
         "health:DescribeEvents",
@@ -627,7 +626,9 @@
         "rds:DescribeDBProxyTargets",
         "rds:DescribeDBSnapshots",
         "rds:DescribeDBSubnetGroups",
-        "rds:DescribeOptionGroups"
+        "rds:DescribeOptionGroups",
+        "redshift-serverless:ListEndpointAccess",
+        "redshift-serverless:ListNamespaces"
       ]
     }
   ]
@@ -644,8 +645,6 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
-        "redshift-serverless:ListEndpointAccess",
-        "redshift-serverless:ListNamespaces",
         "redshift-serverless:ListRecoveryPoints",
         "redshift-serverless:ListSnapshots",
         "redshift-serverless:ListTagsForResource",
@@ -832,7 +831,8 @@
         "transfer:ListUsers",
         "vpc-lattice:ListListeners",
         "vpc-lattice:ListServiceNetworks",
-        "vpc-lattice:ListServiceNetworkServiceAssociations"
+        "vpc-lattice:ListServiceNetworkServiceAssociations",
+        "vpc-lattice:ListServiceNetworkVpcAssociations"
       ]
     }
   ]
@@ -849,7 +849,6 @@
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
-        "vpc-lattice:ListServiceNetworkVpcAssociations",
         "vpc-lattice:ListServiceNetworkVpcEndpointAssociations",
         "vpc-lattice:ListServices",
         "vpc-lattice:ListTargetGroups",

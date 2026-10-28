@@ -73,7 +73,6 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "bedrock-agentcore:List*",
         "bedrock:Get*",
         "bedrock:List*",
-        "cassandra:Select",
         "cloudformation:Describe*",
         "cloudformation:List*",
         "cloudfront:Get*",

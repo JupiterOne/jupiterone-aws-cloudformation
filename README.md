@@ -132,6 +132,30 @@ stay under the 6,144 non-whitespace character limit. If you have requested a quo
 
 [![Launch JupiterOne IAM CloudFormation Stack](https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png)](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?stackName=JupiterOneIntegration&templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fjupiterone-prod-us-aws-cloudformation-templates%2Fcloudformation-detailed.json)
 
+#### Amazon Keyspaces
+
+The templates don't grant `cassandra:Select`. Amazon Keyspaces authorizes
+reading table metadata (`GetTable`, `ListTagsForResource`) with `Select` on
+the table itself, which also allows reading the table's data. If you enable the
+**Amazon Keyspaces** and **Amazon Keyspaces Tables** data sources in
+JupiterOne, add this statement to the role:
+
+```json
+{
+  "Effect": "Allow",
+  "Action": "cassandra:Select",
+  "Resource": [
+    "arn:aws:cassandra:*:*:/keyspace/system*",
+    "arn:aws:cassandra:*:*:/keyspace/*/",
+    "arn:aws:cassandra:*:*:/keyspace/*/table/*"
+  ]
+}
+```
+
+The first resource lists keyspaces and tables, the second reads keyspace tags,
+and the third reads table metadata and tags. To limit access, replace the last
+two with the keyspaces and tables you want JupiterOne to ingest.
+
 ### AWS Organizations
 
 When **Configure Organization Accounts** is enabled, JupiterOne creates an

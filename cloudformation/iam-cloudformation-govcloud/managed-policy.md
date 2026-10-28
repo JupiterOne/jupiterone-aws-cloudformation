@@ -45,7 +45,6 @@
         "bedrock-agentcore:List*",
         "bedrock:Get*",
         "bedrock:List*",
-        "cassandra:Select",
         "cloudformation:Describe*",
         "cloudformation:List*",
         "cloudfront:Get*",

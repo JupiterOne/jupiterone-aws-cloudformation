@@ -177,7 +177,6 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "bedrock:ListModelInvocationJobs",
         "bedrock:ListProvisionedModelThroughputs",
         "bedrock:ListTagsForResource",
-        "cassandra:Select",
         "cloudformation:DescribeStacks",
         "cloudformation:ListStacks",
         "cloudfront:GetDistributionConfig",
@@ -224,7 +223,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy" {
         "codeguru-reviewer:DescribeRepositoryAssociation",
         "codeguru-reviewer:ListRepositoryAssociations",
         "codeguru-reviewer:ListTagsForResource",
-        "codepipeline:GetPipeline"
+        "codepipeline:GetPipeline",
+        "codepipeline:ListPipelines"
       ]
     }
   ]
@@ -247,7 +247,6 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
-        "codepipeline:ListPipelines",
         "cognito-identity:DescribeIdentityPool",
         "cognito-identity:ListIdentityPools",
         "cognito-idp:DescribeRiskConfiguration",
@@ -443,7 +442,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_2" {
         "guardduty:GetFindings",
         "guardduty:ListDetectors",
         "guardduty:ListFindings",
-        "guardduty:ListOrganizationAdminAccounts"
+        "guardduty:ListOrganizationAdminAccounts",
+        "guardduty:ListPublishingDestinations"
       ]
     }
   ]
@@ -466,7 +466,6 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_3" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
-        "guardduty:ListPublishingDestinations",
         "health:DescribeAffectedEntities",
         "health:DescribeEventDetails",
         "health:DescribeEvents",
@@ -665,7 +664,9 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_3" {
         "rds:DescribeDBProxyTargets",
         "rds:DescribeDBSnapshots",
         "rds:DescribeDBSubnetGroups",
-        "rds:DescribeOptionGroups"
+        "rds:DescribeOptionGroups",
+        "redshift-serverless:ListEndpointAccess",
+        "redshift-serverless:ListNamespaces"
       ]
     }
   ]
@@ -688,8 +689,6 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_4" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
-        "redshift-serverless:ListEndpointAccess",
-        "redshift-serverless:ListNamespaces",
         "redshift-serverless:ListRecoveryPoints",
         "redshift-serverless:ListSnapshots",
         "redshift-serverless:ListTagsForResource",
@@ -876,7 +875,8 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_4" {
         "transfer:ListUsers",
         "vpc-lattice:ListListeners",
         "vpc-lattice:ListServiceNetworks",
-        "vpc-lattice:ListServiceNetworkServiceAssociations"
+        "vpc-lattice:ListServiceNetworkServiceAssociations",
+        "vpc-lattice:ListServiceNetworkVpcAssociations"
       ]
     }
   ]
@@ -899,7 +899,6 @@ resource "aws_iam_policy" "jupiterone_security_audit_policy_5" {
       "Effect": "Allow",
       "Resource": "*",
       "Action": [
-        "vpc-lattice:ListServiceNetworkVpcAssociations",
         "vpc-lattice:ListServiceNetworkVpcEndpointAssociations",
         "vpc-lattice:ListServices",
         "vpc-lattice:ListTargetGroups",
